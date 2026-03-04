@@ -30,10 +30,10 @@ export default function App() {
               className="space-y-2 pointer-events-auto cursor-default"
             >
               <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white drop-shadow-[0_0_20px_rgba(0,0,0,1)] select-none">
-                IlustricIA
+                Ilustric<span style={{ color: '#29ABE2', textShadow: '0 0 10px rgba(41, 171, 226, 0.8), 0 0 25px rgba(41, 171, 226, 0.5), 0 0 40px rgba(41, 171, 226, 0.3)' }}>IA</span>
               </h1>
               <p className="text-xl md:text-2xl text-white/80 font-light tracking-wide max-w-2xl mx-auto">
-                Soluciones tecnológicas y creativas basadas en Inteligencia Artificial para resultados medibles.
+                Soluciones digitales y funcionales para tu ecosistema digital.
               </p>
             </motion.div>
           </div>

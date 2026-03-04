@@ -10,6 +10,7 @@ import {
   MessageSquare
 } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
+import SystemGlobe from './ui/system-globe';
 
 const Badge = ({ icon: Icon, text }: { icon: any; text: string }) => (
   <div className="flex items-center gap-2 px-4 py-2 bg-neutral-900/50 border border-neutral-800 rounded-lg text-neutral-300 text-xs font-medium hover:border-neutral-700 transition-colors cursor-default">
@@ -51,46 +52,8 @@ export function SystemOfRecordSection() {
         {/* Header Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24 relative">
           {/* Globe Background Effect (Right Side) */}
-          <div className="absolute right-[-20%] top-[-50%] w-[800px] h-[800px] opacity-20 pointer-events-none">
-             <svg viewBox="0 0 200 200" className="w-full h-full">
-               <defs>
-                 <filter id="glow-effect" x="-50%" y="-50%" width="200%" height="200%">
-                   <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
-                   <feMerge>
-                     <feMergeNode in="coloredBlur"/>
-                     <feMergeNode in="SourceGraphic"/>
-                   </feMerge>
-                 </filter>
-               </defs>
-
-               <path id="orbit-path" d="M100,10 A90,90 0 1,0 100,190 A90,90 0 1,0 100,10 Z" fill="none" stroke="#555" strokeWidth="0.5" />
-               <path d="M10,100 A90,40 0 1,0 190,100 A90,40 0 1,0 10,100 Z" fill="none" stroke="#555" strokeWidth="0.5" />
-               <path d="M100,10 A40,90 0 1,0 100,190 A40,90 0 1,0 100,10 Z" fill="none" stroke="#555" strokeWidth="0.5" />
-               <path d="M30,40 Q100,0 170,40" fill="none" stroke="#555" strokeWidth="0.5" strokeDasharray="2 2" />
-               <path d="M30,160 Q100,200 170,160" fill="none" stroke="#555" strokeWidth="0.5" strokeDasharray="2 2" />
-               
-               {/* Orbiting Light & Trail */}
-               {/* Trail 2 */}
-               <circle r="1" fill="#3B82F6" opacity="0.3">
-                 <animateMotion dur="12s" repeatCount="indefinite" begin="-0.3s">
-                   <mpath href="#orbit-path" />
-                 </animateMotion>
-               </circle>
-               
-               {/* Trail 1 */}
-               <circle r="1.5" fill="#3B82F6" opacity="0.6">
-                 <animateMotion dur="12s" repeatCount="indefinite" begin="-0.15s">
-                   <mpath href="#orbit-path" />
-                 </animateMotion>
-               </circle>
-
-               {/* Main Light */}
-               <circle r="2.5" fill="#60A5FA" filter="url(#glow-effect)">
-                 <animateMotion dur="12s" repeatCount="indefinite">
-                   <mpath href="#orbit-path" />
-                 </animateMotion>
-               </circle>
-             </svg>
+          <div className="absolute right-[-25%] top-[-40%] w-[900px] h-[900px] pointer-events-none opacity-100 mix-blend-screen">
+             <SystemGlobe />
           </div>
 
           <div className="flex flex-col justify-center">
