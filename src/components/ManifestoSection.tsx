@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { 
   Bot, 
   Globe, 
@@ -67,14 +68,40 @@ export function ManifestoSection() {
         </div>
 
         {/* Icons Row */}
-        <div className="flex flex-wrap justify-center gap-4 w-full mt-12">
-          <IconCard icon={Bot} label="Chatbots" />
-          <IconCard icon={Globe} label="Web Dev" />
-          <IconCard icon={Lightbulb} label="Consulting" />
-          <IconCard icon={Cpu} label="Automation" />
-          <IconCard icon={MessageCircle} label="Social" />
-          <IconCard icon={LineChart} label="Strategy" />
-        </div>
+        <motion.div 
+          className="flex flex-wrap justify-center gap-4 w-full mt-12"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.1
+              }
+            }
+          }}
+        >
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+            <IconCard icon={Bot} label="Chatbots" />
+          </motion.div>
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+            <IconCard icon={Globe} label="Web Dev" />
+          </motion.div>
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+            <IconCard icon={Lightbulb} label="Consulting" />
+          </motion.div>
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+            <IconCard icon={Cpu} label="Automation" />
+          </motion.div>
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+            <IconCard icon={MessageCircle} label="Social" />
+          </motion.div>
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+            <IconCard icon={LineChart} label="Strategy" />
+          </motion.div>
+        </motion.div>
 
       </div>
     </section>

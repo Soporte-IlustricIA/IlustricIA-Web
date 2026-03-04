@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { 
   Menu, 
   Share, 
@@ -15,7 +16,10 @@ import {
   Plus,
   CheckSquare,
   Square,
-  Play
+  Play,
+  Settings,
+  Database,
+  GraduationCap
 } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import { GlowingShadow } from './ui/glowing-shadow';
@@ -65,31 +69,19 @@ const FeatureColumn = ({
   icon: Icon, 
   title, 
   description, 
-  beta = false, 
-  active = false,
   color = "text-blue-500"
 }: { 
   icon: any; 
   title: string; 
   description: string; 
-  beta?: boolean; 
-  active?: boolean;
   color?: string;
 }) => (
-  <div className={cn("flex flex-col gap-3 p-4 rounded-xl transition-opacity duration-500", active ? "opacity-100" : "opacity-50 hover:opacity-80")}>
+  <div className="flex flex-col gap-3 p-4 rounded-xl transition-opacity duration-500">
     <div className="flex items-center gap-2 mb-1">
       <Icon size={20} className={color} />
-      {active && (
-        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-      )}
     </div>
     <div className="flex items-center gap-2">
       <h3 className="text-lg font-medium text-white">{title}</h3>
-      {beta && (
-        <span className="px-1.5 py-0.5 rounded bg-neutral-800 text-[10px] font-bold text-neutral-400 uppercase tracking-wider border border-neutral-700">
-          Beta
-        </span>
-      )}
     </div>
     <p className="text-sm text-neutral-400 leading-relaxed">
       {description}
@@ -234,7 +226,7 @@ export function DashboardSection() {
                 
                 <ListItem checked title="Automatización de atención al cliente" value="$150,000" count={204} change="+3%" />
                 <ListItem checked title="Optimización de flujo de ventas" value="$121,000" count={178} change="+1%" />
-                <ListItem checked title="Segmentación inteligente de marketing" value="$81,450" count={124} change="-0.5%" />
+                <ListItem checked title="Automatización industrial de procesos" value="$81,450" count={124} change="-0.5%" />
                 <div className="opacity-30">
                   <ListItem title="Análisis predictivo de inventario" value="$45,000" count={98} change="+12%" />
                 </div>
@@ -303,43 +295,65 @@ export function DashboardSection() {
 
         {/* Bottom Features Grid */}
         <div className="mt-32">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-            <GlowingShadow>
-              <FeatureColumn 
-                active
-                icon={Sparkles}
-                color="text-orange-500"
-                title="Asistentes y Chatbots"
-                description="Atención al cliente 24/7 en Web y WhatsApp con flujos conversacionales personalizados."
-              />
-            </GlowingShadow>
-            <GlowingShadow>
-              <FeatureColumn 
-                icon={LayoutGrid}
-                color="text-neutral-500"
-                title="Desarrollo Web"
-                beta
-                description="Páginas modernas y marketplaces orientados a conversión y resultados medibles."
-              />
-            </GlowingShadow>
-            <GlowingShadow>
-              <FeatureColumn 
-                icon={Search}
-                color="text-blue-500"
-                title="Consultoría Estratégica"
-                description="Evaluación de necesidades y planes de implementación por fases enfocados en resultados."
-              />
-            </GlowingShadow>
-            <GlowingShadow>
-              <FeatureColumn 
-                icon={FileText}
-                color="text-blue-400"
-                title="Gestión de Redes"
-                beta
-                description="Estrategias de contenido coherentes con tu marca y medición de impacto continuo."
-              />
-            </GlowingShadow>
-          </div>
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.1
+                }
+              }
+            }}
+          >
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+              <GlowingShadow>
+                <FeatureColumn 
+                  icon={Sparkles}
+                  color="text-orange-500"
+                  title="Asistentes y Chatbots"
+                  description="Atención al cliente 24/7 en Web y WhatsApp con flujos conversacionales personalizados."
+                />
+              </GlowingShadow>
+            </motion.div>
+            
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+              <GlowingShadow>
+                <FeatureColumn 
+                  icon={LayoutGrid}
+                  color="text-neutral-500"
+                  title="Desarrollo Web"
+                  description="Páginas modernas y marketplaces orientados a conversión y resultados medibles."
+                />
+              </GlowingShadow>
+            </motion.div>
+
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+              <GlowingShadow>
+                <FeatureColumn 
+                  icon={Settings}
+                  color="text-blue-500"
+                  title="Consultoría y Automatización"
+                  description="Evaluación de necesidades, automatizaciones industriales y planes de implementación por fases."
+                />
+              </GlowingShadow>
+            </motion.div>
+
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+              <GlowingShadow>
+                <FeatureColumn 
+                  icon={FileText}
+                  color="text-blue-400"
+                  title="Gestión de Redes"
+                  description="Estrategias de contenido coherentes con tu marca y medición de impacto continuo."
+                />
+              </GlowingShadow>
+            </motion.div>
+          </motion.div>
         </div>
 
       </div>

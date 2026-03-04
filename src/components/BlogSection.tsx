@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
+import { motion } from 'framer-motion';
 
 const BlogCard = ({ 
   image, 
@@ -48,30 +49,49 @@ export function BlogSection() {
         </div>
 
         {/* Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <motion.div 
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.1
+              }
+            }
+          }}
+        >
           
           {/* Left Column - Large Card */}
-          <BlogCard 
-            image={
-              <div className="w-full aspect-[16/10] bg-[#0055FF] p-8 flex items-center justify-center relative overflow-hidden">
-                {/* Typography Pattern */}
-                <div className="text-white/90 font-mono text-xs leading-relaxed opacity-80 select-none">
-                  Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk<br/>
-                  Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu<br/>
-                  Vv Ww Xx Yy Zz 0123456789<br/>
-                  !@#$%^&*()_+-=[]{};':",./&lt;&gt;?`~
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+            <BlogCard 
+              image={
+                <div className="w-full aspect-[16/10] bg-[#0055FF] p-8 flex items-center justify-center relative overflow-hidden">
+                  {/* Typography Pattern */}
+                  <div className="text-white/90 font-mono text-xs leading-relaxed opacity-80 select-none">
+                    Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk<br/>
+                    Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu<br/>
+                    Vv Ww Xx Yy Zz 0123456789<br/>
+                    !@#$%^&*()_+-=[]{};':",./&lt;&gt;?`~
+                  </div>
+                  {/* Faint background pattern */}
+                  <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%,transparent_100%)] bg-[length:20px_20px]" />
                 </div>
-                {/* Faint background pattern */}
-                <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%,transparent_100%)] bg-[length:20px_20px]" />
-              </div>
-            }
-            title="El equipo y visión detrás de la evolución de marca de IlustricIA"
-            tags={['[EQUIPO]']}
-            className="lg:max-w-xl"
-          />
+              }
+              title="El equipo y visión detrás de la evolución de marca de IlustricIA"
+              tags={['[EQUIPO]']}
+              className="lg:max-w-xl"
+            />
+          </motion.div>
 
           {/* Right Column - Two Smaller Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+          >
             
             {/* Card 2 */}
             <BlogCard 
@@ -123,9 +143,9 @@ export function BlogSection() {
               tags={['[PRODUCTO]', '[IA]']}
             />
 
-          </div>
+          </motion.div>
 
-        </div>
+        </motion.div>
       </div>
     </section>
   );

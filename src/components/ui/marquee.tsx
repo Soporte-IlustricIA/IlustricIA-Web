@@ -28,7 +28,7 @@ export function Marquee({
       <div className="relative flex max-w-[90vw] overflow-hidden py-5 mx-auto">
         <div 
           className={cn(
-            "flex w-max animate-marquee",
+            "flex w-max animate-marquee gap-32",
             pauseOnHover && "hover:[animation-play-state:paused]",
             direction === "right" && "animate-marquee-reverse"
           )}
