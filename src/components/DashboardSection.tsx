@@ -36,8 +36,8 @@ const FilterBadge = ({ children, active = false, icon: Icon }: { children: React
   <div className={cn(
     "flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium border transition-colors",
     active 
-      ? "bg-blue-500/10 text-blue-400 border-blue-500/20" 
-      : "bg-neutral-900 text-neutral-400 border-neutral-800 hover:border-neutral-700"
+      ? "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20" 
+      : "bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700"
   )}>
     {Icon && <Icon size={12} />}
     {children}
@@ -46,21 +46,21 @@ const FilterBadge = ({ children, active = false, icon: Icon }: { children: React
 );
 
 const ListItem = ({ checked = false, title, value, count, change }: { checked?: boolean; title: string; value: string; count: number; change: string }) => (
-  <div className="flex items-center gap-4 py-3 border-b border-neutral-800/50 group hover:bg-neutral-800/30 px-2 rounded transition-colors">
-    <div className={cn("rounded-[4px] flex items-center justify-center transition-colors", checked ? "text-blue-500" : "text-neutral-700")}>
+  <div className="flex items-center gap-4 py-3 border-b border-neutral-200 dark:border-neutral-800/50 group hover:bg-neutral-100 dark:hover:bg-neutral-800/30 px-2 rounded transition-colors">
+    <div className={cn("rounded-[4px] flex items-center justify-center transition-colors", checked ? "text-blue-500" : "text-neutral-300 dark:text-neutral-700")}>
       {checked ? <CheckSquare size={16} /> : <Square size={16} />}
     </div>
-    <span className="text-sm text-neutral-300 flex-1 truncate">{title}</span>
+    <span className="text-sm text-neutral-700 dark:text-neutral-300 flex-1 truncate">{title}</span>
     
     {/* Progress bar visual */}
-    <div className="w-24 h-1.5 bg-neutral-800 rounded-full overflow-hidden">
+    <div className="w-24 h-1.5 bg-neutral-200 dark:bg-neutral-800 rounded-full overflow-hidden">
       <div className="h-full bg-blue-500/50 rounded-full" style={{ width: '60%' }} />
     </div>
     
     <div className="flex items-center gap-4 text-xs font-mono">
-      <span className="text-neutral-400 w-16 text-right">{value}</span>
-      <span className="text-neutral-500 w-8 text-right">{count}</span>
-      <span className="text-green-500 w-10 text-right">{change}</span>
+      <span className="text-neutral-500 dark:text-neutral-400 w-16 text-right">{value}</span>
+      <span className="text-neutral-400 dark:text-neutral-500 w-8 text-right">{count}</span>
+      <span className="text-green-600 dark:text-green-500 w-10 text-right">{change}</span>
     </div>
   </div>
 );
@@ -81,9 +81,9 @@ const FeatureColumn = ({
       <Icon size={20} className={color} />
     </div>
     <div className="flex items-center gap-2">
-      <h3 className="text-lg font-medium text-white">{title}</h3>
+      <h3 className="text-lg font-medium text-black dark:text-white">{title}</h3>
     </div>
-    <p className="text-sm text-neutral-400 leading-relaxed">
+    <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
       {description}
     </p>
   </div>
@@ -91,30 +91,30 @@ const FeatureColumn = ({
 
 export function DashboardSection() {
   return (
-    <section className="w-full bg-black py-24 px-4 md:px-8 overflow-hidden">
+    <section className="w-full bg-neutral-50 dark:bg-black py-24 px-4 md:px-8 overflow-hidden transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         
         {/* Main Dashboard Visual */}
         <div className="relative mb-32 mx-auto max-w-5xl">
           
           {/* Background Card: Support Trends */}
-          <div className="w-full bg-[#0A0A0A] rounded-xl border border-neutral-800 shadow-2xl overflow-hidden relative z-10">
+          <div className="w-full bg-white dark:bg-[#0A0A0A] rounded-xl border border-neutral-200 dark:border-neutral-800 shadow-2xl dark:shadow-none overflow-hidden relative z-10">
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-800">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-200 dark:border-neutral-800">
               <div className="flex items-center gap-4">
-                <Menu size={18} className="text-neutral-500" />
+                <Menu size={18} className="text-neutral-400 dark:text-neutral-500" />
                 <div className="flex items-center gap-2">
-                  <div className="w-5 h-5 rounded bg-orange-500/20 flex items-center justify-center text-orange-500">
+                  <div className="w-5 h-5 rounded bg-orange-500/20 flex items-center justify-center text-orange-600 dark:text-orange-500">
                     <Sparkles size={12} />
                   </div>
-                  <span className="text-sm font-medium text-white">Gestión de Procesos</span>
+                  <span className="text-sm font-medium text-black dark:text-white">Gestión de Procesos</span>
                 </div>
               </div>
               
               <div className="flex items-center gap-6">
-                <div className="flex bg-neutral-900 rounded-lg p-1 border border-neutral-800">
-                  <button className="px-3 py-1 rounded-md bg-neutral-800 text-xs font-medium text-white shadow-sm">Métricas</button>
-                  <button className="px-3 py-1 rounded-md text-xs font-medium text-neutral-500 hover:text-neutral-300">Datos</button>
+                <div className="flex bg-neutral-100 dark:bg-neutral-900 rounded-lg p-1 border border-neutral-200 dark:border-neutral-800">
+                  <button className="px-3 py-1 rounded-md bg-white dark:bg-neutral-800 text-xs font-medium text-black dark:text-white shadow-sm">Métricas</button>
+                  <button className="px-3 py-1 rounded-md text-xs font-medium text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300">Datos</button>
                 </div>
                 
                 <div className="flex items-center gap-4 text-xs text-neutral-500">
@@ -128,7 +128,7 @@ export function DashboardSection() {
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-3 text-neutral-500">
+                <div className="flex items-center gap-3 text-neutral-400 dark:text-neutral-500">
                   <Share size={16} />
                   <Filter size={16} />
                   <MoreHorizontal size={16} />
@@ -137,28 +137,28 @@ export function DashboardSection() {
             </div>
 
             {/* Filters */}
-            <div className="flex items-center gap-3 px-6 py-4 border-b border-neutral-800 overflow-x-auto">
+            <div className="flex items-center gap-3 px-6 py-4 border-b border-neutral-200 dark:border-neutral-800 overflow-x-auto">
               <FilterBadge active>Automatización <span className="ml-1 opacity-50 bg-blue-500/20 px-1 rounded">5</span></FilterBadge>
               <FilterBadge icon={Calendar} active>Ene 2025 - Jun 2025</FilterBadge>
               <FilterBadge>Semanal</FilterBadge>
               <FilterBadge icon={BarChart2}>ROI</FilterBadge>
               <FilterBadge icon={User}>Cliente</FilterBadge>
-              <span className="text-xs text-neutral-600 ml-2">Añadir filtro</span>
+              <span className="text-xs text-neutral-400 dark:text-neutral-600 ml-2">Añadir filtro</span>
             </div>
 
             {/* Chart Area */}
             <div className="p-6 relative">
-              <div className="h-48 flex items-end justify-between gap-1 pb-8 border-b border-neutral-800 relative">
+              <div className="h-48 flex items-end justify-between gap-1 pb-8 border-b border-neutral-200 dark:border-neutral-800 relative">
                 {/* Y-Axis Lines */}
                 <div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
-                  <div className="w-full h-px bg-neutral-800/30" />
-                  <div className="w-full h-px bg-neutral-800/30" />
-                  <div className="w-full h-px bg-neutral-800/30" />
-                  <div className="w-full h-px bg-neutral-800/30" />
+                  <div className="w-full h-px bg-neutral-200/50 dark:bg-neutral-800/30" />
+                  <div className="w-full h-px bg-neutral-200/50 dark:bg-neutral-800/30" />
+                  <div className="w-full h-px bg-neutral-200/50 dark:bg-neutral-800/30" />
+                  <div className="w-full h-px bg-neutral-200/50 dark:bg-neutral-800/30" />
                 </div>
                 
                 {/* Y-Axis Labels */}
-                <div className="absolute right-0 top-0 bottom-8 flex flex-col justify-between text-[10px] text-neutral-600 font-mono py-1">
+                <div className="absolute right-0 top-0 bottom-8 flex flex-col justify-between text-[10px] text-neutral-400 dark:text-neutral-600 font-mono py-1">
                   <span>150</span>
                   <span>100</span>
                   <span>50</span>
@@ -203,7 +203,7 @@ export function DashboardSection() {
               </div>
               
               {/* X-Axis Labels */}
-              <div className="flex justify-between px-2 mt-2 text-xs text-neutral-500 font-medium">
+              <div className="flex justify-between px-2 mt-2 text-xs text-neutral-400 dark:text-neutral-500 font-medium">
                 <span>Ene</span>
                 <span>Feb</span>
                 <span>Mar</span>
@@ -214,7 +214,7 @@ export function DashboardSection() {
 
               {/* List Content */}
               <div className="mt-8 space-y-1">
-                <div className="flex items-center justify-between text-xs text-neutral-500 px-2 mb-2">
+                <div className="flex items-center justify-between text-xs text-neutral-400 dark:text-neutral-500 px-2 mb-2">
                   <span>4 procesos optimizados con 606 puntos de datos</span>
                   <div className="flex items-center gap-2">
                     <Search size={14} />
@@ -235,15 +235,15 @@ export function DashboardSection() {
           </div>
 
           {/* Floating Card: Discovery Call */}
-          <div className="absolute -right-12 top-24 w-[400px] bg-[#111] rounded-xl border border-neutral-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-20 overflow-hidden">
-            <div className="p-4 border-b border-neutral-800 flex items-center justify-between">
-              <div className="flex items-center gap-2 text-white text-sm font-medium">
+          <div className="absolute -right-12 top-24 w-[400px] bg-white dark:bg-[#111] rounded-xl border border-neutral-200 dark:border-neutral-800 shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-20 overflow-hidden">
+            <div className="p-4 border-b border-neutral-200 dark:border-neutral-800 flex items-center justify-between">
+              <div className="flex items-center gap-2 text-black dark:text-white text-sm font-medium">
                 <div className="w-4 h-4 rounded-full bg-blue-500 flex items-center justify-center">
                   <div className="w-1.5 h-1.5 bg-white rounded-full" />
                 </div>
                 Consultoría Estratégica
               </div>
-              <div className="flex items-center gap-3 text-neutral-500">
+              <div className="flex items-center gap-3 text-neutral-400 dark:text-neutral-500">
                 <MoreHorizontal size={16} />
                 <Share size={16} />
                 <MoreHorizontal size={16} />
@@ -252,7 +252,7 @@ export function DashboardSection() {
             
             <div className="p-4">
               {/* Video Thumbnail */}
-              <div className="relative aspect-video bg-neutral-800 rounded-lg overflow-hidden mb-4 group">
+              <div className="relative aspect-video bg-neutral-100 dark:bg-neutral-800 rounded-lg overflow-hidden mb-4 group">
                 <img 
                   src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=600" 
                   alt="Video call participant" 
@@ -267,7 +267,7 @@ export function DashboardSection() {
               
               {/* Chat Message */}
               <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-neutral-700 overflow-hidden flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-neutral-200 dark:bg-neutral-700 overflow-hidden flex-shrink-0">
                   <img 
                     src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100" 
                     alt="Consultora" 
@@ -275,17 +275,17 @@ export function DashboardSection() {
                   />
                 </div>
                 <div className="space-y-1">
-                  <div className="text-xs font-medium text-white">Consultora IlustricIA</div>
-                  <p className="text-sm text-neutral-300 leading-relaxed">
+                  <div className="text-xs font-medium text-black dark:text-white">Consultora IlustricIA</div>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">
                     Perfecto. Para empezar, analicemos dónde están los cuellos de botella en vuestros procesos actuales.
                   </p>
                 </div>
               </div>
               
               <div className="flex gap-3 mt-4 opacity-50">
-                <div className="w-8 h-8 rounded-full bg-neutral-800 flex-shrink-0" />
+                <div className="w-8 h-8 rounded-full bg-neutral-100 dark:bg-neutral-800 flex-shrink-0" />
                 <div className="space-y-1">
-                  <div className="text-xs font-medium text-neutral-500">Cliente</div>
+                  <div className="text-xs font-medium text-neutral-400 dark:text-neutral-500">Cliente</div>
                 </div>
               </div>
             </div>

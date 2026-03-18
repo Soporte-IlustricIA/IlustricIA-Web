@@ -55,13 +55,13 @@ const FeatureItem = ({
     <div className="flex gap-6 relative group">
       {/* Timeline Line */}
       {!isLast && (
-        <div className="absolute left-[5px] top-3 bottom-[-12px] w-[1px] bg-neutral-800" />
+        <div className="absolute left-[5px] top-3 bottom-[-12px] w-[1px] bg-neutral-200 dark:bg-neutral-800" />
       )}
       
       {/* Bullet Point */}
       <div className={cn(
         "relative z-10 w-2.5 h-2.5 mt-2 rounded-[1px] flex-shrink-0 transition-all duration-500",
-        active ? "bg-white scale-125 shadow-[0_0_10px_rgba(255,255,255,0.5)]" : "bg-neutral-800 group-hover:bg-neutral-700"
+        active ? "bg-black dark:bg-white scale-125 shadow-[0_0_10px_rgba(0,0,0,0.2)] dark:shadow-[0_0_10px_rgba(255,255,255,0.5)]" : "bg-neutral-300 dark:bg-neutral-800 group-hover:bg-neutral-400 dark:group-hover:bg-neutral-700"
       )} />
       
       {/* Content */}
@@ -69,7 +69,7 @@ const FeatureItem = ({
         <h3 
           className={cn(
             "text-xl font-medium leading-tight transition-colors duration-300 cursor-pointer py-1",
-            active ? "text-white" : "text-neutral-500 group-hover:text-neutral-400"
+            active ? "text-black dark:text-white" : "text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-600 dark:group-hover:text-neutral-400"
           )}
           onClick={onClick}
         >
@@ -80,7 +80,7 @@ const FeatureItem = ({
           active ? "grid-rows-[1fr] opacity-100 mb-8" : "grid-rows-[0fr] opacity-0 mb-2"
         )}>
           <div className="overflow-hidden">
-            <p className="text-neutral-400 leading-relaxed max-w-md pt-3">
+            <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-md pt-3">
               {description}
             </p>
           </div>
@@ -113,17 +113,17 @@ const InputCard = ({
 
   return (
     <div className={cn(
-      "p-3 rounded-lg border backdrop-blur-sm text-[10px] font-mono uppercase tracking-wider shadow-lg",
-      "bg-neutral-900/80 border-neutral-800",
+      "p-3 rounded-lg border backdrop-blur-sm text-[10px] font-mono uppercase tracking-wider shadow-lg transition-colors duration-300",
+      "bg-white/80 dark:bg-neutral-900/80 border-neutral-200 dark:border-neutral-800",
       className
     )}>
-      <div className="flex items-center gap-2 mb-2 text-neutral-400">
-        <div className={cn("p-1 rounded bg-neutral-800", colorStyles[color].split(' ')[1])}>
+      <div className="flex items-center gap-2 mb-2 text-neutral-500 dark:text-neutral-400">
+        <div className={cn("p-1 rounded bg-neutral-100 dark:bg-neutral-800", colorStyles[color].split(' ')[1])}>
           <Icon size={12} />
         </div>
-        <span className="font-semibold">{title}</span>
+        <span className="font-semibold text-black dark:text-white">{title}</span>
       </div>
-      <div className="text-neutral-500 leading-tight">
+      <div className="text-neutral-500 dark:text-neutral-500 leading-tight">
         {subtitle}
       </div>
     </div>
@@ -152,7 +152,7 @@ export function FeatureSection() {
   return (
     <section 
       ref={containerRef} 
-      className="w-full bg-black relative"
+      className="w-full bg-white dark:bg-black relative transition-colors duration-300"
       style={{ height: "300vh" }}
     >
       <div className="sticky top-0 h-screen flex items-center overflow-hidden">
@@ -160,7 +160,7 @@ export function FeatureSection() {
           
           {/* Left Column: Text Content */}
           <div className="flex flex-col">
-            <h2 className="text-5xl md:text-6xl font-medium tracking-tight mb-16 leading-[1.1]">
+            <h2 className="text-5xl md:text-6xl font-medium tracking-tight mb-16 leading-[1.1] text-black dark:text-white">
               <ShiningText>
                 De la promesa<br />a la práctica
               </ShiningText>
@@ -181,10 +181,10 @@ export function FeatureSection() {
           </div>
 
           {/* Right Column: Visualization */}
-          <div className="relative w-full aspect-square lg:aspect-auto lg:h-[800px] bg-neutral-950/50 rounded-3xl border border-neutral-900 p-8 flex flex-col items-center overflow-hidden transition-all duration-500">
+          <div className="relative w-full aspect-square lg:aspect-auto lg:h-[800px] bg-neutral-100 dark:bg-neutral-950/50 rounded-3xl border border-neutral-200 dark:border-neutral-900 p-8 flex flex-col items-center overflow-hidden transition-all duration-500">
             
             {/* Background Grid/Glow Effect */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neutral-900/50 via-black to-black opacity-50" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neutral-200/50 dark:from-neutral-900/50 via-white dark:via-black to-white dark:to-black opacity-50" />
             
             {/* Diagram Container */}
             <div className="relative z-10 w-full max-w-lg mx-auto flex flex-col items-center gap-8">

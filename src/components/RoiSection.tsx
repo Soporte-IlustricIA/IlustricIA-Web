@@ -63,7 +63,7 @@ export function RoiSection() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative bg-black h-[400vh]">
+    <section ref={containerRef} className="relative bg-white dark:bg-black h-[400vh] transition-colors duration-300">
       {/* Scroll Triggers - Invisible elements that trigger state changes */}
       <div className="absolute inset-0 pointer-events-none z-0 flex flex-col">
         {steps.map((step) => (
@@ -78,8 +78,8 @@ export function RoiSection() {
       {/* Sticky Content Container */}
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
         {/* Background Grid Dots */}
-        <div className="absolute inset-0 z-0" style={{ 
-          backgroundImage: 'radial-gradient(circle at 1px 1px, #222 1px, transparent 0)',
+        <div className="absolute inset-0 z-0 dark:[--dot-color:#222] [--dot-color:#e5e5e5]" style={{ 
+          backgroundImage: 'radial-gradient(circle at 1px 1px, var(--dot-color, #e5e5e5) 1px, transparent 0)',
           backgroundSize: '40px 40px'
         }} />
 
@@ -95,7 +95,8 @@ export function RoiSection() {
                 <path 
                   d="M 0 400 L 200 200 L 300 350 L 450 150 L 550 150 L 650 50 L 800 0" 
                   fill="none" 
-                  stroke="#333" 
+                  stroke="currentColor" 
+                  className="text-neutral-200 dark:text-neutral-800"
                   strokeWidth="1.5"
                 />
               </svg>
@@ -119,16 +120,16 @@ export function RoiSection() {
                     <div className={cn(
                       "w-8 h-8 rounded-sm flex items-center justify-center border transition-colors duration-500",
                       isActive 
-                        ? "bg-orange-900/40 border-orange-500/50 shadow-[0_0_25px_rgba(234,88,12,0.6)]" 
-                        : "bg-orange-900/10 border-orange-900/20 shadow-none"
+                        ? "bg-orange-100 dark:bg-orange-900/40 border-orange-500/50 shadow-[0_0_25px_rgba(234,88,12,0.3)] dark:shadow-[0_0_25px_rgba(234,88,12,0.6)]" 
+                        : "bg-orange-50 dark:bg-orange-900/10 border-orange-200 dark:border-orange-900/20 shadow-none"
                     )}>
                       <div className={cn(
                         "w-3 h-3 rounded-sm flex items-center justify-center transition-colors duration-500",
-                        isActive ? "bg-orange-500" : "bg-orange-800/40"
+                        isActive ? "bg-orange-500" : "bg-orange-300 dark:bg-orange-800/40"
                       )}>
                         <div className={cn(
                           "w-1.5 h-1.5 rounded-[1px] transition-colors duration-500",
-                          isActive ? "bg-white" : "bg-orange-700"
+                          isActive ? "bg-white" : "bg-orange-200 dark:bg-orange-700"
                         )} />
                       </div>
                     </div>
@@ -144,24 +145,17 @@ export function RoiSection() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -20, scale: 0.95 }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="absolute left-0 top-[100px] w-[280px] bg-[#0A0A0A] border border-neutral-800 rounded-lg p-6 shadow-2xl z-20"
+                  className="absolute left-0 top-[100px] w-[280px] bg-white dark:bg-[#0A0A0A] border border-neutral-200 dark:border-neutral-800 rounded-lg p-6 shadow-xl dark:shadow-2xl z-20"
                 >
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 mb-3">
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-3">
                     Paso 0{activeStep}
                   </div>
-                  <div className="text-3xl font-medium text-white mb-4 tracking-tight">
+                  <div className="text-3xl font-medium text-black dark:text-white mb-4 tracking-tight">
                     {steps[activeStep - 1].title}
                   </div>
-                  <p className="text-xs text-neutral-400 leading-relaxed">
+                  <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
                     {steps[activeStep - 1].description}
                   </p>
-                  
-                  {/* Connector Line to Graph - Dynamic Position based on active step? 
-                      Keeping it static for now as the card position is static, 
-                      but maybe we should point to the active node? 
-                      The original design had a fixed connector. 
-                      Let's keep it simple as per instructions, but maybe hide it if it doesn't align.
-                  */}
                 </motion.div>
               </AnimatePresence>
 
@@ -177,18 +171,18 @@ export function RoiSection() {
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <h2 className="text-3xl md:text-4xl font-medium text-white mb-6 leading-tight">
+                  <h2 className="text-3xl md:text-4xl font-medium text-black dark:text-white mb-6 leading-tight">
                     {steps[activeStep - 1].title}
                   </h2>
-                  <p className="text-xl md:text-2xl font-medium text-neutral-500 mb-12 leading-tight">
+                  <p className="text-xl md:text-2xl font-medium text-neutral-400 dark:text-neutral-500 mb-12 leading-tight">
                     {steps[activeStep - 1].description}
                   </p>
                 </motion.div>
               </AnimatePresence>
 
               <div className="space-y-1">
-                <p className="text-white text-sm font-medium">¿Quieres ver el ROI completo de IlustricIA?</p>
-                <a href="#" className="inline-flex items-center text-sm text-neutral-400 hover:text-white transition-colors border-b border-neutral-700 hover:border-white pb-0.5">
+                <p className="text-black dark:text-white text-sm font-medium">¿Quieres ver el ROI completo de IlustricIA?</p>
+                <a href="#" className="inline-flex items-center text-sm text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors border-b border-neutral-300 dark:border-neutral-700 hover:border-black dark:hover:border-white pb-0.5">
                   Descarga el estudio de impacto económico
                   <ArrowUpRight size={12} className="ml-1" />
                 </a>
@@ -202,14 +196,14 @@ export function RoiSection() {
               <React.Fragment key={`pag-${step.id}`}>
                 <span className={cn(
                   "transition-colors duration-300",
-                  activeStep === step.id ? "text-white font-bold scale-110" : "text-neutral-600"
+                  activeStep === step.id ? "text-black dark:text-white font-bold scale-110" : "text-neutral-300 dark:text-neutral-600"
                 )}>
                   0{step.id}
                 </span>
                 {step.id < steps.length && (
-                  <div className="w-16 h-[1px] bg-neutral-800 relative">
+                  <div className="w-16 h-[1px] bg-neutral-200 dark:bg-neutral-800 relative">
                     <motion.div 
-                      className="absolute left-0 top-1/2 -translate-y-1/2 h-[2px] bg-white"
+                      className="absolute left-0 top-1/2 -translate-y-1/2 h-[2px] bg-black dark:bg-white"
                       initial={{ width: "0%" }}
                       animate={{ width: activeStep > step.id ? "100%" : "0%" }}
                       transition={{ duration: 0.5 }}

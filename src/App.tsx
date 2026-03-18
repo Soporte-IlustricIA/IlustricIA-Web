@@ -1,6 +1,6 @@
 import React from 'react';
 import { TubesBackground } from './components/ui/neon-flow';
-import { Navbar } from './components/ui/mini-navbar';
+import { Header } from './components/ui/header-01';
 import { FeatureSection } from './components/FeatureSection';
 import { ManifestoSection } from './components/ManifestoSection';
 import { DashboardSection } from './components/DashboardSection';
@@ -10,40 +10,51 @@ import { SystemOfRecordSection } from './components/SystemOfRecordSection';
 import { CustomerStorySection } from './components/CustomerStorySection';
 import { BlogSection } from './components/BlogSection';
 import { FooterCtaSection } from './components/FooterCtaSection';
+import { EnterpriseRevenueSection } from './components/EnterpriseRevenueSection';
 import { Footer } from './components/ui/footer-section';
 import { motion } from 'framer-motion';
 import { MarqueeDemo } from './components/ui/marquee-demo';
 
+import { ThemeProvider } from './components/ThemeProvider';
+
 export default function App() {
   return (
-    <div className="w-full min-h-screen font-sans bg-black text-white">
-      <Navbar />
-      
-      {/* Hero Section */}
+    <ThemeProvider>
+      <div className="w-full min-h-screen font-sans bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
+        <Header />
+        
+        {/* Hero Section */}
       <motion.div 
-        className="h-screen w-full relative"
+        className="h-screen w-full relative overflow-hidden"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
+        {/* Subtle Grid Background */}
+        <div className="absolute inset-0 z-10 opacity-[0.1] dark:opacity-[0.05] pointer-events-none" 
+             style={{ backgroundImage: 'radial-gradient(#94A3B8 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+        
         <TubesBackground>
-          <div className="flex flex-col items-center justify-center w-full h-full gap-6 text-center px-4">
+          <div className="flex flex-col items-center justify-center w-full h-full gap-6 text-center px-4 relative z-20">
             <div className="space-y-2 pointer-events-auto cursor-default">
-              <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white drop-shadow-[0_0_20px_rgba(0,0,0,1)] select-none">
+              <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-black dark:text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] dark:drop-shadow-[0_0_20px_rgba(0,0,0,1)] select-none">
                 Ilustric<span style={{ color: '#29ABE2', textShadow: '0 0 10px rgba(41, 171, 226, 0.8), 0 0 25px rgba(41, 171, 226, 0.5), 0 0 40px rgba(41, 171, 226, 0.3)' }}>IA</span>
               </h1>
-              <p className="text-xl md:text-2xl text-white/80 font-light tracking-wide max-w-2xl mx-auto">
+              <p className="text-xl md:text-2xl text-black/70 dark:text-white/80 font-light tracking-wide max-w-2xl mx-auto">
                 Soluciones digitales y funcionales para tu ecosistema digital.
               </p>
             </div>
           </div>
         </TubesBackground>
         
-        <div className="absolute bottom-12 w-full">
+        <div className="absolute bottom-16 w-full z-30">
           <MarqueeDemo />
         </div>
       </motion.div>
+
+      {/* Enterprise Revenue Section */}
+      <EnterpriseRevenueSection />
 
       {/* Feature Section */}
       <motion.div
@@ -141,5 +152,6 @@ export default function App() {
       {/* Main Footer */}
       <Footer />
     </div>
+    </ThemeProvider>
   );
 }
