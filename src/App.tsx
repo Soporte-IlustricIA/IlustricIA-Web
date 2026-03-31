@@ -6,11 +6,12 @@ import { ManifestoSection } from './components/ManifestoSection';
 import { DashboardSection } from './components/DashboardSection';
 import { RoiSection } from './components/RoiSection';
 import { TestimonialSection } from './components/TestimonialSection';
+import { FaqSection } from './components/FaqSection';
 import { SystemOfRecordSection } from './components/SystemOfRecordSection';
 import { CustomerStorySection } from './components/CustomerStorySection';
 import { BlogSection } from './components/BlogSection';
 import { FooterCtaSection } from './components/FooterCtaSection';
-import { EnterpriseRevenueSection } from './components/EnterpriseRevenueSection';
+import { AboutUsSection } from './components/AboutUsSection';
 import { Footer } from './components/ui/footer-section';
 import { motion } from 'framer-motion';
 import { MarqueeDemo } from './components/ui/marquee-demo';
@@ -53,8 +54,8 @@ export default function App() {
         </div>
       </motion.div>
 
-      {/* Enterprise Revenue Section */}
-      <EnterpriseRevenueSection />
+      {/* About Us Section */}
+      <AboutUsSection />
 
       {/* Feature Section */}
       <motion.div
@@ -137,6 +138,16 @@ export default function App() {
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <BlogSection />
+      </motion.div>
+
+      {/* FAQ Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <FaqSection />
       </motion.div>
 
       {/* Footer CTA Section */}

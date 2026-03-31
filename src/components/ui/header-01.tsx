@@ -17,9 +17,33 @@ import {
 } from "./navigation-menu";
 
 const menuItems = [
-  { name: "Manifesto", href: "#manifesto" },
-  { name: "Servicios", href: "#dashboard" },
-  { name: "ROI", href: "#roi" },
+  { name: "Quienes Somos", href: "#about" },
+  { name: "Nuestros Servicios", href: "#dashboard" },
+  { name: "FAQs", href: "#faqs" },
+  { name: "Recursos", href: "#recursos" },
+];
+
+const services = [
+  {
+    title: "Asistentes y Chatbots",
+    href: "#dashboard",
+    description: "Atención al cliente 24/7 en Web y WhatsApp con flujos personalizados.",
+  },
+  {
+    title: "Desarrollo Web",
+    href: "#dashboard",
+    description: "Páginas modernas y marketplaces orientados a conversión y resultados.",
+  },
+  {
+    title: "Consultoría y Automatización",
+    href: "#dashboard",
+    description: "Evaluación de necesidades y planes de implementación por fases.",
+  },
+  {
+    title: "Gestión de Redes",
+    href: "#dashboard",
+    description: "Estrategias de contenido coherentes con tu marca y medición de impacto.",
+  },
 ];
 
 const Header = () => {
@@ -59,76 +83,72 @@ const Header = () => {
               "bg-white/70 dark:bg-black/50 max-w-5xl rounded-2xl border border-black/10 dark:border-white/10 backdrop-blur-xl px-4 shadow-lg"
           )}
         >
-          <div className="relative flex flex-wrap items-center justify-between gap-3 py-2">
-            <div className="flex w-full justify-between lg:w-auto">
+          <div className="relative flex items-center justify-between gap-3 py-2">
+            <div className="flex items-center gap-8">
               <a
                 href="#"
                 aria-label="home"
-                className="flex gap-2 items-center"
+                className="flex gap-2 items-center shrink-0"
               >
                 {logoElement}
                 <span className="font-bold text-sm tracking-tight text-black dark:text-white">IlustricIA</span>
               </a>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setMenuState(!menuState)}
-                  aria-label={menuState ? "Close Menu" : "Open Menu"}
-                  className="relative z-20 block cursor-pointer p-2 lg:hidden text-black dark:text-white"
-                >
-                  {menuState ? <X size={20} /> : <Menu size={20} />}
-                </button>
-              </div>
             </div>
 
-            <div className="absolute inset-0 m-auto hidden lg:block size-fit">
+            <div className="hidden lg:flex flex-1 justify-center">
               <Menus />
             </div>
 
             <div className={cn(
-              "lg:flex items-center justify-end gap-4",
-              menuState ? "flex flex-col w-full mt-4 lg:mt-0 lg:w-auto" : "hidden"
+              "flex items-center gap-3",
+              menuState ? "absolute top-full left-0 w-full bg-white dark:bg-neutral-900 p-4 border-b border-black/10 dark:border-white/10 lg:static lg:w-auto lg:bg-transparent lg:border-none lg:p-0" : "static"
             )}>
-              <div className="lg:hidden w-full">
-                <ul className="space-y-4 text-base py-4 border-t border-black/5 dark:border-white/5">
-                  {menuItems.map((item, index) => (
-                    <li key={index}>
-                      <a
-                        href={item.href}
-                        onClick={() => setMenuState(false)}
-                        className="text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white text-sm block duration-150"
-                      >
-                        <span>{item.name}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-2 sm:space-y-0 items-center">
-                <ModeToggle />
-                <button className="px-4 py-2 text-xs border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 text-black/60 dark:text-white/60 rounded-full hover:border-black/30 dark:hover:border-white/30 hover:text-black dark:hover:text-white transition-colors duration-200 cursor-pointer">
-                  LogIn
-                </button>
-                <div className="relative group">
-                  <div className="absolute inset-0 -m-1 rounded-full bg-black dark:bg-gray-100 opacity-10 dark:opacity-40 filter blur-lg pointer-events-none transition-all duration-300 ease-out group-hover:opacity-20 dark:group-hover:opacity-60 group-hover:blur-xl"></div>
-                  <button className="relative z-10 px-4 py-2 text-xs font-semibold text-white dark:text-black bg-black dark:bg-gradient-to-br dark:from-gray-100 dark:to-gray-300 rounded-full hover:bg-black/90 dark:hover:from-gray-200 dark:hover:to-gray-400 transition-all duration-200 cursor-pointer">
-                    Signup
-                  </button>
+              <div className={cn(
+                "lg:flex items-center gap-3",
+                menuState ? "flex flex-col w-full" : "hidden"
+              )}>
+                <div className="lg:hidden w-full">
+                  <ul className="space-y-4 text-base py-4 border-t border-black/5 dark:border-white/5">
+                    {menuItems.map((item, index) => (
+                      <li key={index}>
+                        <a
+                          href={item.href}
+                          onClick={() => setMenuState(false)}
+                          className="text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white text-sm block duration-150"
+                        >
+                          <span>{item.name}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <Button
-                  variant={"secondary"}
-                  asChild
-                  className={cn(
-                    "rounded-full px-6 text-xs",
-                    isScrolled && "lg:hidden"
-                  )}
-                >
-                  <a
+                <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-2 sm:space-y-0 items-center">
+                  <ModeToggle />
+                  <a 
                     href="#roi"
+                    className="px-4 py-2 text-xs border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 text-black/60 dark:text-white/60 rounded-full hover:border-black/30 dark:hover:border-white/30 hover:text-black dark:hover:text-white transition-colors duration-200 cursor-pointer whitespace-nowrap"
                   >
-                    <span>Book an Intro call</span>
+                    Contáctanos
                   </a>
-                </Button>
+                  <div className="relative group shrink-0">
+                    <div className="absolute inset-0 -m-1 rounded-full bg-black dark:bg-gray-100 opacity-10 dark:opacity-40 filter blur-lg pointer-events-none transition-all duration-300 ease-out group-hover:opacity-20 dark:group-hover:opacity-60 group-hover:blur-xl"></div>
+                    <a 
+                      href="#demo"
+                      className="relative z-10 px-4 py-2 text-xs font-semibold text-white dark:text-black bg-black dark:bg-gradient-to-br dark:from-gray-100 dark:to-gray-300 rounded-full hover:bg-black/90 dark:hover:from-gray-200 dark:hover:to-gray-400 transition-all duration-200 cursor-pointer block whitespace-nowrap"
+                    >
+                      Prueba nuestra demo
+                    </a>
+                  </div>
+                </div>
               </div>
+              
+              <button
+                onClick={() => setMenuState(!menuState)}
+                aria-label={menuState ? "Close Menu" : "Open Menu"}
+                className="relative z-20 block cursor-pointer p-2 lg:hidden text-black dark:text-white"
+              >
+                {menuState ? <X size={20} /> : <Menu size={20} />}
+              </button>
             </div>
           </div>
         </div>
@@ -184,23 +204,33 @@ export function Menus() {
             asChild
             className={cn(navigationMenuTriggerStyle(), "bg-transparent text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white")}
           >
-            <a href="#manifesto">Manifesto</a>
+            <a href="#about">Quienes Somos</a>
           </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger className="bg-transparent text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white">
+            Nuestros Servicios
+          </NavigationMenuTrigger>
+          <NavigationMenuContent className="p-2">
+            <ul className="grid gap-3 md:grid-cols-2 lg:w-[500px] bg-white dark:bg-black border border-black/10 dark:border-white/10 rounded-xl p-4">
+              {services.map((service) => (
+                <ListItem
+                  key={service.title}
+                  title={service.title}
+                  href={service.href}
+                >
+                  {service.description}
+                </ListItem>
+              ))}
+            </ul>
+          </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink
             asChild
             className={cn(navigationMenuTriggerStyle(), "bg-transparent text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white")}
           >
-            <a href="#dashboard">Servicios</a>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink
-            asChild
-            className={cn(navigationMenuTriggerStyle(), "bg-transparent text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white")}
-          >
-            <a href="#roi">ROI</a>
+            <a href="#faqs">FAQs</a>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>

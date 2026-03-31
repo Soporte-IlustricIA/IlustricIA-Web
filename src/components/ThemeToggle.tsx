@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sun, Moon, Monitor } from 'lucide-react';
+import { Sun, Moon } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -25,15 +25,6 @@ export function ThemeToggle() {
         title="Modo Oscuro"
       >
         <Moon className="w-4 h-4" />
-      </button>
-      <button
-        onClick={() => setTheme('system')}
-        className={`p-2 rounded-full transition-all duration-300 ${
-          theme === 'system' ? 'bg-white text-black shadow-lg' : 'text-white/40 hover:text-white'
-        }`}
-        title="Seguir Sistema"
-      >
-        <Monitor className="w-4 h-4" />
       </button>
     </div>
   );

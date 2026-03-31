@@ -1,39 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { 
-  Bot, 
-  Globe, 
-  LineChart, 
-  Cpu, 
-  MessageCircle, 
-  Lightbulb 
-} from 'lucide-react';
-import { cn } from '@/src/lib/utils';
-import { InteractiveFrostedGlassCard } from './ui/interactive-frosted-glass-card';
 import { MagicText } from './ui/magic-text';
-
-const IconCard = ({ 
-  icon: Icon, 
-  label 
-}: { 
-  icon: any; 
-  label: string; 
-}) => {
-  return (
-    <InteractiveFrostedGlassCard className="rounded-lg">
-      <div className="flex flex-col items-center justify-center w-24 h-24 bg-white/50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 rounded-lg backdrop-blur-sm hover:bg-neutral-100/50 dark:hover:bg-neutral-800/50 transition-colors duration-300 group cursor-default">
-        <Icon 
-          size={20} 
-          className="text-neutral-500 dark:text-neutral-400 mb-3 group-hover:text-black dark:group-hover:text-white transition-colors duration-300" 
-          strokeWidth={1.5}
-        />
-        <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-500 group-hover:text-neutral-700 dark:group-hover:text-neutral-300 transition-colors duration-300">
-          {label}
-        </span>
-      </div>
-    </InteractiveFrostedGlassCard>
-  );
-};
 
 export function ManifestoSection() {
   return (
@@ -66,42 +32,6 @@ export function ManifestoSection() {
             text="IlustricIA transforma la tecnología en valor estratégico, con un acompañamiento claro, cercano y adaptado a ti."
           />
         </div>
-
-        {/* Icons Row */}
-        <motion.div 
-          className="flex flex-wrap justify-center gap-4 w-full mt-12"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          variants={{
-            hidden: { opacity: 0 },
-            show: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.1
-              }
-            }
-          }}
-        >
-          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-            <IconCard icon={Bot} label="Chatbots" />
-          </motion.div>
-          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-            <IconCard icon={Globe} label="Web Dev" />
-          </motion.div>
-          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-            <IconCard icon={Lightbulb} label="Consulting" />
-          </motion.div>
-          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-            <IconCard icon={Cpu} label="Automation" />
-          </motion.div>
-          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-            <IconCard icon={MessageCircle} label="Social" />
-          </motion.div>
-          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-            <IconCard icon={LineChart} label="Strategy" />
-          </motion.div>
-        </motion.div>
 
       </div>
     </section>

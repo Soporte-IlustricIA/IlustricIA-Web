@@ -66,12 +66,15 @@ export function SystemOfRecordSection() {
             <p className="text-lg text-neutral-400 mb-10 max-w-md leading-relaxed">
               La inteligencia colectiva de tu organización—unificando producto, ventas, marketing y experiencia de cliente.
             </p>
-            <div className="flex items-center gap-4">
-              <button className="px-6 py-3 bg-white text-black rounded-lg text-sm font-medium hover:bg-neutral-200 transition-colors">
-                Prueba IlustricIA gratis
-              </button>
+            <div className="flex flex-wrap items-center gap-4">
+              <a 
+                href="#roi"
+                className="px-6 py-3 bg-white text-black rounded-lg text-sm font-medium hover:bg-neutral-200 transition-colors"
+              >
+                Agendar cita
+              </a>
               <button className="px-6 py-3 bg-neutral-900 text-white border border-neutral-800 rounded-lg text-sm font-medium hover:bg-neutral-800 transition-colors">
-                Contactar ventas
+                Prueba nuestra demo
               </button>
             </div>
           </div>

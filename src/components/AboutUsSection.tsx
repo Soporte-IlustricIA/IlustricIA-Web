@@ -1,15 +1,69 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Users, Target, Zap, ShieldCheck } from 'lucide-react';
-import { cn } from '@/src/lib/utils';
+import React, { useEffect, useRef } from 'react';
+import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
+import { Users, Target, Zap, ShieldCheck, Cpu, Rocket, Globe } from 'lucide-react';
+import { ShiningText } from './ui/shining-text';
+import { InteractiveFrostedGlassCard } from './ui/interactive-frosted-glass-card';
+
+function Counter({ value }: { value: string }) {
+  const numericValue = parseInt(value.replace(/\D/g, ''));
+  const suffix = value.replace(/\d/g, '');
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (isInView) {
+      const controls = animate(count, numericValue, {
+        duration: 2,
+        ease: "easeOut",
+      });
+      return controls.stop;
+    }
+  }, [isInView, numericValue, count]);
+
+  return (
+    <span ref={ref}>
+      <motion.span>{rounded}</motion.span>
+      {suffix}
+    </span>
+  );
+}
+
+const coreValues = [
+// ... (rest of the file)
+  {
+    icon: <Cpu className="w-6 h-6" />,
+    title: "Innovación Pura",
+    description: "Desarrollamos soluciones de IA que no solo resuelven problemas, sino que redefinen posibilidades."
+  },
+  {
+    icon: <Globe className="w-6 h-6" />,
+    title: "Impacto Global",
+    description: "Nuestra tecnología trasciende fronteras, conectando empresas con el futuro digital."
+  },
+  {
+    icon: <Zap className="w-6 h-6" />,
+    title: "Velocidad y Eficiencia",
+    description: "Optimizamos procesos para que tu negocio se mueva a la velocidad de la luz."
+  }
+];
+
+const teamStats = [
+  { label: "Proyectos IA", value: "150+" },
+  { label: "Países", value: "12" },
+  { label: "Expertos", value: "45" },
+  { label: "Años de Innovación", value: "8" }
+];
 
 export function AboutUsSection() {
   return (
-    <section id="about" className="w-full bg-black dark:bg-black py-24 px-4 md:px-8 relative overflow-hidden transition-colors duration-500">
-      {/* Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none opacity-50" />
+    <section id="about" className="relative py-24 overflow-hidden bg-white dark:bg-black transition-colors duration-300">
+      {/* Background Tech Grid */}
+      <div className="absolute inset-0 z-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none" 
+           style={{ backgroundImage: 'linear-gradient(#29ABE2 1px, transparent 1px), linear-gradient(90deg, #29ABE2 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
       
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
           {/* Left Side: Content */}
@@ -17,98 +71,81 @@ export function AboutUsSection() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="space-y-8"
+            transition={{ duration: 0.8 }}
           >
-            <div className="space-y-4">
-              <h2 className="text-sm font-mono uppercase tracking-[0.3em] text-blue-500 font-semibold">
-                Nuestra Esencia
-              </h2>
-              <h3 className="text-4xl md:text-5xl font-bold tracking-tighter text-white dark:text-white leading-tight">
-                Transformamos el <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">feedback</span> en innovación tangible.
-              </h3>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#29ABE2]/30 bg-[#29ABE2]/5 mb-6">
+              <span className="w-2 h-2 rounded-full bg-[#29ABE2] animate-pulse" />
+              <span className="text-[10px] uppercase tracking-[0.2em] font-mono text-[#29ABE2] font-bold">Quienes Somos</span>
             </div>
             
-            <p className="text-lg text-neutral-400 dark:text-neutral-400 leading-relaxed max-w-xl">
-              En IlustricIA, no solo implementamos tecnología; forjamos soluciones estratégicas que nacen de la escucha activa. Nuestra misión es cerrar la brecha entre los datos y la ejecución, convirtiendo cada interacción con el cliente en una oportunidad de crecimiento operativo.
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-8 leading-[1.1]">
+              Forjando el <ShiningText className="font-bold">ADN Digital</ShiningText> de la próxima generación.
+            </h2>
+            
+            <p className="text-lg text-black/60 dark:text-white/60 mb-10 max-w-xl leading-relaxed">
+              En <span className="text-[#29ABE2] font-semibold">IlustricIA</span>, no solo construimos software; diseñamos ecosistemas inteligentes. Somos un equipo de visionarios, ingenieros y creativos apasionados por la intersección entre la inteligencia artificial y la experiencia humana.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
-              <div className="flex items-start gap-3">
-                <div className="mt-1 p-2 rounded-lg bg-blue-500/10 border border-blue-500/20">
-                  <Target size={18} className="text-blue-400" />
-                </div>
-                <div>
-                  <h4 className="text-white dark:text-white font-medium mb-1">Visión Estratégica</h4>
-                  <p className="text-sm text-neutral-500">Miramos más allá del código para entender tu negocio.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="mt-1 p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
-                  <Zap size={18} className="text-cyan-400" />
-                </div>
-                <div>
-                  <h4 className="text-white dark:text-white font-medium mb-1">Ejecución Ágil</h4>
-                  <p className="text-sm text-neutral-500">Resultados medibles en semanas, no en meses.</p>
-                </div>
-              </div>
+            <div className="grid grid-cols-2 gap-8 mb-12">
+              {teamStats.map((stat, index) => (
+                <motion.div 
+                  key={index}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="border-l-2 border-[#29ABE2]/20 pl-4"
+                >
+                  <div className="text-3xl font-bold text-black dark:text-white mb-1">
+                    <Counter value={stat.value} />
+                  </div>
+                  <div className="text-xs uppercase tracking-widest text-black/40 dark:text-white/40 font-mono">{stat.label}</div>
+                </motion.div>
+              ))}
             </div>
+
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="px-8 py-4 bg-[#29ABE2] text-white rounded-sm font-bold tracking-tight hover:bg-[#29ABE2]/90 transition-colors shadow-[0_0_20px_rgba(41,171,226,0.3)] flex items-center gap-3"
+            >
+              Conoce al Equipo <Rocket className="w-4 h-4" />
+            </motion.button>
           </motion.div>
 
-          {/* Right Side: Visual Element */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="relative"
-          >
-            <div className="relative aspect-square max-w-md mx-auto">
-              {/* Decorative Rings */}
-              <div className="absolute inset-0 border border-neutral-800 rounded-full animate-[spin_20s_linear_infinite]" />
-              <div className="absolute inset-4 border border-neutral-800/50 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
-              <div className="absolute inset-12 border border-blue-500/10 rounded-full" />
-              
-              {/* Center Element */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-48 h-48 bg-gradient-to-br from-blue-600/20 to-cyan-600/20 backdrop-blur-3xl rounded-3xl border border-white/5 flex items-center justify-center shadow-[0_0_50px_rgba(37,99,235,0.1)]">
-                  <Users size={64} className="text-white opacity-80" strokeWidth={1} />
-                </div>
-              </div>
-
-              {/* Floating Badges */}
-              <motion.div 
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-4 -right-4 p-4 bg-neutral-900/80 backdrop-blur-md border border-neutral-800 rounded-2xl shadow-xl"
+          {/* Right Side: Interactive Cards */}
+          <div className="grid grid-cols-1 gap-6">
+            {coreValues.map((value, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
               >
-                <div className="flex items-center gap-3">
-                  <ShieldCheck className="text-green-500" size={20} />
-                  <div className="text-xs">
-                    <div className="text-white font-bold">Confianza Total</div>
-                    <div className="text-neutral-500">Acompañamiento Real</div>
+                <InteractiveFrostedGlassCard className="p-8 border border-black/5 dark:border-white/10 bg-white/50 dark:bg-white/5 backdrop-blur-xl rounded-sm hover:border-[#29ABE2]/30 transition-colors group">
+                  <div className="flex gap-6 items-start">
+                    <div className="w-12 h-12 rounded-sm bg-[#29ABE2]/10 flex items-center justify-center text-[#29ABE2] group-hover:bg-[#29ABE2] group-hover:text-white transition-all duration-500">
+                      {value.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold mb-2 text-black dark:text-white">{value.title}</h3>
+                      <p className="text-black/50 dark:text-white/50 leading-relaxed text-sm">
+                        {value.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </InteractiveFrostedGlassCard>
               </motion.div>
-
-              <motion.div 
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -bottom-4 -left-4 p-4 bg-neutral-900/80 backdrop-blur-md border border-neutral-800 rounded-2xl shadow-xl"
-              >
-                <div className="flex items-center gap-3">
-                  <Zap className="text-orange-500" size={20} />
-                  <div className="text-xs">
-                    <div className="text-white font-bold">Innovación</div>
-                    <div className="text-neutral-500">Basada en Datos</div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
+            ))}
+          </div>
 
         </div>
       </div>
+
+      {/* Decorative Elements */}
+      <div className="absolute top-1/4 -right-20 w-64 h-64 bg-[#29ABE2]/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/4 -left-20 w-64 h-64 bg-[#29ABE2]/5 rounded-full blur-[100px] pointer-events-none" />
     </section>
   );
 }

@@ -41,7 +41,7 @@ export function BlogSection() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-16">
           <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight">
-            Infraestructura de IA en la que puedes confiar
+            Equipo humano en el que puedes confiar
           </h2>
           <button className="px-4 py-2 bg-neutral-900 text-neutral-300 border border-neutral-800 rounded-lg text-xs font-medium hover:bg-neutral-800 transition-colors self-start md:self-auto">
             Ver todos los blogs

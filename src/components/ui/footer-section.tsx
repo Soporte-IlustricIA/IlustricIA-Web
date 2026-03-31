@@ -28,7 +28,7 @@ const footerLinks: FooterSection[] = [
 	{
 		label: 'Compañía',
 		links: [
-			{ title: 'Preguntas Frecuentes', href: '/faqs' },
+			{ title: 'Preguntas Frecuentes', href: '#faqs' },
 			{ title: 'Sobre Nosotros', href: '/about' },
 			{ title: 'Política de Privacidad', href: '/privacy' },
 			{ title: 'Términos de Servicio', href: '/terms' },
