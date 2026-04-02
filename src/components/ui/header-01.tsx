@@ -25,24 +25,39 @@ const menuItems = [
 
 const services = [
   {
-    title: "Asistentes y Chatbots",
+    title: "Asistente de voz",
     href: "#dashboard",
-    description: "Atención al cliente 24/7 en Web y WhatsApp con flujos personalizados.",
+    description: "Sistemas de voz inteligentes para atención telefónica y control automatizado.",
+  },
+  {
+    title: "Automatización",
+    href: "#dashboard",
+    description: "Optimización de flujos de trabajo repetitivos para ahorrar tiempo.",
+  },
+  {
+    title: "Chatbots agentes",
+    href: "#dashboard",
+    description: "Agentes conversacionales avanzados que gestionan pedidos 24/7.",
+  },
+  {
+    title: "Funnels de venta",
+    href: "#dashboard",
+    description: "Diseño de embudos optimizados para maximizar el ROI y captación.",
   },
   {
     title: "Desarrollo Web",
     href: "#dashboard",
-    description: "Páginas modernas y marketplaces orientados a conversión y resultados.",
+    description: "Plataformas digitales modernas y escalables para tu negocio.",
   },
   {
-    title: "Consultoría y Automatización",
+    title: "CRM",
     href: "#dashboard",
-    description: "Evaluación de necesidades y planes de implementación por fases.",
+    description: "Sistemas de gestión de clientes para mejorar el ciclo de ventas.",
   },
   {
-    title: "Gestión de Redes",
+    title: "Ciberseguridad",
     href: "#dashboard",
-    description: "Estrategias de contenido coherentes con tu marca y medición de impacto.",
+    description: "Protección integral de activos digitales y datos sensibles.",
   },
 ];
 

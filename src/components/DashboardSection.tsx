@@ -18,7 +18,14 @@ import {
   Square,
   Play,
   Settings,
-  Database
+  Database,
+  Mic,
+  Workflow,
+  MessageSquare,
+  Target,
+  Globe,
+  Users,
+  Shield
 } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import { GlowingShadow } from './ui/glowing-shadow';
@@ -76,18 +83,65 @@ const FeatureColumn = ({
   description: string; 
   color?: string;
 }) => (
-  <div className="flex flex-col gap-3 p-4 rounded-xl transition-opacity duration-500">
+  <div className="flex flex-col gap-4 p-6 rounded-xl transition-all duration-500 group/feature">
     <div className="flex items-center gap-2 mb-1">
-      <Icon size={20} className={color} />
+      <div className={cn("p-2 rounded-lg bg-neutral-100 dark:bg-neutral-800/50 group-hover/feature:scale-110 transition-transform duration-300", color)}>
+        <Icon size={24} />
+      </div>
     </div>
     <div className="flex items-center gap-2">
-      <h3 className="text-lg font-medium text-black dark:text-white">{title}</h3>
+      <h3 className="text-xl font-semibold text-black dark:text-white group-hover/feature:text-orange-500 transition-colors duration-300">{title}</h3>
     </div>
-    <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+    <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-light">
       {description}
     </p>
   </div>
 );
+
+const servicesList = [
+  {
+    icon: Mic,
+    color: "text-orange-500",
+    title: "Asistente de voz",
+    description: "Implementación de sistemas de voz inteligentes para atención telefónica y control por voz automatizado."
+  },
+  {
+    icon: Workflow,
+    color: "text-blue-500",
+    title: "Automatización de procesos",
+    description: "Optimización de flujos de trabajo repetitivos para ahorrar tiempo y reducir errores humanos en tu operativa."
+  },
+  {
+    icon: MessageSquare,
+    color: "text-green-500",
+    title: "Chatbots agentes",
+    description: "Agentes conversacionales avanzados que resuelven dudas y gestionan pedidos de forma autónoma 24/7."
+  },
+  {
+    icon: Target,
+    color: "text-red-500",
+    title: "Funnels de venta",
+    description: "Diseño de embudos de conversión optimizados para maximizar el retorno de inversión y captación de leads."
+  },
+  {
+    icon: Globe,
+    color: "text-neutral-500",
+    title: "Desarrollo Web",
+    description: "Creación de plataformas digitales modernas, rápidas y escalables adaptadas a las necesidades de tu negocio."
+  },
+  {
+    icon: Users,
+    color: "text-purple-500",
+    title: "CRM",
+    description: "Implementación y personalización de sistemas de gestión de clientes para mejorar la retención y el ciclo de ventas."
+  },
+  {
+    icon: Shield,
+    color: "text-cyan-500",
+    title: "Ciberseguridad",
+    description: "Protección integral de tus activos digitales y datos sensibles contra amenazas externas y vulnerabilidades."
+  }
+];
 
 export function DashboardSection() {
   return (
@@ -114,7 +168,7 @@ export function DashboardSection() {
         {/* Features Grid */}
         <div className="mt-12">
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
+            className="flex flex-wrap justify-center gap-6 mb-12"
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
@@ -128,49 +182,22 @@ export function DashboardSection() {
               }
             }}
           >
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-              <GlowingShadow className="h-full">
-                <FeatureColumn 
-                  icon={Sparkles}
-                  color="text-orange-500"
-                  title="Asistentes y Chatbots"
-                  description="Atención al cliente 24/7 en Web y WhatsApp con flujos conversacionales personalizados."
-                />
-              </GlowingShadow>
-            </motion.div>
-            
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-              <GlowingShadow className="h-full">
-                <FeatureColumn 
-                  icon={LayoutGrid}
-                  color="text-neutral-500"
-                  title="Desarrollo Web"
-                  description="Páginas modernas y marketplaces orientados a conversión y resultados medibles."
-                />
-              </GlowingShadow>
-            </motion.div>
-
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-              <GlowingShadow className="h-full">
-                <FeatureColumn 
-                  icon={Settings}
-                  color="text-blue-500"
-                  title="Consultoría y Automatización"
-                  description="Evaluación de necesidades, automatizaciones industriales y planes de implementación por fases."
-                />
-              </GlowingShadow>
-            </motion.div>
-
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
-              <GlowingShadow className="h-full">
-                <FeatureColumn 
-                  icon={FileText}
-                  color="text-blue-400"
-                  title="Gestión de Redes"
-                  description="Estrategias de contenido coherentes con tu marca y medición de impacto continuo."
-                />
-              </GlowingShadow>
-            </motion.div>
+            {servicesList.map((service, index) => (
+              <motion.div 
+                key={index} 
+                variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+                className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.33%-1.5rem)] max-w-sm"
+              >
+                <GlowingShadow className="h-full border border-neutral-200/50 dark:border-neutral-800/50 rounded-2xl overflow-hidden bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm hover:border-orange-500/30 transition-all duration-300">
+                  <FeatureColumn 
+                    icon={service.icon}
+                    color={service.color}
+                    title={service.title}
+                    description={service.description}
+                  />
+                </GlowingShadow>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
 

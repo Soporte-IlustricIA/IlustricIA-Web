@@ -13,6 +13,7 @@ import { cn } from '@/src/lib/utils';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { ShiningText } from './ui/shining-text';
 import { MagicText } from './ui/magic-text';
+import DataCoreVisualization from './ui/data-core-visualization';
 
 const features = [
   {
@@ -186,20 +187,119 @@ export function FeatureSection() {
             {/* Background Grid/Glow Effect */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neutral-200/50 dark:from-neutral-900/50 via-white dark:via-black to-white dark:to-black opacity-50" />
             
+            {/* Three.js Visualization Background */}
+            <DataCoreVisualization />
+
+            {/* Tech Connection Lines (SVG Layer) */}
+            <div className="absolute inset-0 z-10 pointer-events-none">
+              <svg className="w-full h-full" viewBox="0 0 400 800" fill="none" preserveAspectRatio="xMidYMid meet">
+                {/* Connection from Top Left Card to Center */}
+                <motion.path
+                  d="M 120 220 L 120 300 L 200 300 L 200 380"
+                  stroke="url(#neonGradient1)"
+                  strokeWidth="1.5"
+                  strokeDasharray="4 4"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 0.3 }}
+                  transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+                />
+                {/* Connection from Top Right Card to Center */}
+                <motion.path
+                  d="M 280 220 L 280 300 L 200 300 L 200 380"
+                  stroke="url(#neonGradient1)"
+                  strokeWidth="1.5"
+                  strokeDasharray="4 4"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 0.3 }}
+                  transition={{ duration: 2, delay: 0.5, repeat: Infinity, repeatType: "reverse" }}
+                />
+                {/* Connection from Center to Bottom Card */}
+                <motion.path
+                  d="M 200 420 L 200 540"
+                  stroke="url(#neonGradient2)"
+                  strokeWidth="1.5"
+                  strokeDasharray="4 4"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 0.5 }}
+                  transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+                />
+
+                {/* Data Packets (Moving Dots with Glow) */}
+                <g>
+                  <motion.circle r="3" fill="#00f2ff" filter="url(#glow)">
+                    <animateMotion
+                      path="M 120 220 L 120 300 L 200 300 L 200 380"
+                      dur="3s"
+                      repeatCount="indefinite"
+                    />
+                  </motion.circle>
+                  <motion.circle r="3" fill="#00f2ff" filter="url(#glow)">
+                    <animateMotion
+                      path="M 280 220 L 280 300 L 200 300 L 200 380"
+                      dur="3s"
+                      begin="1.5s"
+                      repeatCount="indefinite"
+                    />
+                  </motion.circle>
+                  <motion.circle r="4" fill="#ff00ff" filter="url(#glow)">
+                    <animateMotion
+                      path="M 200 420 L 200 540"
+                      dur="2s"
+                      repeatCount="indefinite"
+                    />
+                  </motion.circle>
+                </g>
+
+                {/* Connection Ports (Glowing Dots at endpoints) */}
+                <circle cx="120" cy="220" r="4" fill="#00f2ff" className="animate-pulse" />
+                <circle cx="280" cy="220" r="4" fill="#00f2ff" className="animate-pulse" />
+                <circle cx="200" cy="380" r="4" fill="#a855f7" className="animate-pulse" />
+                <circle cx="200" cy="420" r="4" fill="#a855f7" className="animate-pulse" />
+                <circle cx="200" cy="540" r="4" fill="#ff00ff" className="animate-pulse" />
+
+                <defs>
+                  <filter id="glow">
+                    <feGaussianBlur stdDeviation="2" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                  <linearGradient id="neonGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#00f2ff" stopOpacity="0" />
+                    <stop offset="50%" stopColor="#00f2ff" stopOpacity="1" />
+                    <stop offset="100%" stopColor="#00f2ff" stopOpacity="0" />
+                  </linearGradient>
+                  <linearGradient id="neonGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#ff00ff" stopOpacity="0" />
+                    <stop offset="50%" stopColor="#ff00ff" stopOpacity="1" />
+                    <stop offset="100%" stopColor="#ff00ff" stopOpacity="0" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+
             {/* Diagram Container */}
-            <div className="relative z-10 w-full max-w-lg mx-auto flex flex-col items-center gap-8">
+            <div className="relative z-10 w-full max-w-lg mx-auto flex flex-col items-center gap-8 h-full justify-center">
               
-              {/* Top Row Inputs */}
-              <div className="flex justify-center gap-4 w-full">
+              {/* Floating Input Cards */}
+              <motion.div 
+                className="flex flex-wrap justify-center gap-4 w-full"
+                animate={{ 
+                  y: [0, -10, 0],
+                }}
+                transition={{ 
+                  duration: 4, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+              >
                 <InputCard 
                   icon={Grid3X3} 
                   title="DATOS DE NEGOCIO" 
                   color="green"
-                  className="w-40 h-24"
+                  className="w-40 h-24 backdrop-blur-md border-emerald-500/30 dark:border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.1)] hover:shadow-[0_0_25px_rgba(16,185,129,0.2)] transition-shadow duration-500"
                   subtitle={
                     <div className="grid grid-cols-4 gap-1 mt-2 opacity-50">
                       {[...Array(12)].map((_, i) => (
-                        <div key={i} className="h-3 bg-neutral-700 rounded-[1px]" />
+                        <div key={i} className="h-3 bg-emerald-500/30 rounded-[1px]" />
                       ))}
                     </div>
                   }
@@ -208,111 +308,73 @@ export function FeatureSection() {
                   icon={FileType} 
                   title="INFORMES.PDF" 
                   color="orange"
-                  className="w-40 h-24 relative overflow-hidden"
+                  className="w-40 h-24 relative overflow-hidden backdrop-blur-md border-orange-500/30 dark:border-orange-500/20 shadow-[0_0_15px_rgba(249,115,22,0.1)] hover:shadow-[0_0_25px_rgba(249,115,22,0.2)] transition-shadow duration-500"
                   subtitle={
                     <div className="mt-2">
                       <div className="text-white text-xs normal-case font-sans font-bold leading-none">Cambio de<br/>tendencia</div>
-                      <div className="absolute right-[-10px] bottom-[-10px] w-16 h-16 bg-orange-900/20 rounded-full blur-xl" />
+                      <div className="absolute right-[-10px] bottom-[-10px] w-16 h-16 bg-orange-500/20 rounded-full blur-xl" />
                     </div>
                   }
                 />
-              </div>
+              </motion.div>
 
-              {/* Middle Row Inputs */}
-              <div className="flex justify-center gap-4 w-full">
-                <InputCard 
-                  icon={Star} 
-                  title="FEEDBACK" 
-                  color="blue"
-                  className="w-40"
-                  subtitle={
-                    <div className="space-y-1">
-                      <div>PROBLEMAS DETECTADOS</div>
-                      <div>MEJORAS PENDIENTES</div>
-                      <div className="flex text-blue-500 gap-0.5 mt-1">
-                        <Star size={8} fill="currentColor" />
-                        <Star size={8} fill="currentColor" />
-                        <Star size={8} fill="currentColor" />
-                        <Star size={8} />
-                        <Star size={8} />
-                      </div>
-                    </div>
-                  }
-                />
-                <InputCard 
-                  icon={Phone} 
-                  title="LLAMADAS" 
-                  color="green"
-                  className="w-40"
-                  subtitle={
-                    <div className="space-y-1 opacity-70">
-                      <div>TIPO: GRABACIÓN</div>
-                      <div>TAMAÑO: 7 MB</div>
-                      <div>FECHA: 17 JUL 2025</div>
-                    </div>
-                  }
-                />
-                <InputCard 
-                  icon={Ticket} 
-                  title="TICKETS SOPORTE" 
-                  color="grey"
-                  className="w-40"
-                  subtitle={
-                    <div className="space-y-1.5 mt-1">
-                      <div className="bg-neutral-800 px-1.5 py-0.5 rounded text-[8px]">SOPORTE - CNV_B609FNE</div>
-                      <div className="bg-neutral-800 px-1.5 py-0.5 rounded text-[8px]">SOPORTE - CNV_B609FNE</div>
-                    </div>
-                  }
-                />
-              </div>
-
-              {/* Connecting Lines (SVG) */}
-              <div className="relative h-16 w-full">
-                <svg className="absolute inset-0 w-full h-full overflow-visible" preserveAspectRatio="none">
-                   {/* Lines from middle row to center */}
-                   <path d="M 100 0 L 100 20 L 256 20 L 256 64" stroke="#333" strokeWidth="1" fill="none" />
-                   <path d="M 256 0 L 256 64" stroke="#333" strokeWidth="1" fill="none" />
-                   <path d="M 412 0 L 412 20 L 256 20 L 256 64" stroke="#333" strokeWidth="1" fill="none" />
-                </svg>
-              </div>
-
-              {/* Central Node */}
-              <div className="relative z-20 flex items-center gap-3 bg-neutral-900 border border-neutral-800 pl-1 pr-4 py-1 rounded-md">
-                <div className="w-6 h-6 bg-purple-500 rounded-[2px] shadow-[0_0_15px_rgba(168,85,247,0.5)] flex items-center justify-center">
-                  <div className="w-2 h-2 bg-white rounded-[1px]" />
+              {/* Central Processing Node */}
+              <motion.div 
+                className="relative z-20 flex items-center gap-3 bg-neutral-900/90 backdrop-blur-xl border border-purple-500/40 pl-1 pr-4 py-1 rounded-md"
+                animate={{ 
+                  scale: [1, 1.05, 1],
+                  boxShadow: [
+                    "0 0 20px rgba(168,85,247,0.3)",
+                    "0 0 50px rgba(168,85,247,0.6)",
+                    "0 0 20px rgba(168,85,247,0.3)"
+                  ]
+                }}
+                transition={{ 
+                  duration: 2, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+              >
+                <div className="w-6 h-6 bg-purple-500 rounded-[2px] flex items-center justify-center shadow-[0_0_15px_rgba(168,85,247,0.8)]">
+                  <motion.div 
+                    className="w-2 h-2 bg-white rounded-[1px]"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                  />
                 </div>
-                <span className="text-xs font-mono text-neutral-300 tracking-wider">PROCESANDO IA</span>
-                
-                {/* Line to bottom */}
-                <div className="absolute left-4 top-full h-12 w-[1px] bg-neutral-800" />
-              </div>
+                <span className="text-[10px] font-mono text-purple-200 tracking-wider font-bold">PROCESANDO IA</span>
+              </motion.div>
 
               {/* Bottom Output Card */}
-              <div className="mt-8 w-full bg-neutral-900/50 border border-neutral-800 rounded-xl p-6 backdrop-blur-md relative overflow-hidden">
-                {/* Gradient overlay */}
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-neutral-700 to-transparent opacity-50" />
+              <motion.div 
+                className="w-full bg-neutral-900/60 border border-cyan-500/30 rounded-xl p-6 backdrop-blur-md relative overflow-hidden shadow-[0_0_30px_rgba(6,182,212,0.1)]"
+                style={{
+                  y: useScroll({ target: containerRef }).scrollYProgress.get() * 50
+                }}
+              >
+                {/* Animated neon scanline */}
+                <motion.div 
+                  className="absolute top-0 left-0 w-full h-[2px] bg-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.8)] blur-[1px]"
+                  animate={{ top: ["0%", "100%", "0%"] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                />
                 
-                <div className="flex items-center gap-2 text-neutral-500 text-sm mb-6">
-                  <Home size={14} />
-                  <span>Inicio</span>
-                  <span className="text-neutral-700">/</span>
-                  <span>Rendimiento y Valor</span>
+                <div className="flex items-center gap-2 text-cyan-500/70 text-[10px] uppercase tracking-widest mb-4 font-bold">
+                  <Home size={12} className="text-cyan-400" />
+                  <span>RESULTADO OPERATIVO</span>
                 </div>
 
-                <h3 className="text-3xl font-semibold text-white mb-8">Informe Estratégico</h3>
+                <h3 className="text-2xl font-semibold text-white mb-4 tracking-tight">Estrategia de Crecimiento</h3>
 
-                <div className="space-y-4">
-                  <h4 className="text-xl font-medium text-neutral-400">Resumen</h4>
-                  <div className="h-px w-full bg-neutral-800" />
+                <div className="space-y-3">
+                  <div className="h-px w-full bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent" />
                   <MagicText 
-                    text="Este informe destaca las prioridades clave para el crecimiento..." 
-                    className="text-neutral-600 text-lg"
+                    text="Optimizando la captación de leads mediante flujos de IA..." 
+                    className="text-cyan-100/60 text-sm leading-relaxed font-light"
                     progress={scrollYProgress}
                   />
-                  {/* Fade out effect */}
-                  <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-neutral-950 to-transparent" />
                 </div>
-              </div>
+              </motion.div>
 
             </div>
           </div>

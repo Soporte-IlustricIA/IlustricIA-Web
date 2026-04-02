@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Clock, CheckCircle2, Zap, ArrowRight } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
@@ -19,8 +19,50 @@ const SmartGlassBadge = ({ icon: Icon, title, subtitle }: { icon: any; title: st
 );
 
 export function FooterCtaSection() {
+  useEffect(() => {
+    (function (C: any, A, L) { 
+      let p = function (a: any, ar: any) { a.q.push(ar); }; 
+      let d = C.document; 
+      C.Cal = C.Cal || function () { 
+        let cal = C.Cal; 
+        let ar = arguments; 
+        if (!cal.loaded) { 
+          cal.ns = {}; 
+          cal.q = cal.q || []; 
+          d.head.appendChild(d.createElement("script")).src = A; 
+          cal.loaded = true; 
+        } 
+        if (ar[0] === L) { 
+          const api = function () { p(api, arguments); }; 
+          const namespace = ar[1]; 
+          api.q = api.q || []; 
+          if(typeof namespace === "string"){
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar);
+            p(cal, ["initNamespace", namespace]);
+          } else p(cal, ar); 
+          return;
+        } 
+        p(cal, ar); 
+      }; 
+    })(window as any, "https://app.cal.com/embed/embed.js", "init");
+
+    const Cal = (window as any).Cal;
+    if (Cal) {
+      Cal("init", "reunion-de-informacion-ilustric-ia", {origin:"https://app.cal.com"});
+
+      Cal.ns["reunion-de-informacion-ilustric-ia"]("inline", {
+        elementOrSelector:"#my-cal-inline-reunion-de-informacion-ilustric-ia",
+        config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+        calLink: "agendar-citas/reunion-de-informacion-ilustric-ia",
+      });
+
+      Cal.ns["reunion-de-informacion-ilustric-ia"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+    }
+  }, []);
+
   return (
-    <section className="w-full bg-black py-40 px-4 md:px-8 relative overflow-hidden">
+    <section id="roi" className="w-full bg-black py-40 px-4 md:px-8 relative overflow-hidden">
       {/* Orbital Light Threads Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <svg className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] opacity-20" viewBox="0 0 1000 1000">
@@ -86,7 +128,7 @@ export function FooterCtaSection() {
             />
           </div>
           <span className="text-[10px] font-mono text-neutral-400 tracking-[0.15em] uppercase">
-            ESTADO OPERATIVO: DISPONIBLE | CONSULTA ESTRATÉGICA →
+            ESTADO OPERATIVO: DISPONIBLE | AGENDA TU CITA ABAJO ↓
           </span>
         </motion.div>
 
@@ -109,7 +151,7 @@ export function FooterCtaSection() {
           transition={{ delay: 0.2 }}
           className="text-lg md:text-xl text-slate-400 max-w-2xl mb-16 font-light leading-relaxed"
         >
-          Analicemos tu negocio en 20 minutos sin compromiso. Te mostramos cómo la Inteligencia Artificial genera una ventaja competitiva real.
+          Analicemos tu negocio en 20 minutos sin compromiso. Reserva tu hueco directamente en nuestro calendario oficial.
         </motion.p>
 
         {/* Confidence Pillars */}
@@ -137,50 +179,18 @@ export function FooterCtaSection() {
           />
         </motion.div>
 
-        {/* Luxury CTA Button */}
+        {/* Cal.com Inline Embed */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="relative group"
+          className="w-full max-w-4xl mx-auto min-h-[700px]"
         >
-          {/* Intense Background Glow */}
-          <div className="absolute -inset-4 bg-orange-500/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-          
-          <button className="relative overflow-hidden px-10 py-5 rounded-xl bg-[#001A3D] border border-white/10 shadow-2xl flex items-center gap-3 transition-transform duration-300 active:scale-95">
-            {/* Data Flow Visualization Inside */}
-            <div className="absolute inset-0 pointer-events-none opacity-30">
-              <svg className="w-full h-full" viewBox="0 0 200 60" preserveAspectRatio="none">
-                <motion.path
-                  d="M0 30 Q50 10 100 30 T200 30"
-                  fill="none"
-                  stroke="#F97316"
-                  strokeWidth="0.5"
-                  initial={{ pathLength: 0, pathOffset: 0 }}
-                  animate={{ pathLength: [0, 1, 0], pathOffset: [0, 0, 1] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                />
-                <motion.path
-                  d="M0 40 Q50 20 100 40 T200 40"
-                  fill="none"
-                  stroke="#F97316"
-                  strokeWidth="0.5"
-                  initial={{ pathLength: 0, pathOffset: 0 }}
-                  animate={{ pathLength: [0, 1, 0], pathOffset: [0, 0, 1] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "linear", delay: 1 }}
-                />
-              </svg>
-            </div>
-
-            <span className="relative z-10 text-sm font-bold tracking-[0.15em] text-white uppercase">
-              RESERVAR SESIÓN ESTRATÉGICA
-            </span>
-            <ArrowRight size={18} className="relative z-10 text-orange-500 group-hover:translate-x-1 transition-transform" />
-            
-            {/* Button Shine Effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-          </button>
+          <div 
+            style={{ width: "100%", height: "700px", overflow: "scroll" }} 
+            id="my-cal-inline-reunion-de-informacion-ilustric-ia"
+          ></div>
         </motion.div>
 
         {/* Footer Text */}
@@ -191,7 +201,7 @@ export function FooterCtaSection() {
           transition={{ delay: 0.6 }}
           className="mt-10 text-xs text-slate-500 font-medium tracking-wide"
         >
-          Te hablaremos de tecnología aplicada, no de tendencias. Hablarás con un estratega, no un comercial.
+          Elige el día y la hora que mejor te venga. Recibirás un enlace de Zoom automáticamente.
         </motion.p>
 
       </div>
