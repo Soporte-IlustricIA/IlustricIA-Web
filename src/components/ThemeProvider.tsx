@@ -19,6 +19,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const root = window.document.documentElement;
     
     const applyTheme = (t: Theme) => {
+      console.log('Applying theme:', t);
       root.classList.remove('light', 'dark');
       
       let effectiveTheme = t;
@@ -26,6 +27,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       }
       
+      console.log('Effective theme:', effectiveTheme);
       root.classList.add(effectiveTheme);
       // Also set color-scheme for scrollbars and system UI
       root.style.setProperty('color-scheme', effectiveTheme);

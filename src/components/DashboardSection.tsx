@@ -25,11 +25,14 @@ import {
   Target,
   Globe,
   Users,
-  Shield
+  Shield,
+  Lightbulb,
+  Code
 } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import { GlowingShadow } from './ui/glowing-shadow';
 import { ShiningText } from './ui/shining-text';
+import { SparklesCore } from './ui/sparkles';
 
 // Helper for the chart bars
 const ChartBar = ({ height, color, delay }: { height: string; color: string; delay: number }) => (
@@ -90,9 +93,9 @@ const FeatureColumn = ({
       </div>
     </div>
     <div className="flex items-center gap-2">
-      <h3 className="text-xl font-semibold text-black dark:text-white group-hover/feature:text-orange-500 transition-colors duration-300">{title}</h3>
+      <h3 className="text-xl font-semibold text-white group-hover/feature:text-orange-500 transition-colors duration-300">{title}</h3>
     </div>
-    <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-light">
+    <p className="text-sm text-white/70 leading-relaxed font-light">
       {description}
     </p>
   </div>
@@ -140,28 +143,72 @@ const servicesList = [
     color: "text-cyan-500",
     title: "Ciberseguridad",
     description: "Protección integral de tus activos digitales y datos sensibles contra amenazas externas y vulnerabilidades."
+  },
+  {
+    icon: Lightbulb,
+    color: "text-yellow-500",
+    title: "Consultoría digital",
+    description: "Asesoramiento estratégico para la transformación digital de tu empresa, identificando oportunidades de mejora y crecimiento."
+  },
+  {
+    icon: Code,
+    color: "text-indigo-500",
+    title: "Desarrollo de software",
+    description: "Soluciones a medida diseñadas para resolver problemas específicos y escalar tu negocio con tecnología de vanguardia."
   }
 ];
 
 export function DashboardSection() {
   return (
-    <section className="w-full bg-neutral-50 dark:bg-black py-24 px-4 md:px-8 overflow-hidden transition-colors duration-300">
-      <div className="max-w-7xl mx-auto">
+    <section className="w-full bg-transparent py-16 px-4 md:px-8 overflow-hidden transition-colors duration-300 relative">
+      {/* Top Gradient Fade from Hero */}
+      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white dark:from-[#030712] to-transparent z-0 pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Section Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="flex flex-col items-center"
           >
             <h2 className="text-sm font-mono uppercase tracking-[0.4em] text-orange-500 font-bold mb-4">
               Nuestros Servicios
             </h2>
-            <h3 className="text-4xl md:text-5xl font-bold tracking-tighter text-black dark:text-white max-w-3xl mx-auto leading-tight">
-              Optimizamos cada engranaje de tu <ShiningText className="font-bold">Estructura Operativa</ShiningText>.
-            </h3>
+            
+            <div className="h-[16rem] w-full relative flex flex-col items-center justify-center overflow-hidden rounded-md">
+              {/* Core component as background */}
+              <div className="absolute inset-0 w-full h-full">
+                <SparklesCore
+                  id="tsparticlesdashboard"
+                  background="transparent"
+                  minSize={0.6}
+                  maxSize={1.4}
+                  particleDensity={100}
+                  className="w-full h-full"
+                  particleColor="#29ABE2"
+                  speed={1}
+                />
+              </div>
+
+              <h3 className="text-4xl md:text-5xl font-bold tracking-tighter text-black dark:text-white max-w-3xl mx-auto leading-tight relative z-20 text-center">
+                Optimizamos cada engranaje de tu Estructura Operativa.
+              </h3>
+              
+              <div className="w-[40rem] h-2 relative z-10">
+                {/* Gradients */}
+                <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent h-[2px] w-3/4 blur-sm" />
+                <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent h-px w-3/4" />
+                <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
+                <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
+              </div>
+
+              {/* Radial Gradient to prevent sharp edges */}
+              <div className="absolute inset-0 w-full h-full bg-transparent [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)] pointer-events-none"></div>
+            </div>
           </motion.div>
         </div>
 
@@ -188,7 +235,7 @@ export function DashboardSection() {
                 variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
                 className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.33%-1.5rem)] max-w-sm"
               >
-                <GlowingShadow className="h-full border border-neutral-200/50 dark:border-neutral-800/50 rounded-2xl overflow-hidden bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm hover:border-orange-500/30 transition-all duration-300">
+                <GlowingShadow className="h-full border border-neutral-800/50 rounded-2xl overflow-hidden bg-neutral-900/80 backdrop-blur-md hover:border-orange-500/30 transition-all duration-300">
                   <FeatureColumn 
                     icon={service.icon}
                     color={service.color}

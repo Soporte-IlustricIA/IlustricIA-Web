@@ -5,14 +5,14 @@ import { cn } from '@/src/lib/utils';
 
 const SmartGlassBadge = ({ icon: Icon, title, subtitle }: { icon: any; title: string; subtitle: string }) => (
   <div className="relative group">
-    <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-    <div className="relative backdrop-blur-2xl bg-white/[0.02] border border-white/[0.05] p-6 rounded-2xl flex flex-col items-center text-center gap-3 transition-transform duration-500 group-hover:-translate-y-1">
-      <div className="w-10 h-10 rounded-full bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-neutral-400 group-hover:text-orange-500 transition-colors duration-500">
+    <div className="absolute inset-0 bg-gradient-to-b from-black/5 dark:from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+    <div className="relative backdrop-blur-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/[0.05] dark:border-white/[0.05] p-6 rounded-2xl flex flex-col items-center text-center gap-3 transition-transform duration-500 group-hover:-translate-y-1">
+      <div className="w-10 h-10 rounded-full bg-black/[0.03] dark:bg-white/[0.03] border border-black/[0.08] dark:border-white/[0.08] flex items-center justify-center text-neutral-500 dark:text-neutral-400 group-hover:text-orange-500 transition-colors duration-500">
         <Icon size={20} strokeWidth={1.5} />
       </div>
       <div className="space-y-1">
         <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500">{title}</div>
-        <div className="text-sm font-medium text-neutral-300">{subtitle}</div>
+        <div className="text-sm font-medium text-neutral-600 dark:text-neutral-300">{subtitle}</div>
       </div>
     </div>
   </div>
@@ -62,7 +62,7 @@ export function FooterCtaSection() {
   }, []);
 
   return (
-    <section id="roi" className="w-full bg-black py-40 px-4 md:px-8 relative overflow-hidden">
+    <section id="roi" className="w-full bg-transparent py-20 px-4 md:px-8 relative overflow-hidden">
       {/* Orbital Light Threads Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <svg className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] opacity-20" viewBox="0 0 1000 1000">
@@ -117,7 +117,7 @@ export function FooterCtaSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12 inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-gradient-to-b from-neutral-800 to-neutral-900 border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"
+          className="mb-12 inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-gradient-to-b from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-900 border border-black/10 dark:border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"
         >
           <div className="relative flex items-center justify-center">
             <div className="w-2 h-2 rounded-full bg-orange-500" />
@@ -127,7 +127,7 @@ export function FooterCtaSection() {
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             />
           </div>
-          <span className="text-[10px] font-mono text-neutral-400 tracking-[0.15em] uppercase">
+          <span className="text-[10px] font-mono text-neutral-600 dark:text-neutral-400 tracking-[0.15em] uppercase">
             ESTADO OPERATIVO: DISPONIBLE | AGENDA TU CITA ABAJO ↓
           </span>
         </motion.div>
@@ -138,7 +138,7 @@ export function FooterCtaSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight mb-6 leading-[1.1] bg-gradient-to-b from-[#F8FAFC] to-[#94A3B8] bg-clip-text text-transparent"
+          className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight mb-6 leading-[1.1] bg-gradient-to-b from-black to-neutral-600 dark:from-[#F8FAFC] dark:to-[#94A3B8] bg-clip-text text-transparent"
         >
           ¿Iniciamos la transformación de tu operativa?
         </motion.h2>
@@ -149,7 +149,7 @@ export function FooterCtaSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-lg md:text-xl text-slate-400 max-w-2xl mb-16 font-light leading-relaxed"
+          className="text-lg md:text-xl text-neutral-600 dark:text-slate-400 max-w-2xl mb-16 font-light leading-relaxed"
         >
           Analicemos tu negocio en 20 minutos sin compromiso. Reserva tu hueco directamente en nuestro calendario oficial.
         </motion.p>
@@ -201,7 +201,7 @@ export function FooterCtaSection() {
           transition={{ delay: 0.6 }}
           className="mt-10 text-xs text-slate-500 font-medium tracking-wide"
         >
-          Elige el día y la hora que mejor te venga. Recibirás un enlace de Zoom automáticamente.
+          Elige el día y la hora que mejor te venga. Recibirás un enlace de Google Meets automáticamente.
         </motion.p>
 
       </div>

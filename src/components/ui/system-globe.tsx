@@ -1,7 +1,8 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Points, PointMaterial, Line } from '@react-three/drei';
+import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
+import { useTheme } from '../ThemeProvider';
 
 // --- Helper Functions ---
 
@@ -57,7 +58,7 @@ function generateShellPoints(count: number, minRadius: number, maxRadius: number
 
 // --- Components ---
 
-function Core({ count = 1000, radius = 1.5 }: { count?: number; radius?: number }) {
+function Core({ count = 1000, radius = 1.5, isDark = true }: { count?: number; radius?: number; isDark?: boolean }) {
   const points = useMemo(() => generateSpherePoints(count, radius), [count, radius]);
   const ref = useRef<THREE.Points>(null!);
 
@@ -73,19 +74,19 @@ function Core({ count = 1000, radius = 1.5 }: { count?: number; radius?: number 
       <Points ref={ref} positions={points} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
-          color="#06b6d4" // Cyan-500
+          color={isDark ? "#06b6d4" : "#0891b2"} // Cyan-500 vs Cyan-600
           size={0.02}
           sizeAttenuation={true}
           depthWrite={false}
-          opacity={0.6}
-          blending={THREE.AdditiveBlending}
+          opacity={isDark ? 0.6 : 0.8}
+          blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending}
         />
       </Points>
     </group>
   );
 }
 
-function Surface({ count = 2000, radius = 1.8 }: { count?: number; radius?: number }) {
+function Surface({ count = 2000, radius = 1.8, isDark = true }: { count?: number; radius?: number; isDark?: boolean }) {
   const points = useMemo(() => generateSurfacePoints(count, radius), [count, radius]);
   const ref = useRef<THREE.Points>(null!);
 
@@ -101,19 +102,19 @@ function Surface({ count = 2000, radius = 1.8 }: { count?: number; radius?: numb
       <Points ref={ref} positions={points} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
-          color="#3b82f6" // Blue-500
+          color={isDark ? "#3b82f6" : "#2563eb"} // Blue-500 vs Blue-600
           size={0.03}
           sizeAttenuation={true}
           depthWrite={false}
-          opacity={0.8}
-          blending={THREE.AdditiveBlending}
+          opacity={isDark ? 0.8 : 0.9}
+          blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending}
         />
       </Points>
     </group>
   );
 }
 
-function Halo({ count = 800, minRadius = 2.0, maxRadius = 3.5 }: { count?: number; minRadius?: number; maxRadius?: number }) {
+function Halo({ count = 800, minRadius = 2.0, maxRadius = 3.5, isDark = true }: { count?: number; minRadius?: number; maxRadius?: number; isDark?: boolean }) {
   const points = useMemo(() => generateShellPoints(count, minRadius, maxRadius), [count, minRadius, maxRadius]);
   const ref = useRef<THREE.Points>(null!);
 
@@ -129,12 +130,12 @@ function Halo({ count = 800, minRadius = 2.0, maxRadius = 3.5 }: { count?: numbe
       <Points ref={ref} positions={points} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
-          color="#60a5fa" // Blue-400
+          color={isDark ? "#60a5fa" : "#3b82f6"} // Blue-400 vs Blue-500
           size={0.015}
           sizeAttenuation={true}
           depthWrite={false}
-          opacity={0.4}
-          blending={THREE.AdditiveBlending}
+          opacity={isDark ? 0.4 : 0.6}
+          blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending}
         />
       </Points>
     </group>
@@ -187,24 +188,70 @@ function DataThreads({ count = 40, radius = 1.5 }: { count?: number; radius?: nu
   );
 }
 
+function InteractiveGroup({ hovered, mouse, children }: { hovered: boolean; mouse: React.MutableRefObject<number[]>; children: React.ReactNode }) {
+  const groupRef = useRef<THREE.Group>(null!);
+  
+  useFrame((state, delta) => {
+    if (groupRef.current) {
+      // Smoothly scale
+      const targetScale = hovered ? 1.15 : 1;
+      groupRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
+      
+      // Smoothly rotate towards mouse
+      const targetRotationY = mouse.current[0] * 0.3;
+      const targetRotationX = -mouse.current[1] * 0.3;
+      
+      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetRotationY, 0.05);
+      groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, targetRotationX, 0.05);
+    }
+  });
+
+  return <group ref={groupRef}>{children}</group>;
+}
+
 export default function SystemGlobe() {
+  const [hovered, setHovered] = useState(false);
+  const mouse = useRef([0, 0]);
+  const { theme } = useTheme();
+
+  const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    mouse.current = [
+      ((e.clientX - rect.left) / rect.width) * 2 - 1,
+      -((e.clientY - rect.top) / rect.height) * 2 + 1
+    ];
+  };
+
   return (
-    <div className="w-full h-full absolute inset-0 z-0 pointer-events-none">
+    <div 
+      className="w-full h-full absolute inset-0 z-0 pointer-events-auto cursor-crosshair"
+      onPointerEnter={() => setHovered(true)}
+      onPointerLeave={() => {
+        hovered && setHovered(false);
+        mouse.current = [0, 0];
+      }}
+      onMouseMove={onMouseMove}
+    >
       <Canvas camera={{ position: [0, 0, 5], fov: 45 }} gl={{ antialias: true, alpha: true }}>
-        <fog attach="fog" args={['#000', 5, 12]} />
-        <ambientLight intensity={0.5} />
+        <fog attach="fog" args={[isDark ? '#000' : '#fff', 5, 12]} />
+        <ambientLight intensity={hovered ? 1.2 : 0.5} />
+        <pointLight position={[mouse.current[0] * 5, mouse.current[1] * 5, 3]} intensity={hovered ? 15 : 0} color="#29ABE2" />
         
-        {/* Inner Core Swarm */}
-        <Core count={300} radius={1.2} />
-        
-        {/* Main Globe Surface Swarm */}
-        <Surface count={1500} radius={1.6} />
-        
-        {/* Outer Halo Swarm */}
-        <Halo count={600} minRadius={1.8} maxRadius={3.0} />
-        
-        {/* Connecting Data Threads */}
-        <DataThreads count={60} radius={1.4} />
+        <InteractiveGroup hovered={hovered} mouse={mouse}>
+          {/* Inner Core Swarm */}
+          <Core count={hovered ? 500 : 300} radius={1.2} isDark={isDark} />
+          
+          {/* Main Globe Surface Swarm */}
+          <Surface count={hovered ? 2500 : 1500} radius={1.6} isDark={isDark} />
+          
+          {/* Outer Halo Swarm */}
+          <Halo count={hovered ? 1000 : 600} minRadius={1.8} maxRadius={3.0} isDark={isDark} />
+          
+          {/* Connecting Data Threads */}
+          <DataThreads count={hovered ? 100 : 60} radius={1.4} />
+        </InteractiveGroup>
       </Canvas>
     </div>
   );

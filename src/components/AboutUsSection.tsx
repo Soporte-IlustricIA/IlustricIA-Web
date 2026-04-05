@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
 import { Users, Target, Zap, ShieldCheck, Cpu, Rocket, Globe } from 'lucide-react';
-import { ShiningText } from './ui/shining-text';
+import { NeonRGBTextEffect } from './ui/neon-rgbtext-effect';
 import { InteractiveFrostedGlassCard } from './ui/interactive-frosted-glass-card';
 
 function Counter({ value }: { value: string }) {
@@ -30,35 +30,16 @@ function Counter({ value }: { value: string }) {
   );
 }
 
-const coreValues = [
-// ... (rest of the file)
-  {
-    icon: <Cpu className="w-6 h-6" />,
-    title: "Innovación Pura",
-    description: "Desarrollamos soluciones de IA que no solo resuelven problemas, sino que redefinen posibilidades."
-  },
-  {
-    icon: <Globe className="w-6 h-6" />,
-    title: "Impacto Global",
-    description: "Nuestra tecnología trasciende fronteras, conectando empresas con el futuro digital."
-  },
-  {
-    icon: <Zap className="w-6 h-6" />,
-    title: "Velocidad y Eficiencia",
-    description: "Optimizamos procesos para que tu negocio se mueva a la velocidad de la luz."
-  }
-];
-
 const teamStats = [
-  { label: "Proyectos IA", value: "150+" },
-  { label: "Países", value: "12" },
-  { label: "Expertos", value: "45" },
-  { label: "Años de Innovación", value: "8" }
+  { label: "Proyectos IA", value: "+50" },
+  { label: "Países", value: "2" },
+  { label: "Expertos", value: "12" },
+  { label: "Años de Innovación", value: "2" }
 ];
 
 export function AboutUsSection() {
   return (
-    <section id="about" className="relative py-24 overflow-hidden bg-white dark:bg-black transition-colors duration-300">
+    <section id="about" className="relative py-32 md:py-40 overflow-hidden bg-transparent transition-colors duration-300">
       {/* Background Tech Grid */}
       <div className="absolute inset-0 z-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none" 
            style={{ backgroundImage: 'linear-gradient(#29ABE2 1px, transparent 1px), linear-gradient(90deg, #29ABE2 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
@@ -78,11 +59,16 @@ export function AboutUsSection() {
               <span className="text-[10px] uppercase tracking-[0.2em] font-mono text-[#29ABE2] font-bold">Quienes Somos</span>
             </div>
             
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-8 leading-[1.1]">
-              Forjando el <ShiningText className="font-bold">ADN Digital</ShiningText> de la próxima generación.
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-8 leading-[1.1] text-black dark:text-white flex flex-wrap items-center gap-x-2">
+              <span>Forjando el</span>
+              <NeonRGBTextEffect 
+                text="ADN Digital" 
+                className="w-[240px] md:w-[400px] h-[45px] md:h-[75px] -ml-2 md:-ml-4 blur-[0.8px]" 
+              />
+              <span className="-ml-1 md:-ml-2">de la próxima generación.</span>
             </h2>
             
-            <p className="text-lg text-black/60 dark:text-white/60 mb-10 max-w-xl leading-relaxed">
+            <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-10 max-w-xl leading-relaxed">
               En <span className="text-[#29ABE2] font-semibold">IlustricIA</span>, no solo construimos software; diseñamos ecosistemas inteligentes. Somos un equipo de visionarios, ingenieros y creativos apasionados por la intersección entre la inteligencia artificial y la experiencia humana.
             </p>
 
@@ -99,45 +85,15 @@ export function AboutUsSection() {
                   <div className="text-3xl font-bold text-black dark:text-white mb-1">
                     <Counter value={stat.value} />
                   </div>
-                  <div className="text-xs uppercase tracking-widest text-black/40 dark:text-white/40 font-mono">{stat.label}</div>
+                  <div className="text-xs uppercase tracking-widest text-neutral-500 dark:text-neutral-500 font-mono">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
-
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-8 py-4 bg-[#29ABE2] text-white rounded-sm font-bold tracking-tight hover:bg-[#29ABE2]/90 transition-colors shadow-[0_0_20px_rgba(41,171,226,0.3)] flex items-center gap-3"
-            >
-              Conoce al Equipo <Rocket className="w-4 h-4" />
-            </motion.button>
           </motion.div>
 
-          {/* Right Side: Interactive Cards */}
-          <div className="grid grid-cols-1 gap-6">
-            {coreValues.map((value, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-              >
-                <InteractiveFrostedGlassCard className="p-8 border border-black/5 dark:border-white/10 bg-white/50 dark:bg-white/5 backdrop-blur-xl rounded-sm hover:border-[#29ABE2]/30 transition-colors group">
-                  <div className="flex gap-6 items-start">
-                    <div className="w-12 h-12 rounded-sm bg-[#29ABE2]/10 flex items-center justify-center text-[#29ABE2] group-hover:bg-[#29ABE2] group-hover:text-white transition-all duration-500">
-                      {value.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-2 text-black dark:text-white">{value.title}</h3>
-                      <p className="text-black/50 dark:text-white/50 leading-relaxed text-sm">
-                        {value.description}
-                      </p>
-                    </div>
-                  </div>
-                </InteractiveFrostedGlassCard>
-              </motion.div>
-            ))}
+          {/* Right Side: Empty for now */}
+          <div className="relative min-h-[400px] flex items-center justify-center">
+            {/* Future content goes here */}
           </div>
 
         </div>

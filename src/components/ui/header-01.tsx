@@ -17,8 +17,8 @@ import {
 } from "./navigation-menu";
 
 const menuItems = [
-  { name: "Quienes Somos", href: "#about" },
   { name: "Nuestros Servicios", href: "#dashboard" },
+  { name: "Quienes Somos", href: "#about" },
   { name: "FAQs", href: "#faqs" },
   { name: "Recursos", href: "#recursos" },
 ];
@@ -74,12 +74,12 @@ const Header = () => {
   }, []);
 
   const logoElement = (
-    <div className="relative w-5 h-5 flex items-center justify-center">
-      <span className="absolute w-1.5 h-1.5 rounded-full bg-black dark:bg-gray-200 top-0 left-1/2 transform -translate-x-1/2 opacity-80"></span>
-      <span className="absolute w-1.5 h-1.5 rounded-full bg-black dark:bg-gray-200 left-0 top-1/2 transform -translate-y-1/2 opacity-80"></span>
-      <span className="absolute w-1.5 h-1.5 rounded-full bg-black dark:bg-gray-200 right-0 top-1/2 transform -translate-y-1/2 opacity-80"></span>
-      <span className="absolute w-1.5 h-1.5 rounded-full bg-black dark:bg-gray-200 bottom-0 left-1/2 transform -translate-x-1/2 opacity-80"></span>
-    </div>
+    <img 
+      src="/images/logo.png" 
+      alt="IlustricIA Logo" 
+      className="w-40 h-auto object-contain"
+      referrerPolicy="no-referrer"
+    />
   );
 
   return (
@@ -88,30 +88,34 @@ const Header = () => {
         data-state={menuState && "active"}
         className={cn(
           "w-full px-3 md:px-4 transition-all duration-300",
-          isScrolled ? "py-2" : "py-4"
+          isScrolled ? "py-0" : "py-0"
         )}
       >
         <div
           className={cn(
-            "mx-auto transition-all duration-300",
+            "mx-auto transition-all duration-300 max-w-7xl",
             isScrolled &&
               "bg-white/70 dark:bg-black/50 max-w-5xl rounded-2xl border border-black/10 dark:border-white/10 backdrop-blur-xl px-4 shadow-lg"
           )}
         >
-          <div className="relative flex items-center justify-between gap-3 py-2">
+          <div className="relative flex items-center justify-between gap-3 py-0">
             <div className="flex items-center gap-8">
               <a
                 href="#"
                 aria-label="home"
-                className="flex gap-2 items-center shrink-0"
+                className="flex gap-2 items-center shrink-0 leading-none"
               >
-                {logoElement}
-                <span className="font-bold text-sm tracking-tight text-black dark:text-white">IlustricIA</span>
+                <img 
+                  src="/images/logo.png" 
+                  alt="IlustricIA Logo" 
+                  className="w-32 h-auto object-contain block transition-all duration-300"
+                  referrerPolicy="no-referrer"
+                />
               </a>
             </div>
 
             <div className="hidden lg:flex flex-1 justify-center">
-              <Menus />
+              <Menus isScrolled={isScrolled} />
             </div>
 
             <div className={cn(
@@ -141,7 +145,12 @@ const Header = () => {
                   <ModeToggle />
                   <a 
                     href="#roi"
-                    className="px-4 py-2 text-xs border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 text-black/60 dark:text-white/60 rounded-full hover:border-black/30 dark:hover:border-white/30 hover:text-black dark:hover:text-white transition-colors duration-200 cursor-pointer whitespace-nowrap"
+                    className={cn(
+                      "px-4 py-2 text-xs border rounded-full transition-colors duration-200 cursor-pointer whitespace-nowrap",
+                      isScrolled 
+                        ? "border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 text-black/60 dark:text-white/60 hover:border-black/30 dark:hover:border-white/30 hover:text-black dark:hover:text-white"
+                        : "border-white/30 bg-white/10 text-white hover:bg-white/20"
+                    )}
                   >
                     Contáctanos
                   </a>
@@ -149,7 +158,12 @@ const Header = () => {
                     <div className="absolute inset-0 -m-1 rounded-full bg-black dark:bg-gray-100 opacity-10 dark:opacity-40 filter blur-lg pointer-events-none transition-all duration-300 ease-out group-hover:opacity-20 dark:group-hover:opacity-60 group-hover:blur-xl"></div>
                     <a 
                       href="#demo"
-                      className="relative z-10 px-4 py-2 text-xs font-semibold text-white dark:text-black bg-black dark:bg-gradient-to-br dark:from-gray-100 dark:to-gray-300 rounded-full hover:bg-black/90 dark:hover:from-gray-200 dark:hover:to-gray-400 transition-all duration-200 cursor-pointer block whitespace-nowrap"
+                      className={cn(
+                        "relative z-10 px-4 py-2 text-xs font-semibold rounded-full transition-all duration-200 cursor-pointer block whitespace-nowrap",
+                        isScrolled
+                          ? "text-white dark:text-black bg-black dark:bg-gradient-to-br dark:from-gray-100 dark:to-gray-300 hover:bg-black/90 dark:hover:from-gray-200 dark:hover:to-gray-400"
+                          : "text-black bg-white hover:bg-white/90"
+                      )}
                     >
                       Prueba nuestra demo
                     </a>
@@ -160,7 +174,10 @@ const Header = () => {
               <button
                 onClick={() => setMenuState(!menuState)}
                 aria-label={menuState ? "Close Menu" : "Open Menu"}
-                className="relative z-20 block cursor-pointer p-2 lg:hidden text-black dark:text-white"
+                className={cn(
+                  "relative z-20 block cursor-pointer p-2 lg:hidden transition-colors",
+                  isScrolled || menuState ? "text-black dark:text-white" : "text-white"
+                )}
               >
                 {menuState ? <X size={20} /> : <Menu size={20} />}
               </button>
@@ -197,12 +214,6 @@ const components: { title: string; href: string; description: string }[] = [
       "Stunning UI component showcase for inspiring, seamless design exploration.",
   },
   {
-    title: "Blogs",
-    href: "#",
-    description:
-      "Engaging UI design blogs with insights for seamless component integration.",
-  },
-  {
     title: "Contact",
     href: "#",
     description:
@@ -210,61 +221,65 @@ const components: { title: string; href: string; description: string }[] = [
   },
 ];
 
-export function Menus() {
+export function Menus({ isScrolled }: { isScrolled?: boolean }) {
   return (
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuLink
             asChild
-            className={cn(navigationMenuTriggerStyle(), "bg-transparent text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white")}
+            className={cn(
+              navigationMenuTriggerStyle(), 
+              "bg-transparent text-xs h-8 transition-colors",
+              isScrolled 
+                ? "text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white"
+                : "text-white/70 hover:text-white"
+            )}
+          >
+            <a href="#dashboard">Nuestros Servicios</a>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink
+            asChild
+            className={cn(
+              navigationMenuTriggerStyle(), 
+              "bg-transparent text-xs h-8 transition-colors",
+              isScrolled 
+                ? "text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white"
+                : "text-white/70 hover:text-white"
+            )}
           >
             <a href="#about">Quienes Somos</a>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="bg-transparent text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white">
-            Nuestros Servicios
-          </NavigationMenuTrigger>
-          <NavigationMenuContent className="p-2">
-            <ul className="grid gap-3 md:grid-cols-2 lg:w-[500px] bg-white dark:bg-black border border-black/10 dark:border-white/10 rounded-xl p-4">
-              {services.map((service) => (
-                <ListItem
-                  key={service.title}
-                  title={service.title}
-                  href={service.href}
-                >
-                  {service.description}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
           <NavigationMenuLink
             asChild
-            className={cn(navigationMenuTriggerStyle(), "bg-transparent text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white")}
+            className={cn(
+              navigationMenuTriggerStyle(), 
+              "bg-transparent text-xs h-8 transition-colors",
+              isScrolled 
+                ? "text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white"
+                : "text-white/70 hover:text-white"
+            )}
           >
             <a href="#faqs">FAQs</a>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="bg-transparent text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white">
-            Recursos
-          </NavigationMenuTrigger>
-          <NavigationMenuContent className="p-2">
-            <ul className="grid gap-3 md:grid-cols-2 lg:w-[400px] bg-white dark:bg-black border border-black/10 dark:border-white/10 rounded-xl p-4">
-              {components.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                >
-                  {component.description}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
+          <NavigationMenuLink
+            asChild
+            className={cn(
+              navigationMenuTriggerStyle(), 
+              "bg-transparent text-xs h-8 transition-colors",
+              isScrolled 
+                ? "text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white"
+                : "text-white/70 hover:text-white"
+            )}
+          >
+            <a href="#recursos">Recursos</a>
+          </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

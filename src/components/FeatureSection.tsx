@@ -4,16 +4,11 @@ import {
   MessageSquare, 
   Phone, 
   Ticket, 
-  Home, 
-  Star, 
-  Grid3X3,
-  FileType
+  Star
 } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent, useTransform, AnimatePresence } from 'framer-motion';
 import { ShiningText } from './ui/shining-text';
-import { MagicText } from './ui/magic-text';
-import DataCoreVisualization from './ui/data-core-visualization';
 
 const features = [
   {
@@ -78,7 +73,7 @@ const FeatureItem = ({
         </h3>
         <div className={cn(
           "grid transition-all duration-500 ease-in-out",
-          active ? "grid-rows-[1fr] opacity-100 mb-8" : "grid-rows-[0fr] opacity-0 mb-2"
+          active ? "grid-rows-[1fr] opacity-100 mb-4" : "grid-rows-[0fr] opacity-0 mb-2"
         )}>
           <div className="overflow-hidden">
             <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-md pt-3">
@@ -86,46 +81,6 @@ const FeatureItem = ({
             </p>
           </div>
         </div>
-      </div>
-    </div>
-  );
-};
-
-const InputCard = ({ 
-  icon: Icon, 
-  title, 
-  subtitle, 
-  color = "blue",
-  className 
-}: { 
-  icon: any; 
-  title: string; 
-  subtitle?: React.ReactNode; 
-  color?: "blue" | "green" | "orange" | "purple" | "grey";
-  className?: string;
-}) => {
-  const colorStyles = {
-    blue: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    green: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-    orange: "bg-orange-500/10 text-orange-400 border-orange-500/20",
-    purple: "bg-purple-500/10 text-purple-400 border-purple-500/20",
-    grey: "bg-neutral-800/50 text-neutral-400 border-neutral-700/50",
-  };
-
-  return (
-    <div className={cn(
-      "p-3 rounded-lg border backdrop-blur-sm text-[10px] font-mono uppercase tracking-wider shadow-lg transition-colors duration-300",
-      "bg-white/80 dark:bg-neutral-900/80 border-neutral-200 dark:border-neutral-800",
-      className
-    )}>
-      <div className="flex items-center gap-2 mb-2 text-neutral-500 dark:text-neutral-400">
-        <div className={cn("p-1 rounded bg-neutral-100 dark:bg-neutral-800", colorStyles[color].split(' ')[1])}>
-          <Icon size={12} />
-        </div>
-        <span className="font-semibold text-black dark:text-white">{title}</span>
-      </div>
-      <div className="text-neutral-500 dark:text-neutral-500 leading-tight">
-        {subtitle}
       </div>
     </div>
   );
@@ -140,28 +95,32 @@ export function FeatureSection() {
     offset: ["start start", "end end"]
   });
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const featureCount = features.length;
-    // Map scroll progress to index with a bit of buffer
-    const index = Math.min(
-      Math.floor(latest * featureCount),
-      featureCount - 1
-    );
-    setActiveFeature(index);
+  // Map scroll progress to feature index with a bit of buffer at start/end
+  const featureIndex = useTransform(scrollYProgress, [0, 1], [0, features.length - 1], { clamp: true });
+  
+  useMotionValueEvent(featureIndex, "change", (latest: number) => {
+    const roundedIndex = Math.round(latest);
+    if (roundedIndex !== activeFeature) {
+      setActiveFeature(roundedIndex);
+    }
   });
 
   return (
     <section 
+      id="roi"
       ref={containerRef} 
-      className="w-full bg-white dark:bg-black relative transition-colors duration-300"
-      style={{ height: "300vh" }}
+      className="relative w-full z-30"
+      style={{ height: "200vh" }}
     >
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center w-full px-4 md:px-8 lg:px-12">
+      <div 
+        className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden z-40"
+      >
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="max-w-[95vw] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center w-full px-4 md:px-8 lg:px-12">
           
           {/* Left Column: Text Content */}
-          <div className="flex flex-col">
-            <h2 className="text-5xl md:text-6xl font-medium tracking-tight mb-16 leading-[1.1] text-black dark:text-white">
+          <div className="lg:col-span-4 flex flex-col">
+            <h2 className="text-5xl md:text-6xl font-medium tracking-tight mb-8 leading-[1.1] text-black dark:text-white">
               <ShiningText>
                 De la promesa<br />a la práctica
               </ShiningText>
@@ -181,205 +140,172 @@ export function FeatureSection() {
             </div>
           </div>
 
-          {/* Right Column: Visualization */}
-          <div className="relative w-full aspect-square lg:aspect-auto lg:h-[800px] bg-neutral-100 dark:bg-neutral-950/50 rounded-3xl border border-neutral-200 dark:border-neutral-900 p-8 flex flex-col items-center overflow-hidden transition-all duration-500">
+          {/* Right Column: ROI Visualization (Merged) */}
+          <div className="lg:col-span-8 relative w-full h-[500px] lg:h-[600px] p-8 flex flex-col items-center overflow-hidden transition-all duration-500">
             
-            {/* Background Grid/Glow Effect */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neutral-200/50 dark:from-neutral-900/50 via-white dark:via-black to-white dark:to-black opacity-50" />
-            
-            {/* Three.js Visualization Background */}
-            <DataCoreVisualization />
+            {/* Background Grid Dots */}
+            <div className="absolute inset-0 z-0 dark:[--dot-color:#1a1a1a] [--dot-color:#f0f0f0]" style={{ 
+              backgroundImage: 'radial-gradient(circle at 1px 1px, var(--dot-color) 1px, transparent 0)',
+              backgroundSize: '30px 30px'
+            }} />
 
-            {/* Tech Connection Lines (SVG Layer) */}
-            <div className="absolute inset-0 z-10 pointer-events-none">
-              <svg className="w-full h-full" viewBox="0 0 400 800" fill="none" preserveAspectRatio="xMidYMid meet">
-                {/* Connection from Top Left Card to Center */}
-                <motion.path
-                  d="M 120 220 L 120 300 L 200 300 L 200 380"
-                  stroke="url(#neonGradient1)"
-                  strokeWidth="1.5"
-                  strokeDasharray="4 4"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 0.3 }}
-                  transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-                />
-                {/* Connection from Top Right Card to Center */}
-                <motion.path
-                  d="M 280 220 L 280 300 L 200 300 L 200 380"
-                  stroke="url(#neonGradient1)"
-                  strokeWidth="1.5"
-                  strokeDasharray="4 4"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 0.3 }}
-                  transition={{ duration: 2, delay: 0.5, repeat: Infinity, repeatType: "reverse" }}
-                />
-                {/* Connection from Center to Bottom Card */}
-                <motion.path
-                  d="M 200 420 L 200 540"
-                  stroke="url(#neonGradient2)"
-                  strokeWidth="1.5"
-                  strokeDasharray="4 4"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 0.5 }}
-                  transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
-                />
-
-                {/* Data Packets (Moving Dots with Glow) */}
-                <g>
-                  <motion.circle r="3" fill="#00f2ff" filter="url(#glow)">
-                    <animateMotion
-                      path="M 120 220 L 120 300 L 200 300 L 200 380"
-                      dur="3s"
-                      repeatCount="indefinite"
-                    />
-                  </motion.circle>
-                  <motion.circle r="3" fill="#00f2ff" filter="url(#glow)">
-                    <animateMotion
-                      path="M 280 220 L 280 300 L 200 300 L 200 380"
-                      dur="3s"
-                      begin="1.5s"
-                      repeatCount="indefinite"
-                    />
-                  </motion.circle>
-                  <motion.circle r="4" fill="#ff00ff" filter="url(#glow)">
-                    <animateMotion
-                      path="M 200 420 L 200 540"
-                      dur="2s"
-                      repeatCount="indefinite"
-                    />
-                  </motion.circle>
-                </g>
-
-                {/* Connection Ports (Glowing Dots at endpoints) */}
-                <circle cx="120" cy="220" r="4" fill="#00f2ff" className="animate-pulse" />
-                <circle cx="280" cy="220" r="4" fill="#00f2ff" className="animate-pulse" />
-                <circle cx="200" cy="380" r="4" fill="#a855f7" className="animate-pulse" />
-                <circle cx="200" cy="420" r="4" fill="#a855f7" className="animate-pulse" />
-                <circle cx="200" cy="540" r="4" fill="#ff00ff" className="animate-pulse" />
-
+            {/* ROI Graph Component */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet">
                 <defs>
-                  <filter id="glow">
-                    <feGaussianBlur stdDeviation="2" result="blur" />
+                  <filter id="pathGlow">
+                    <feGaussianBlur stdDeviation="4" result="blur" />
                     <feComposite in="SourceGraphic" in2="blur" operator="over" />
                   </filter>
-                  <linearGradient id="neonGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#00f2ff" stopOpacity="0" />
-                    <stop offset="50%" stopColor="#00f2ff" stopOpacity="1" />
-                    <stop offset="100%" stopColor="#00f2ff" stopOpacity="0" />
-                  </linearGradient>
-                  <linearGradient id="neonGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#ff00ff" stopOpacity="0" />
-                    <stop offset="50%" stopColor="#ff00ff" stopOpacity="1" />
-                    <stop offset="100%" stopColor="#ff00ff" stopOpacity="0" />
-                  </linearGradient>
                 </defs>
-              </svg>
-            </div>
-
-            {/* Diagram Container */}
-            <div className="relative z-10 w-full max-w-lg mx-auto flex flex-col items-center gap-8 h-full justify-center">
-              
-              {/* Floating Input Cards */}
-              <motion.div 
-                className="flex flex-wrap justify-center gap-4 w-full"
-                animate={{ 
-                  y: [0, -10, 0],
-                }}
-                transition={{ 
-                  duration: 4, 
-                  repeat: Infinity, 
-                  ease: "easeInOut" 
-                }}
-              >
-                <InputCard 
-                  icon={Grid3X3} 
-                  title="DATOS DE NEGOCIO" 
-                  color="green"
-                  className="w-40 h-24 backdrop-blur-md border-emerald-500/30 dark:border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.1)] hover:shadow-[0_0_25px_rgba(16,185,129,0.2)] transition-shadow duration-500"
-                  subtitle={
-                    <div className="grid grid-cols-4 gap-1 mt-2 opacity-50">
-                      {[...Array(12)].map((_, i) => (
-                        <div key={i} className="h-3 bg-emerald-500/30 rounded-[1px]" />
-                      ))}
-                    </div>
-                  }
-                />
-                <InputCard 
-                  icon={FileType} 
-                  title="INFORMES.PDF" 
-                  color="orange"
-                  className="w-40 h-24 relative overflow-hidden backdrop-blur-md border-orange-500/30 dark:border-orange-500/20 shadow-[0_0_15px_rgba(249,115,22,0.1)] hover:shadow-[0_0_25px_rgba(249,115,22,0.2)] transition-shadow duration-500"
-                  subtitle={
-                    <div className="mt-2">
-                      <div className="text-white text-xs normal-case font-sans font-bold leading-none">Cambio de<br/>tendencia</div>
-                      <div className="absolute right-[-10px] bottom-[-10px] w-16 h-16 bg-orange-500/20 rounded-full blur-xl" />
-                    </div>
-                  }
-                />
-              </motion.div>
-
-              {/* Central Processing Node */}
-              <motion.div 
-                className="relative z-20 flex items-center gap-3 bg-neutral-900/90 backdrop-blur-xl border border-purple-500/40 pl-1 pr-4 py-1 rounded-md"
-                animate={{ 
-                  scale: [1, 1.05, 1],
-                  boxShadow: [
-                    "0 0 20px rgba(168,85,247,0.3)",
-                    "0 0 50px rgba(168,85,247,0.6)",
-                    "0 0 20px rgba(168,85,247,0.3)"
-                  ]
-                }}
-                transition={{ 
-                  duration: 2, 
-                  repeat: Infinity, 
-                  ease: "easeInOut" 
-                }}
-              >
-                <div className="w-6 h-6 bg-purple-500 rounded-[2px] flex items-center justify-center shadow-[0_0_15px_rgba(168,85,247,0.8)]">
-                  <motion.div 
-                    className="w-2 h-2 bg-white rounded-[1px]"
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                  />
-                </div>
-                <span className="text-[10px] font-mono text-purple-200 tracking-wider font-bold">PROCESANDO IA</span>
-              </motion.div>
-
-              {/* Bottom Output Card */}
-              <motion.div 
-                className="w-full bg-neutral-900/60 border border-cyan-500/30 rounded-xl p-6 backdrop-blur-md relative overflow-hidden shadow-[0_0_30px_rgba(6,182,212,0.1)]"
-                style={{
-                  y: useScroll({ target: containerRef }).scrollYProgress.get() * 50
-                }}
-              >
-                {/* Animated neon scanline */}
-                <motion.div 
-                  className="absolute top-0 left-0 w-full h-[2px] bg-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.8)] blur-[1px]"
-                  animate={{ top: ["0%", "100%", "0%"] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                {/* The ROI Path */}
+                <motion.path 
+                  d="M 50 400 L 200 300 L 350 300 L 550 150 L 750 50" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  className="text-neutral-200 dark:text-neutral-800"
+                  strokeWidth="2"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1.5, ease: "easeInOut" }}
                 />
                 
-                <div className="flex items-center gap-2 text-cyan-500/70 text-[10px] uppercase tracking-widest mb-4 font-bold">
-                  <Home size={12} className="text-cyan-400" />
-                  <span>RESULTADO OPERATIVO</span>
-                </div>
+                {/* Animated Progress Path */}
+                <motion.path 
+                  d="M 50 400 L 200 300 L 350 300 L 550 150 L 750 50" 
+                  fill="none" 
+                  stroke="#29ABE2" 
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  filter="url(#pathGlow)"
+                  initial={{ pathLength: 0 }}
+                  animate={{ 
+                    pathLength: [0, 0.224, 0.411, 0.722, 1][activeFeature]
+                  }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                />
 
-                <h3 className="text-2xl font-semibold text-white mb-4 tracking-tight">Estrategia de Crecimiento</h3>
+                {/* Glow effect for the progress path */}
+                <motion.path 
+                  d="M 50 400 L 200 300 L 350 300 L 550 150 L 750 50" 
+                  fill="none" 
+                  stroke="#29ABE2" 
+                  strokeWidth="12"
+                  strokeLinecap="round"
+                  className="opacity-30 blur-xl"
+                  initial={{ pathLength: 0 }}
+                  animate={{ 
+                    pathLength: [0, 0.224, 0.411, 0.722, 1][activeFeature]
+                  }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                />
 
-                <div className="space-y-3">
-                  <div className="h-px w-full bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent" />
-                  <MagicText 
-                    text="Optimizando la captación de leads mediante flujos de IA..." 
-                    className="text-cyan-100/60 text-sm leading-relaxed font-light"
-                    progress={scrollYProgress}
-                  />
+                {/* Dynamic Points Mapping to Features - Moved inside SVG for perfect alignment */}
+                {[
+                  { cx: 50, cy: 400 },
+                  { cx: 200, cy: 300 },
+                  { cx: 350, cy: 300 },
+                  { cx: 550, cy: 150 },
+                  { cx: 750, cy: 50 }
+                ].map((point, index) => {
+                  const isActive = activeFeature === index;
+                  const isCompleted = activeFeature > index;
+                  
+                  return (
+                    <foreignObject 
+                      key={index}
+                      x={point.cx - 50} 
+                      y={point.cy - 50} 
+                      width="100" 
+                      height="100"
+                      className="overflow-visible"
+                    >
+                      <div className="w-full h-full flex items-center justify-center">
+                        <motion.div
+                          className="relative"
+                          animate={{
+                            scale: isActive ? 1.4 : 1,
+                            opacity: (isActive || isCompleted) ? 1 : 0.3,
+                          }}
+                        >
+                          <div className={cn(
+                            "w-8 h-8 rounded-xl flex items-center justify-center border transition-all duration-500 relative",
+                            isActive 
+                              ? "bg-white dark:bg-black border-[#29ABE2] shadow-[0_0_40px_rgba(41,171,226,0.4)]" 
+                              : isCompleted
+                                ? "bg-[#29ABE2]/10 border-[#29ABE2]/40 shadow-[0_0_20px_rgba(41,171,226,0.2)]"
+                                : "bg-neutral-100 dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800"
+                          )}>
+                            {/* Active Pulse Effect */}
+                            {isActive && (
+                              <>
+                                <motion.div 
+                                  className="absolute inset-0 rounded-xl bg-[#29ABE2] opacity-20"
+                                  animate={{ scale: [1, 1.8, 1], opacity: [0.3, 0, 0.3] }}
+                                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                                />
+                                <motion.div 
+                                  className="absolute inset-[-2px] rounded-xl border border-[#29ABE2]/50"
+                                  animate={{ opacity: [0.5, 1, 0.5] }}
+                                  transition={{ duration: 1.5, repeat: Infinity }}
+                                />
+                              </>
+                            )}
+                            
+                            <div className={cn(
+                              "w-4 h-4 rounded-lg flex items-center justify-center transition-colors duration-500 relative z-10",
+                              isActive || isCompleted ? "bg-[#29ABE2] shadow-[0_0_10px_rgba(41,171,226,0.8)]" : "bg-neutral-300 dark:bg-neutral-700"
+                            )}>
+                              <div className="w-1.5 h-1.5 rounded-full bg-white" />
+                            </div>
+                          </div>
+                          
+                          {/* Floating Label for Active Point */}
+                          <AnimatePresence>
+                            {isActive && (
+                              <motion.div
+                                initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: 10, scale: 0.9 }}
+                                className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-40 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-3 shadow-xl z-50 pointer-events-none"
+                              >
+                                <div className="text-[10px] font-mono uppercase tracking-widest text-[#29ABE2] mb-1">Impacto ROI</div>
+                                <div className="text-sm font-bold text-black dark:text-white leading-tight">
+                                  {features[index].title}
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </motion.div>
+                      </div>
+                    </foreignObject>
+                  );
+                })}
+              </svg>
+
+              {/* Central ROI Metric Card */}
+              <motion.div 
+                className="absolute bottom-8 right-8 bg-black dark:bg-white text-white dark:text-black p-6 rounded-2xl shadow-[0_0_40px_rgba(41,171,226,0.2)] z-30 border border-[#29ABE2]"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                <div className="text-[10px] font-mono uppercase tracking-[0.2em] opacity-50 mb-2">Retorno Estimado</div>
+                <div className="text-4xl font-bold tracking-tighter mb-2">
+                  {activeFeature === 0 && "15%"}
+                  {activeFeature === 1 && "32%"}
+                  {activeFeature === 2 && "48%"}
+                  {activeFeature === 3 && "74%"}
+                  {activeFeature === 4 && "120%"}
                 </div>
+                <div className="text-xs font-medium opacity-70">Eficiencia operativa anual</div>
               </motion.div>
 
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
   );
 }

@@ -1,26 +1,35 @@
 import { Marquee } from "./marquee"
 
-const LogoItem = ({ src, name }: { src: string; name: string }) => (
-  <div className="group flex items-center gap-3 cursor-default transition-all duration-500">
-    <div className="relative h-7 w-7 flex items-center justify-center">
-      <img 
-        src={src} 
-        alt={name}
-        referrerPolicy="no-referrer"
-        className="h-full w-full object-contain filter grayscale invert opacity-50 group-hover:grayscale-0 group-hover:invert-0 group-hover:opacity-100 transition-all duration-500"
-      />
+const LogoItem = ({ src, name }: { src: string; name: string }) => {
+  const isLarge = name === "Python" || name === "n8n" || name === "OpenAI";
+  const isOpenAI = name === "OpenAI";
+  
+  return (
+    <div className="group flex items-center gap-4 cursor-default transition-all duration-500">
+      <div className={`relative flex items-center justify-center ${isLarge ? 'h-12 w-12' : 'h-8 w-8'}`}>
+        <img 
+          src={src} 
+          alt={name}
+          referrerPolicy="no-referrer"
+          className={`h-full w-full object-contain filter grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 ${
+            isOpenAI 
+              ? 'dark:invert dark:brightness-200 dark:opacity-80' 
+              : 'dark:invert'
+          }`}
+        />
+      </div>
+      <span className="text-[#94A3B8] font-medium tracking-tight group-hover:text-black dark:group-hover:text-white transition-colors duration-500">{name}</span>
     </div>
-    <span className="text-[#94A3B8] font-medium tracking-tight group-hover:text-white transition-colors duration-500">{name}</span>
-  </div>
-);
+  );
+};
 
 export function MarqueeDemo() {
   const items = [
-    { name: "Claude", src: "https://upload.wikimedia.org/wikipedia/commons/4/47/Claude_AI_logo.svg" },
-    { name: "OpenAI", src: "https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" },
-    { name: "Supabase", src: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Supabase_logo.svg" },
-    { name: "n8n", src: "https://upload.wikimedia.org/wikipedia/commons/a/a2/N8n_logo.svg" },
-    { name: "Python", src: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" },
+    { name: "Claude", src: "/images/claude.webp" },
+    { name: "OpenAI", src: "/images/openai.webp" },
+    { name: "Supabase", src: "/images/supabase.webp" },
+    { name: "n8n", src: "/images/n8n.webp" },
+    { name: "Python", src: "/images/python.webp" },
   ];
 
   return (

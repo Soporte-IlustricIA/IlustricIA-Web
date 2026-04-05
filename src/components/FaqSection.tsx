@@ -37,9 +37,9 @@ export function FaqSection() {
   };
 
   return (
-    <section id="faqs" className="py-24 bg-white dark:bg-[#050505] transition-colors duration-300">
+    <section id="faqs" className="py-16 bg-transparent transition-colors duration-300">
       <div className="max-w-4xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -57,7 +57,6 @@ export function Navbar() {
   );
 
   const navLinksData = [
-    { label: 'Manifesto', href: '#manifesto' },
     { label: 'Servicios', href: '#dashboard' },
     { label: 'ROI', href: '#roi' },
   ];

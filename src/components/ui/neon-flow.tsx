@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { cn } from "@/src/lib/utils";
+import { useTheme } from "../ThemeProvider";
 
 // Helper for random colors
 const randomColors = (count: number) => {
@@ -22,6 +23,7 @@ export function TubesBackground({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const tubesRef = useRef<any>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     let mounted = true;
@@ -39,7 +41,16 @@ export function TubesBackground({
 
         if (!mounted) return;
 
+        // Determine background color based on theme
+        const effectiveTheme = theme === 'system' 
+          ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+          : theme;
+        
+        const bgColor = effectiveTheme === 'dark' ? 0x000000 : 0xffffff;
+
         const app = TubesCursor(canvasRef.current, {
+          background: effectiveTheme === 'dark' ? 0x000000 : 0xffffff,
+          transparent: true,
           tubes: {
             colors: ["#f967fb", "#53bc28", "#6958d5"],
             lights: {
@@ -49,23 +60,24 @@ export function TubesBackground({
           }
         });
 
+        // Force canvas background to be transparent if the library allows it
+        if (canvasRef.current) {
+          canvasRef.current.style.backgroundColor = 'transparent';
+        }
+
         tubesRef.current = app;
         setIsLoaded(true);
 
-        // Handle resize if the library doesn't automatically
-        const handleResize = () => {
-          // The library might handle it, but typically we ensure canvas matches container
-          // For this specific lib, it likely attaches to window resize or we might need to manually resize
-        };
-
-        window.addEventListener('resize', handleResize);
-        
         cleanup = () => {
-          window.removeEventListener('resize', handleResize);
-          // If the library has a destroy method, call it
-          // app.destroy?.(); 
           // Based on typical threejs-components, it might not have an explicit destroy exposed easily
           // but we should at least nullify the ref
+          // If we re-initialize, we should probably clear the canvas or something
+          if (canvasRef.current) {
+            const gl = canvasRef.current.getContext('webgl2') || canvasRef.current.getContext('webgl');
+            if (gl) {
+              // gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+            }
+          }
         };
 
       } catch (error) {
@@ -79,7 +91,7 @@ export function TubesBackground({
       mounted = false;
       if (cleanup) cleanup();
     };
-  }, []);
+  }, [theme]); // Re-initialize when theme changes
 
   const handleClick = () => {
     if (!enableClickInteraction || !tubesRef.current) return;
@@ -93,7 +105,7 @@ export function TubesBackground({
 
   return (
     <div 
-      className={cn("relative w-full h-full min-h-[400px] overflow-hidden bg-white dark:bg-black transition-colors duration-300", className)}
+      className={cn("relative w-full h-full min-h-[400px] overflow-hidden bg-transparent transition-colors duration-500", className)}
       onClick={handleClick}
     >
       <canvas 
