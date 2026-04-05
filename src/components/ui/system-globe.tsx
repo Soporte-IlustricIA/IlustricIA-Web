@@ -241,16 +241,16 @@ export default function SystemGlobe() {
         
         <InteractiveGroup hovered={hovered} mouse={mouse}>
           {/* Inner Core Swarm */}
-          <Core count={hovered ? 500 : 300} radius={1.2} isDark={isDark} />
+          <Core count={hovered ? 150 : 100} radius={1.2} isDark={isDark} />
           
           {/* Main Globe Surface Swarm */}
-          <Surface count={hovered ? 2500 : 1500} radius={1.6} isDark={isDark} />
+          <Surface count={hovered ? 800 : 500} radius={1.6} isDark={isDark} />
           
           {/* Outer Halo Swarm */}
-          <Halo count={hovered ? 1000 : 600} minRadius={1.8} maxRadius={3.0} isDark={isDark} />
+          <Halo count={hovered ? 300 : 200} minRadius={1.8} maxRadius={3.0} isDark={isDark} />
           
           {/* Connecting Data Threads */}
-          <DataThreads count={hovered ? 100 : 60} radius={1.4} />
+          <DataThreads count={hovered ? 30 : 20} radius={1.4} />
         </InteractiveGroup>
       </Canvas>
     </div>

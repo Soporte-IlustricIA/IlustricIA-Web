@@ -31,14 +31,15 @@ export function SystemOfRecordSection() {
                 <Calendar className="w-5 h-5" />
                 Agendar cita
               </motion.a>
-              <motion.button 
+              <motion.a 
+                href="#roi"
                 whileHover={{ scale: 1.05, borderColor: "rgba(0,0,0,0.2)" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-md text-black dark:text-white border border-neutral-200 dark:border-neutral-700 rounded-xl text-base font-bold hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all flex items-center gap-3"
+                className="px-10 py-5 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm text-black dark:text-white border border-neutral-200 dark:border-neutral-700 rounded-xl text-base font-bold hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all flex items-center gap-3"
               >
                 <Rocket className="w-5 h-5 text-[#29ABE2]" />
                 Prueba nuestra demo
-              </motion.button>
+              </motion.a>
             </div>
           </div>
 

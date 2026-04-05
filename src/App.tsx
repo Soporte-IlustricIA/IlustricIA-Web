@@ -50,7 +50,7 @@ export default function App() {
         </TubesBackground>
         
         {/* Gradient Fade to next section - Very subtle in white version */}
-        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white dark:from-[#030712] via-white/20 dark:via-[#030712]/80 to-transparent z-20 pointer-events-none backdrop-blur-[1px] dark:backdrop-blur-[4px]" />
+        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white dark:from-[#030712] via-white/20 dark:via-[#030712]/80 to-transparent z-20 pointer-events-none backdrop-blur-[1px] dark:backdrop-blur-[2px]" />
 
         <div className="absolute bottom-16 w-full z-30">
           <MarqueeDemo />

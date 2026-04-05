@@ -1,39 +1,20 @@
 import React, { useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring, useMotionValueEvent } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 export const TechBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress, scrollY } = useScroll();
   
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
-  const smoothScrollY = useSpring(scrollY, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
-  const rotate = useTransform(smoothProgress, [0, 1], [0, 5]);
-  const scale = useTransform(smoothProgress, [0, 1], [1.05, 1.1]);
-  const opacity = useTransform(smoothProgress, [0, 0.5, 1], [0.9, 1, 0.9]);
-  const hueRotate = useTransform(smoothProgress, [0, 1], ["hue-rotate(0deg)", "hue-rotate(15deg)"]);
-  const y1 = useTransform(smoothProgress, [0, 1], [0, -150]);
-  const y2 = useTransform(smoothProgress, [0, 1], [0, -300]);
-  const bgColor = useTransform(smoothProgress, [0, 0.5, 1], ["#f0f9ff", "#fcfdfe", "#f0f9ff"]);
-
-  useMotionValueEvent(smoothScrollY, "change", () => {});
-  useMotionValueEvent(smoothProgress, "change", () => {});
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 0.9]);
+  const hueRotate = useTransform(scrollYProgress, [0, 1], ["hue-rotate(0deg)", "hue-rotate(10deg)"]);
+  const bgColor = useTransform(scrollYProgress, [0, 0.5, 1], ["#f0f9ff", "#fcfdfe", "#f0f9ff"]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true }); // Optimized context
     if (!ctx) return;
 
     let animationFrameId: number;
@@ -52,7 +33,7 @@ export const TechBackground: React.FC = () => {
 
     // Particles/Nodes
     const particles: { x: number; y: number; vx: number; vy: number; size: number; color: string }[] = [];
-    const particleCount = 100;
+    const particleCount = 20; 
     let mouseX = -1000;
     let mouseY = -1000;
 
@@ -84,7 +65,7 @@ export const TechBackground: React.FC = () => {
       orbitSpeed?: number;
       orbitAngle?: number;
     }[] = [];
-    const shapeCount = 80;
+    const shapeCount = 12; 
 
     for (let i = 0; i < shapeCount; i++) {
       const depth = Math.random() * 0.5 + 0.5;
@@ -112,7 +93,7 @@ export const TechBackground: React.FC = () => {
 
     // Falling Data Streams
     const streams: { x: number; y: number; speed: number; length: number; opacity: number }[] = [];
-    const streamCount = 15;
+    const streamCount = 4; 
     for (let i = 0; i < streamCount; i++) {
       streams.push({
         x: Math.random() * width,
@@ -138,8 +119,7 @@ export const TechBackground: React.FC = () => {
       mouseX = e.clientX;
       mouseY = e.clientY;
       
-      // Spawn a beam occasionally on move
-      if (Math.random() < 0.1) {
+      if (Math.random() < 0.01) {
         const side = Math.floor(Math.random() * 4);
         let bx = 0, by = 0;
         if (side === 0) { bx = Math.random() * width; by = 0; }
@@ -173,9 +153,8 @@ export const TechBackground: React.FC = () => {
         opacity: 0.5
       });
 
-      // Spawn multiple beams on click
-      for (let i = 0; i < 8; i++) {
-        const angle = (i / 8) * Math.PI * 2;
+      for (let i = 0; i < 2; i++) {
+        const angle = (i / 2) * Math.PI * 2;
         beams.push({
           x: e.clientX,
           y: e.clientY,
@@ -192,11 +171,18 @@ export const TechBackground: React.FC = () => {
     window.addEventListener('mouseleave', handleMouseLeave);
     window.addEventListener('click', handleClick);
 
+    let currentScrollY = window.scrollY;
+    let targetScrollY = window.scrollY;
+
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
       
-      const scrollOffset = window.scrollY;
-      const progress = smoothProgress.get();
+      targetScrollY = scrollY.get();
+      // Faster interpolation for more direct feel, but still smooth
+      currentScrollY += (targetScrollY - currentScrollY) * 0.25;
+      
+      const scrollOffset = currentScrollY;
+      const progress = scrollYProgress.get();
 
       const wrap = (val: number, max: number) => {
         const res = val % max;
@@ -342,7 +328,7 @@ export const TechBackground: React.FC = () => {
       }
 
       // Draw pulses
-      if (Math.random() < 0.05) {
+      if (Math.random() < 0.01) {
         const vertical = Math.random() > 0.5;
         pulses.push({
           x: vertical ? Math.random() * width : -100,
@@ -392,6 +378,9 @@ export const TechBackground: React.FC = () => {
       }
 
       // Draw connections between particles (Plexus Effect)
+      const maxDistance = 150;
+      const maxDistanceSq = maxDistance * maxDistance;
+
       for (let i = 0; i < particles.length; i++) {
         const p1 = particles[i];
         p1.x += p1.vx;
@@ -400,59 +389,40 @@ export const TechBackground: React.FC = () => {
         if (p1.x < 0 || p1.x > width) p1.vx *= -1;
         if (p1.y < 0 || p1.y > height) p1.vy *= -1;
 
+        const p1y = wrap(p1.y - scrollOffset * 0.3, height + 100) - 50;
+        let connections = 0;
+
         // Connect to other particles
         for (let j = i + 1; j < particles.length; j++) {
+          if (connections > 2) break; 
+
           const p2 = particles[j];
-          
-          const p1y = wrap(p1.y - scrollOffset * 0.3, height + 100) - 50;
           const p2y = wrap(p2.y - scrollOffset * 0.3, height + 100) - 50;
 
           const dx = p1.x - p2.x;
           const dy = p1y - p2y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+          const distSq = dx * dx + dy * dy;
 
-          if (dist < 150) {
-            const opacity = (1 - dist / 150) * 0.25;
+          if (distSq < maxDistanceSq) {
+            const dist = Math.sqrt(distSq);
+            const opacity = (1 - dist / maxDistance) * 0.25;
             ctx.strokeStyle = `rgba(41, 171, 226, ${opacity})`;
             ctx.lineWidth = 0.6;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1y);
             ctx.lineTo(p2.x, p2y);
             ctx.stroke();
-
-            // Triangle fills (Plexus style)
-            for (let k = j + 1; k < particles.length; k++) {
-              const p3 = particles[k];
-              const p3y = wrap(p3.y - scrollOffset * 0.3, height + 100) - 50;
-              
-              const dx2 = p1.x - p3.x;
-              const dy2 = p1y - p3y;
-              const dist2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
-
-              const dx3 = p2.x - p3.x;
-              const dy3 = p2y - p3y;
-              const dist3 = Math.sqrt(dx3 * dx3 + dy3 * dy3);
-
-              if (dist2 < 150 && dist3 < 150) {
-                const triOpacity = (1 - (dist + dist2 + dist3) / 450) * 0.08;
-                ctx.fillStyle = `rgba(41, 171, 226, ${triOpacity})`;
-                ctx.beginPath();
-                ctx.moveTo(p1.x, p1y);
-                ctx.lineTo(p2.x, p2y);
-                ctx.lineTo(p3.x, p3y);
-                ctx.fill();
-              }
-            }
+            connections++;
           }
         }
 
         // Interactive: Connect to mouse
-        const p1y = wrap(p1.y - scrollOffset * 0.3, height + 100) - 50;
         const mdx = p1.x - mouseX;
         const mdy = p1y - mouseY;
-        const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
-        if (mDist < 250) {
-          ctx.strokeStyle = `rgba(41, 171, 226, ${0.4 * (1 - mDist / 250)})`;
+        const mDistSq = mdx * mdx + mdy * mdy;
+        if (mDistSq < 40000) { 
+          const mDist = Math.sqrt(mDistSq);
+          ctx.strokeStyle = `rgba(41, 171, 226, ${0.4 * (1 - mDist / 200)})`;
           ctx.beginPath();
           ctx.moveTo(p1.x, p1y);
           ctx.lineTo(mouseX, mouseY);
@@ -461,12 +431,9 @@ export const TechBackground: React.FC = () => {
 
         // Draw particle
         ctx.fillStyle = p1.color;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = p1.color;
         ctx.beginPath();
         ctx.arc(p1.x, p1y, p1.size, 0, Math.PI * 2);
         ctx.fill();
-        ctx.shadowBlur = 0; // Reset shadow
       }
 
       animationFrameId = requestAnimationFrame(draw);
@@ -487,7 +454,6 @@ export const TechBackground: React.FC = () => {
     <motion.div 
       ref={containerRef} 
       className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none select-none bg-white dark:bg-[#030712] transition-colors duration-500"
-      style={{ rotate, scale }}
     >
       {/* Primary Gradient Background - Light Blue Tech Theme */}
       <motion.div 
@@ -507,9 +473,7 @@ export const TechBackground: React.FC = () => {
             linear-gradient(to right, #29ABE2 1px, transparent 1px),
             linear-gradient(to bottom, #29ABE2 1px, transparent 1px)
           `,
-          backgroundSize: '40px 40px',
-          y: y1,
-          rotate: rotate
+          backgroundSize: '40px 40px'
         }} 
       />
 
@@ -521,8 +485,7 @@ export const TechBackground: React.FC = () => {
             linear-gradient(to right, #29ABE2 1px, transparent 1px),
             linear-gradient(to bottom, #29ABE2 1px, transparent 1px)
           `,
-          backgroundSize: '10px 10px',
-          y: y2
+          backgroundSize: '10px 10px'
         }} 
       />
 
@@ -538,11 +501,9 @@ export const TechBackground: React.FC = () => {
       {/* Subtle Glows */}
       <motion.div 
         className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#29ABE2]/10 dark:bg-[#29ABE2]/15 rounded-full blur-[120px]"
-        style={{ y: y1 }}
       />
       <motion.div 
         className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#29ABE2]/10 dark:bg-[#29ABE2]/15 rounded-full blur-[120px]"
-        style={{ y: y2 }}
       />
     </motion.div>
   );

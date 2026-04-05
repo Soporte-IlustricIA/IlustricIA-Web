@@ -156,17 +156,17 @@ const Header = () => {
                   </a>
                   <div className="relative group shrink-0">
                     <div className="absolute inset-0 -m-1 rounded-full bg-black dark:bg-gray-100 opacity-10 dark:opacity-40 filter blur-lg pointer-events-none transition-all duration-300 ease-out group-hover:opacity-20 dark:group-hover:opacity-60 group-hover:blur-xl"></div>
-                    <a 
-                      href="#demo"
-                      className={cn(
-                        "relative z-10 px-4 py-2 text-xs font-semibold rounded-full transition-all duration-200 cursor-pointer block whitespace-nowrap",
-                        isScrolled
-                          ? "text-white dark:text-black bg-black dark:bg-gradient-to-br dark:from-gray-100 dark:to-gray-300 hover:bg-black/90 dark:hover:from-gray-200 dark:hover:to-gray-400"
-                          : "text-black bg-white hover:bg-white/90"
-                      )}
-                    >
-                      Prueba nuestra demo
-                    </a>
+                  <a 
+                    href="#roi"
+                    className={cn(
+                      "relative z-10 px-4 py-2 text-xs font-semibold rounded-full transition-all duration-200 cursor-pointer block whitespace-nowrap",
+                      isScrolled
+                        ? "text-white dark:text-black bg-black dark:bg-gradient-to-br dark:from-gray-100 dark:to-gray-300 hover:bg-black/90 dark:hover:from-gray-200 dark:hover:to-gray-400"
+                        : "text-black bg-white hover:bg-white/90"
+                    )}
+                  >
+                    Prueba nuestra demo
+                  </a>
                   </div>
                 </div>
               </div>
