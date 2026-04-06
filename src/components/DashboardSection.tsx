@@ -34,6 +34,8 @@ import { GlowingShadow } from './ui/glowing-shadow';
 import { ShiningText } from './ui/shining-text';
 import { SparklesCore } from './ui/sparkles';
 
+import { useLanguage } from './LanguageContext';
+
 // Helper for the chart bars
 const ChartBar = ({ height, color, delay }: { height: string; color: string; delay: number }) => (
   <div 
@@ -101,64 +103,66 @@ const FeatureColumn = ({
   </div>
 );
 
-const servicesList = [
-  {
-    icon: Mic,
-    color: "text-orange-500",
-    title: "Asistente de voz",
-    description: "Implementación de sistemas de voz inteligentes para atención telefónica y control por voz automatizado."
-  },
-  {
-    icon: Workflow,
-    color: "text-blue-500",
-    title: "Automatización de procesos",
-    description: "Optimización de flujos de trabajo repetitivos para ahorrar tiempo y reducir errores humanos en tu operativa."
-  },
-  {
-    icon: MessageSquare,
-    color: "text-green-500",
-    title: "Chatbots agentes",
-    description: "Agentes conversacionales avanzados que resuelven dudas y gestionan pedidos de forma autónoma 24/7."
-  },
-  {
-    icon: Target,
-    color: "text-red-500",
-    title: "Funnels de venta",
-    description: "Diseño de embudos de conversión optimizados para maximizar el retorno de inversión y captación de leads."
-  },
-  {
-    icon: Globe,
-    color: "text-neutral-500",
-    title: "Desarrollo Web",
-    description: "Creación de plataformas digitales modernas, rápidas y escalables adaptadas a las necesidades de tu negocio."
-  },
-  {
-    icon: Users,
-    color: "text-purple-500",
-    title: "CRM",
-    description: "Implementación y personalización de sistemas de gestión de clientes para mejorar la retención y el ciclo de ventas."
-  },
-  {
-    icon: Shield,
-    color: "text-cyan-500",
-    title: "Ciberseguridad",
-    description: "Protección integral de tus activos digitales y datos sensibles contra amenazas externas y vulnerabilidades."
-  },
-  {
-    icon: Lightbulb,
-    color: "text-yellow-500",
-    title: "Consultoría digital",
-    description: "Asesoramiento estratégico para la transformación digital de tu empresa, identificando oportunidades de mejora y crecimiento."
-  },
-  {
-    icon: Code,
-    color: "text-indigo-500",
-    title: "Desarrollo de software",
-    description: "Soluciones a medida diseñadas para resolver problemas específicos y escalar tu negocio con tecnología de vanguardia."
-  }
-];
-
 export function DashboardSection() {
+  const { t } = useLanguage();
+
+  const servicesList = [
+    {
+      icon: Mic,
+      color: "text-orange-500",
+      title: t.services.items.voice.title,
+      description: t.services.items.voice.description
+    },
+    {
+      icon: Workflow,
+      color: "text-blue-500",
+      title: t.services.items.automation.title,
+      description: t.services.items.automation.description
+    },
+    {
+      icon: MessageSquare,
+      color: "text-green-500",
+      title: t.services.items.chatbots.title,
+      description: t.services.items.chatbots.description
+    },
+    {
+      icon: Target,
+      color: "text-red-500",
+      title: t.services.items.funnels.title,
+      description: t.services.items.funnels.description
+    },
+    {
+      icon: Globe,
+      color: "text-neutral-500",
+      title: t.services.items.web.title,
+      description: t.services.items.web.description
+    },
+    {
+      icon: Users,
+      color: "text-purple-500",
+      title: t.services.items.crm.title,
+      description: t.services.items.crm.description
+    },
+    {
+      icon: Shield,
+      color: "text-cyan-500",
+      title: t.services.items.security.title,
+      description: t.services.items.security.description
+    },
+    {
+      icon: Lightbulb,
+      color: "text-yellow-500",
+      title: t.services.items.consulting.title,
+      description: t.services.items.consulting.description
+    },
+    {
+      icon: Code,
+      color: "text-indigo-500",
+      title: t.services.items.software.title,
+      description: t.services.items.software.description
+    }
+  ];
+
   return (
     <section className="w-full bg-transparent py-16 px-4 md:px-8 overflow-hidden transition-colors duration-300 relative">
       {/* Top Gradient Fade from Hero */}
@@ -176,7 +180,7 @@ export function DashboardSection() {
             className="flex flex-col items-center"
           >
             <h2 className="text-sm font-mono uppercase tracking-[0.4em] text-orange-500 font-bold mb-4">
-              Nuestros Servicios
+              {t.services.badge}
             </h2>
             
             <div className="h-[16rem] w-full relative flex flex-col items-center justify-center overflow-hidden rounded-md">
@@ -195,7 +199,7 @@ export function DashboardSection() {
               </div>
 
               <h3 className="text-4xl md:text-5xl font-bold tracking-tighter text-black dark:text-white max-w-3xl mx-auto leading-tight relative z-20 text-center">
-                Optimizamos cada engranaje de tu Estructura Operativa.
+                {t.services.title}
               </h3>
               
               <div className="w-[40rem] h-2 relative z-10">

@@ -10,28 +10,7 @@ import { cn } from '@/src/lib/utils';
 import { motion, useScroll, useMotionValueEvent, useTransform, AnimatePresence } from 'framer-motion';
 import { ShiningText } from './ui/shining-text';
 
-const features = [
-  {
-    title: "Tecnología práctica",
-    description: "No aplicamos IA por moda. Resolvemos problemas concretos: automatización, eficiencia y captación."
-  },
-  {
-    title: "Enfoque personalizado",
-    description: "Soluciones a medida. Adaptamos la tecnología a tu cultura, procesos y objetivos únicos."
-  },
-  {
-    title: "Acompañamiento integral",
-    description: "Desde el diagnóstico hasta la implementación. No solo entregamos tecnología, aseguramos el éxito."
-  },
-  {
-    title: "Resultados medibles",
-    description: "Transformamos datos en decisiones. Optimizamos tiempos y reducimos fricción operativa."
-  },
-  {
-    title: "Ventaja competitiva",
-    description: "Convierte la tecnología en tu mayor activo para un crecimiento sostenible."
-  }
-];
+import { useLanguage } from './LanguageContext';
 
 const FeatureItem = ({ 
   active, 
@@ -48,15 +27,15 @@ const FeatureItem = ({
   key?: React.Key;
 }) => {
   return (
-    <div className="flex gap-6 relative group">
+    <div className="flex gap-4 md:gap-6 relative group">
       {/* Timeline Line */}
       {!isLast && (
-        <div className="absolute left-[5px] top-3 bottom-[-12px] w-[1px] bg-neutral-200 dark:bg-neutral-800" />
+        <div className="absolute left-[3.5px] md:left-[5px] top-3 bottom-[-12px] w-[1px] bg-neutral-200 dark:bg-neutral-800" />
       )}
       
       {/* Bullet Point */}
       <div className={cn(
-        "relative z-10 w-2.5 h-2.5 mt-2 rounded-[1px] flex-shrink-0 transition-all duration-500",
+        "relative z-10 w-2 h-2 md:w-2.5 md:h-2.5 mt-2 rounded-[1px] flex-shrink-0 transition-all duration-500",
         active ? "bg-black dark:bg-white scale-125 shadow-[0_0_10px_rgba(0,0,0,0.2)] dark:shadow-[0_0_10px_rgba(255,255,255,0.5)]" : "bg-neutral-300 dark:bg-neutral-800 group-hover:bg-neutral-400 dark:group-hover:bg-neutral-700"
       )} />
       
@@ -64,7 +43,7 @@ const FeatureItem = ({
       <div className="pb-0 transition-all duration-500 w-full">
         <h3 
           className={cn(
-            "text-xl font-medium leading-tight transition-colors duration-300 cursor-pointer py-1",
+            "text-base md:text-xl font-medium leading-tight transition-colors duration-300 cursor-pointer py-1",
             active ? "text-black dark:text-white" : "text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-600 dark:group-hover:text-neutral-400"
           )}
           onClick={onClick}
@@ -73,10 +52,10 @@ const FeatureItem = ({
         </h3>
         <div className={cn(
           "grid transition-all duration-500 ease-in-out",
-          active ? "grid-rows-[1fr] opacity-100 mb-4" : "grid-rows-[0fr] opacity-0 mb-2"
+          active ? "grid-rows-[1fr] opacity-100 mb-1 md:mb-4" : "grid-rows-[0fr] opacity-0 mb-0.5 md:mb-2"
         )}>
           <div className="overflow-hidden">
-            <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-md pt-3">
+            <p className="text-[13px] md:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-md pt-1 md:pt-3">
               {description}
             </p>
           </div>
@@ -87,6 +66,8 @@ const FeatureItem = ({
 };
 
 export function FeatureSection() {
+  const { t } = useLanguage();
+  const features = t.features.items;
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeFeature, setActiveFeature] = useState(0);
 
@@ -113,16 +94,16 @@ export function FeatureSection() {
       style={{ height: "200vh" }}
     >
       <div 
-        className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden z-40"
+        className="sticky top-0 min-h-screen w-full flex flex-col items-center justify-center overflow-hidden z-40 py-2 lg:py-0"
       >
-        <div className="w-full h-full flex items-center justify-center">
-          <div className="max-w-[95vw] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center w-full px-4 md:px-8 lg:px-12">
+        <div className="w-full h-full flex items-center justify-center overflow-y-auto lg:overflow-visible">
+          <div className="max-w-[95vw] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-20 items-center w-full px-4 md:px-8 lg:px-12 py-1 lg:py-0">
           
           {/* Left Column: Text Content */}
           <div className="lg:col-span-4 flex flex-col">
-            <h2 className="text-5xl md:text-6xl font-medium tracking-tight mb-8 leading-[1.1] text-black dark:text-white">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-2 lg:mb-8 leading-[1.1] text-black dark:text-white">
               <ShiningText>
-                De la promesa<br />a la práctica
+                {t.features.title}
               </ShiningText>
             </h2>
             
@@ -141,7 +122,7 @@ export function FeatureSection() {
           </div>
 
           {/* Right Column: ROI Visualization (Merged) */}
-          <div className="lg:col-span-8 relative w-full h-[500px] lg:h-[600px] p-8 flex flex-col items-center overflow-hidden transition-all duration-500">
+          <div className="lg:col-span-8 relative w-full h-[240px] md:h-[450px] lg:h-[600px] p-2 md:p-8 flex flex-col items-center overflow-hidden transition-all duration-500">
             
             {/* Background Grid Dots */}
             <div className="absolute inset-0 z-0 dark:[--dot-color:#1a1a1a] [--dot-color:#f0f0f0]" style={{ 
@@ -269,8 +250,8 @@ export function FeatureSection() {
                                 exit={{ opacity: 0, y: 10, scale: 0.9 }}
                                 className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-40 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl p-3 shadow-xl z-50 pointer-events-none"
                               >
-                                <div className="text-[10px] font-mono uppercase tracking-widest text-[#29ABE2] mb-1">Impacto ROI</div>
-                                <div className="text-sm font-bold text-black dark:text-white leading-tight">
+                                <div className="text-[9px] font-mono uppercase tracking-widest text-[#29ABE2] mb-1">{t.features.roi.label}</div>
+                                <div className="text-xs font-bold text-black dark:text-white leading-tight">
                                   {features[index].title}
                                 </div>
                               </motion.div>
@@ -285,20 +266,20 @@ export function FeatureSection() {
 
               {/* Central ROI Metric Card */}
               <motion.div 
-                className="absolute bottom-8 right-8 bg-black dark:bg-white text-white dark:text-black p-6 rounded-2xl shadow-[0_0_40px_rgba(41,171,226,0.2)] z-30 border border-[#29ABE2]"
+                className="absolute bottom-2 right-2 md:bottom-8 md:right-8 bg-black dark:bg-white text-white dark:text-black p-2 md:p-6 rounded-xl md:rounded-2xl shadow-[0_0_40px_rgba(41,171,226,0.2)] z-30 border border-[#29ABE2]"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 }}
               >
-                <div className="text-[10px] font-mono uppercase tracking-[0.2em] opacity-50 mb-2">Retorno Estimado</div>
-                <div className="text-4xl font-bold tracking-tighter mb-2">
+                <div className="text-[6px] md:text-[10px] font-mono uppercase tracking-[0.2em] opacity-50 mb-0.5 md:mb-2">{t.features.roi.estimated}</div>
+                <div className="text-lg md:text-4xl font-bold tracking-tighter mb-0.5 md:mb-2">
                   {activeFeature === 0 && "15%"}
                   {activeFeature === 1 && "32%"}
                   {activeFeature === 2 && "48%"}
                   {activeFeature === 3 && "74%"}
                   {activeFeature === 4 && "120%"}
                 </div>
-                <div className="text-xs font-medium opacity-70">Eficiencia operativa anual</div>
+                <div className="text-[9px] md:text-xs font-medium opacity-70">{t.features.roi.efficiency}</div>
               </motion.div>
 
             </div>

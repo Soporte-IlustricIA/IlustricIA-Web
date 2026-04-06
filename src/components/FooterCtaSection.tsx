@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { Clock, CheckCircle2, Zap, ArrowRight } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 
+import { useLanguage } from './LanguageContext';
+
 const SmartGlassBadge = ({ icon: Icon, title, subtitle }: { icon: any; title: string; subtitle: string }) => (
   <div className="relative group">
     <div className="absolute inset-0 bg-gradient-to-b from-black/5 dark:from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
@@ -19,6 +21,8 @@ const SmartGlassBadge = ({ icon: Icon, title, subtitle }: { icon: any; title: st
 );
 
 export function FooterCtaSection() {
+  const { t } = useLanguage();
+
   useEffect(() => {
     (function (C: any, A, L) { 
       let p = function (a: any, ar: any) { a.q.push(ar); }; 
@@ -128,7 +132,7 @@ export function FooterCtaSection() {
             />
           </div>
           <span className="text-[10px] font-mono text-neutral-600 dark:text-neutral-400 tracking-[0.15em] uppercase">
-            ESTADO OPERATIVO: DISPONIBLE | AGENDA TU CITA ABAJO ↓
+            {t.footerCta.status}
           </span>
         </motion.div>
 
@@ -140,7 +144,7 @@ export function FooterCtaSection() {
           transition={{ delay: 0.1 }}
           className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight mb-6 leading-[1.1] bg-gradient-to-b from-black to-neutral-600 dark:from-[#F8FAFC] dark:to-[#94A3B8] bg-clip-text text-transparent"
         >
-          ¿Iniciamos la transformación de tu operativa?
+          {t.footerCta.title}
         </motion.h2>
 
         {/* Subtitle */}
@@ -151,7 +155,7 @@ export function FooterCtaSection() {
           transition={{ delay: 0.2 }}
           className="text-lg md:text-xl text-neutral-600 dark:text-slate-400 max-w-2xl mb-16 font-light leading-relaxed"
         >
-          Analicemos tu negocio en 20 minutos sin compromiso. Reserva tu hueco directamente en nuestro calendario oficial.
+          {t.footerCta.subtitle}
         </motion.p>
 
         {/* Confidence Pillars */}
@@ -164,18 +168,18 @@ export function FooterCtaSection() {
         >
           <SmartGlassBadge 
             icon={Clock} 
-            title="DIAGNÓSTICO RÁPIDO" 
-            subtitle="Solo 20 Minutos" 
+            title={t.footerCta.pillars.diagnosis.title} 
+            subtitle={t.footerCta.pillars.diagnosis.subtitle} 
           />
           <SmartGlassBadge 
             icon={CheckCircle2} 
-            title="CERO RIESGO" 
-            subtitle="Sin Compromiso" 
+            title={t.footerCta.pillars.risk.title} 
+            subtitle={t.footerCta.pillars.risk.subtitle} 
           />
           <SmartGlassBadge 
             icon={Zap} 
-            title="ACOMPAÑAMIENTO REAL" 
-            subtitle="Soluciones Prácticas" 
+            title={t.footerCta.pillars.support.title} 
+            subtitle={t.footerCta.pillars.support.subtitle} 
           />
         </motion.div>
 
@@ -201,7 +205,7 @@ export function FooterCtaSection() {
           transition={{ delay: 0.6 }}
           className="mt-10 text-xs text-slate-500 font-medium tracking-wide"
         >
-          Elige el día y la hora que mejor te venga. Recibirás un enlace de Google Meets automáticamente.
+          {t.footerCta.footerText}
         </motion.p>
 
       </div>

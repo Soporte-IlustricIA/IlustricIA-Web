@@ -15,16 +15,20 @@ import { MarqueeDemo } from './components/ui/marquee-demo';
 import { TechBackground } from './components/ui/TechBackground';
 
 import { useTheme } from './components/ThemeProvider';
+import { LanguageProvider, useLanguage } from './components/LanguageContext';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { LegalPage } from './pages/LegalPage';
 
-export default function App() {
+function HomePage() {
   const { theme } = useTheme();
+  const { t } = useLanguage();
   
   return (
     <div className="w-full min-h-screen font-sans text-black dark:text-white transition-colors duration-300 relative">
-        <TechBackground />
-        <Header />
-        
-        {/* Hero Section */}
+      <TechBackground />
+      <Header />
+      
+      {/* Hero Section */}
       <motion.div 
         className="h-screen w-full relative overflow-hidden bg-transparent transition-colors duration-500"
         initial={{ opacity: 0, y: 20 }}
@@ -43,7 +47,7 @@ export default function App() {
                 Ilustric<span style={{ color: '#29ABE2', textShadow: '0 0 10px rgba(41, 171, 226, 0.8), 0 0 25px rgba(41, 171, 226, 0.5), 0 0 40px rgba(41, 171, 226, 0.3)' }}>IA</span>
               </h1>
               <p className="text-xl md:text-2xl text-white/80 font-light tracking-wide max-w-2xl mx-auto">
-                Soluciones digitales y funcionales para tu ecosistema digital.
+                {t.hero.subtitle}
               </p>
             </div>
           </div>
@@ -134,5 +138,55 @@ export default function App() {
       {/* Main Footer */}
       <Footer />
     </div>
+  );
+}
+
+function AppContent() {
+  const { t } = useLanguage();
+  
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route 
+          path="/privacy" 
+          element={
+            <LegalPage 
+              title={t.privacyPage.title} 
+              lastUpdated={t.privacyPage.lastUpdated} 
+              sections={t.privacyPage.sections} 
+            />
+          } 
+        />
+        <Route 
+          path="/legal" 
+          element={
+            <LegalPage 
+              title={t.legalPage.title} 
+              lastUpdated={t.legalPage.lastUpdated} 
+              sections={t.legalPage.sections} 
+            />
+          } 
+        />
+        <Route 
+          path="/cookies" 
+          element={
+            <LegalPage 
+              title={t.cookiesPage.title} 
+              lastUpdated={t.cookiesPage.lastUpdated} 
+              sections={t.cookiesPage.sections} 
+            />
+          } 
+        />
+      </Routes>
+    </Router>
+  );
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   );
 }

@@ -2,34 +2,11 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
 
-const faqs = [
-  {
-    question: "¿Qué es IlustricIA?",
-    answer: "IlustricIA es una consultora tecnológica especializada en la integración de Inteligencia Artificial avanzada para optimizar procesos de negocio, mejorar la toma de decisiones y crear experiencias digitales innovadoras."
-  },
-  {
-    question: "¿Cómo puede la IA ayudar a mi negocio?",
-    answer: "La IA puede automatizar tareas repetitivas, analizar grandes volúmenes de datos para encontrar patrones, predecir tendencias del mercado, y mejorar la atención al cliente mediante interfaces conversacionales inteligentes."
-  },
-  {
-    question: "¿Ofrecéis soluciones personalizadas?",
-    answer: "Sí, cada proyecto comienza con un análisis profundo de tus necesidades específicas. Desarrollamos modelos y flujos de trabajo a medida que se integran perfectamente con tu infraestructura actual."
-  },
-  {
-    question: "¿Cuánto tiempo toma implementar una solución de IA?",
-    answer: "El tiempo varía según la complejidad. Una integración básica puede tomar unas pocas semanas, mientras que un sistema de IA generativa personalizado o un modelo predictivo complejo puede llevar de 2 a 4 meses."
-  },
-  {
-    question: "¿Es segura la integración de mis datos?",
-    answer: "La seguridad es nuestra prioridad. Implementamos protocolos de cifrado de extremo a extremo, cumplimos con la normativa GDPR y aseguramos que tus datos se utilicen exclusivamente para entrenar y ejecutar tus propios modelos de forma privada."
-  },
-  {
-    question: "¿Cómo empiezo a trabajar con vosotros?",
-    answer: "El primer paso es una sesión de descubrimiento gratuita donde analizamos tus desafíos. Puedes agendar una llamada directamente desde nuestra sección de ROI o contactarnos a través del formulario al final de la página."
-  }
-];
+import { useLanguage } from './LanguageContext';
 
 export function FaqSection() {
+  const { t } = useLanguage();
+  const faqs = t.faqs.items;
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const toggleAccordion = (index: number) => {
@@ -47,16 +24,16 @@ export function FaqSection() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-sm font-mono uppercase tracking-[0.4em] text-[#29ABE2] font-bold mb-4">
-              Preguntas Frecuentes
+              {t.faqs.badge}
             </h2>
             <h3 className="text-4xl md:text-5xl font-bold tracking-tighter text-black dark:text-white">
-              Resolvemos tus Dudas.
+              {t.faqs.title}
             </h3>
           </motion.div>
         </div>
 
         <div className="space-y-4">
-          {faqs.map((faq, index) => (
+          {faqs.map((faq: any, index: number) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 10 }}
@@ -108,13 +85,13 @@ export function FaqSection() {
           className="mt-16 p-8 rounded-3xl bg-neutral-50 dark:bg-white/5 border border-black/5 dark:border-white/10 text-center"
         >
           <p className="text-black/70 dark:text-white/70 mb-4">
-            ¿Tienes más preguntas? Estamos aquí para ayudarte.
+            {t.faqs.moreQuestions}
           </p>
           <a
             href="#roi"
             className="inline-flex items-center gap-2 text-[#29ABE2] font-bold hover:underline underline-offset-4 transition-all"
           >
-            Contáctanos ahora
+            {t.faqs.contactUs}
           </a>
         </motion.div>
       </div>

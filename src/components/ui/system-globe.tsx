@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useState } from 'react';
+import React, { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
@@ -211,8 +211,18 @@ function InteractiveGroup({ hovered, mouse, children }: { hovered: boolean; mous
 
 export default function SystemGlobe() {
   const [hovered, setHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const mouse = useRef([0, 0]);
   const { theme } = useTheme();
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
 
@@ -234,8 +244,8 @@ export default function SystemGlobe() {
       }}
       onMouseMove={onMouseMove}
     >
-      <Canvas camera={{ position: [0, 0, 5], fov: 45 }} gl={{ antialias: true, alpha: true }}>
-        <fog attach="fog" args={[isDark ? '#000' : '#fff', 5, 12]} />
+      <Canvas camera={{ position: [0, 0, isMobile ? 6 : 5], fov: 45 }} gl={{ antialias: true, alpha: true }}>
+        <fog attach="fog" args={[isDark ? '#000' : '#fff', 5, 18]} />
         <ambientLight intensity={hovered ? 1.2 : 0.5} />
         <pointLight position={[mouse.current[0] * 5, mouse.current[1] * 5, 3]} intensity={hovered ? 15 : 0} color="#29ABE2" />
         

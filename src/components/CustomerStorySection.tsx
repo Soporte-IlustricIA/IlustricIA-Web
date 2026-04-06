@@ -3,25 +3,19 @@ import { ArrowRight } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const innovationContent = [
-  {
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2000",
-    headline: "Forbes: La automatización es la clave de la supervivencia empresarial",
-    description: "Según Forbes, las empresas que implementan automatización inteligente ven un incremento del 30% en su eficiencia operativa, transformando procesos manuales en flujos de trabajo dinámicos."
-  },
-  {
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=2000",
-    headline: "El 80% de los ejecutivos considera la IA fundamental para el éxito",
-    description: "Estudios globales indican que la adopción de IA generativa podría añadir hasta 4.4 billones de dólares a la economía mundial anualmente, redefiniendo el panorama competitivo."
-  },
-  {
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=2000",
-    headline: "La inversión global en IA superará los 300 mil millones en 2026",
-    description: "Para finales de 2026, se estima que el 90% de las empresas Fortune 500 habrán integrado agentes de IA autónomos en su núcleo operativo, marcando el inicio de la era de la hiper-eficiencia."
-  }
-];
+import { useLanguage } from './LanguageContext';
 
 export function CustomerStorySection() {
+  const { t } = useLanguage();
+  const images = [
+    "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2000",
+    "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=2000",
+    "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=2000"
+  ];
+  const innovationContent = t.innovation.items.map((item: any, index: number) => ({
+    ...item,
+    image: images[index]
+  }));
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -64,7 +58,7 @@ export function CustomerStorySection() {
           {/* Logo */}
           <div className="mb-8">
             <h3 className="text-3xl font-serif font-black text-black dark:text-white tracking-tight">
-              Innovación
+              {t.innovation.title}
             </h3>
           </div>
 
@@ -86,16 +80,6 @@ export function CustomerStorySection() {
               </p>
             </motion.div>
           </AnimatePresence>
-
-          {/* Buttons */}
-          <div className="flex items-center gap-4 mb-20">
-            <button className="px-6 py-3 bg-black dark:bg-white text-white dark:text-black rounded-lg text-sm font-medium hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors">
-              Leer la historia
-            </button>
-            <button className="px-6 py-3 bg-black/10 dark:bg-white/10 text-black dark:text-white border border-black/10 dark:border-white/10 rounded-lg text-sm font-medium hover:bg-black/20 dark:hover:bg-white/20 transition-colors backdrop-blur-sm">
-              Todas las historias
-            </button>
-          </div>
 
           {/* Pagination */}
           <div className="flex items-center gap-4 text-[10px] font-mono tracking-widest text-neutral-400 dark:text-neutral-500">

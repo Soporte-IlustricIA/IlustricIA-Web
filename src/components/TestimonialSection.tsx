@@ -2,31 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { cn } from '@/src/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const testimonials = [
-  {
-    quote: "IlustricIA nos permitió acceder a insights de todas nuestras operaciones globales en un solo lugar. Esto es increíblemente valioso y nos ahorra perder o repetir información invaluable sobre nuestros clientes.",
-    author: "Constance Docos",
-    role: "Director de Innovación",
-    company: "Empresa Líder",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200"
-  },
-  {
-    quote: "La automatización de procesos con IlustricIA ha reducido nuestros tiempos de respuesta en un 40%. La integración fue fluida y el soporte excepcional durante todo el proceso.",
-    author: "Carlos Méndez",
-    role: "CTO",
-    company: "TechSolutions",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200"
-  },
-  {
-    quote: "Gracias a la inteligencia artificial de IlustricIA, hemos podido personalizar la experiencia de nuestros usuarios a un nivel que antes era imposible. Los resultados hablan por sí solos.",
-    author: "Ana García",
-    role: "Head of Marketing",
-    company: "GlobalRetail",
-    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200"
-  }
-];
+import { useLanguage } from './LanguageContext';
 
 export function TestimonialSection() {
+  const { t } = useLanguage();
+  const avatars = [
+    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
+    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200",
+    "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200"
+  ];
+  const testimonials = t.testimonials.items.map((item: any, index: number) => ({
+    ...item,
+    avatar: avatars[index]
+  }));
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -96,7 +84,7 @@ export function TestimonialSection() {
           <div className="flex items-center gap-6">
             {/* Company Logo (Text representation) */}
             <div className="text-3xl font-serif font-black text-black dark:text-white tracking-tight">
-              Cliente
+              {t.testimonials.client}
             </div>
             
             {/* Divider */}

@@ -30,6 +30,16 @@ export function MarqueeDemo() {
     { name: "Supabase", src: "/images/supabase.webp" },
     { name: "n8n", src: "/images/n8n.webp" },
     { name: "Python", src: "/images/python.webp" },
+    { name: "Github", src: "https://cdn.simpleicons.org/github" },
+    { name: "AWS", src: "https://cdn.simpleicons.org/amazonaws" },
+    { name: "Docker", src: "https://cdn.simpleicons.org/docker" },
+    { name: "Cursor", src: "https://cdn.simpleicons.org/cursor" },
+    { name: "Google Cloud", src: "https://cdn.simpleicons.org/googlecloud" },
+    { name: "PostgreSQL", src: "https://cdn.simpleicons.org/postgresql" },
+    { name: "LangGraph", src: "https://cdn.simpleicons.org/langchain" }, // Using LangChain as placeholder for LangGraph
+    { name: "React", src: "https://cdn.simpleicons.org/react" },
+    { name: "JavaScript", src: "https://cdn.simpleicons.org/javascript" },
+    { name: "OpenClaw", src: "https://cdn.simpleicons.org/openai" }, // Using OpenAI as placeholder for OpenClaw if not found
   ];
 
   return (

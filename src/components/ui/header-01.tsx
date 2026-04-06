@@ -5,7 +5,13 @@ import { cn } from "../../lib/utils";
 import { Button } from "./button";   
 import { Toggle } from "./toggle";
 import { useTheme } from "../ThemeProvider";
+import { useLanguage } from "../LanguageContext";
 import { useEffect, useState } from "react";
+import { Language } from "../../translations";
+import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
+import { Dialog } from "./dialog";
+import VoiceDemo from "../VoiceDemo";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -50,7 +56,7 @@ const services = [
     description: "Plataformas digitales modernas y escalables para tu negocio.",
   },
   {
-    title: "CRM",
+    title: "CRM personalizado",
     href: "#dashboard",
     description: "Sistemas de gestión de clientes para mejorar el ciclo de ventas.",
   },
@@ -64,6 +70,15 @@ const services = [
 const Header = () => {
   const [menuState, setMenuState] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
+  const [isDemoOpen, setIsDemoOpen] = React.useState(false);
+  const { t, language, setLanguage } = useLanguage();
+
+  const menuItems = [
+    { name: t.nav.services, href: "#dashboard" },
+    { name: t.nav.about, href: "#about" },
+    { name: t.nav.faqs, href: "#faqs" },
+    { name: t.nav.resources, href: "#recursos" },
+  ];
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -88,7 +103,7 @@ const Header = () => {
         data-state={menuState && "active"}
         className={cn(
           "w-full px-3 md:px-4 transition-all duration-300",
-          isScrolled ? "py-0" : "py-0"
+          isScrolled ? "py-1 md:py-2" : "py-2 md:py-4"
         )}
       >
         <div
@@ -98,89 +113,102 @@ const Header = () => {
               "bg-white/70 dark:bg-black/50 max-w-5xl rounded-2xl border border-black/10 dark:border-white/10 backdrop-blur-xl px-4 shadow-lg"
           )}
         >
-          <div className="relative flex items-center justify-between gap-3 py-0">
-            <div className="flex items-center gap-8">
-              <a
-                href="#"
+          <div className="relative flex items-center justify-between gap-1.5 py-0">
+            <div className="flex items-center gap-2 md:gap-8">
+              <Link
+                to="/"
                 aria-label="home"
                 className="flex gap-2 items-center shrink-0 leading-none"
               >
                 <img 
                   src="/images/logo.png" 
                   alt="IlustricIA Logo" 
-                  className="w-32 h-auto object-contain block transition-all duration-300"
+                  className="w-20 md:w-32 h-auto object-contain block transition-all duration-300"
                   referrerPolicy="no-referrer"
                 />
-              </a>
+              </Link>
             </div>
 
             <div className="hidden lg:flex flex-1 justify-center">
               <Menus isScrolled={isScrolled} />
             </div>
 
-            <div className={cn(
-              "flex items-center gap-3",
-              menuState ? "absolute top-full left-0 w-full bg-white dark:bg-neutral-900 p-4 border-b border-black/10 dark:border-white/10 lg:static lg:w-auto lg:bg-transparent lg:border-none lg:p-0" : "static"
-            )}>
-              <div className={cn(
-                "lg:flex items-center gap-3",
-                menuState ? "flex flex-col w-full" : "hidden"
-              )}>
-                <div className="lg:hidden w-full">
-                  <ul className="space-y-4 text-base py-4 border-t border-black/5 dark:border-white/5">
-                    {menuItems.map((item, index) => (
-                      <li key={index}>
-                        <a
-                          href={item.href}
-                          onClick={() => setMenuState(false)}
-                          className="text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white text-sm block duration-150"
-                        >
-                          <span>{item.name}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-2 sm:space-y-0 items-center">
-                  <ModeToggle />
-                  <a 
-                    href="#roi"
+            <div className="flex items-center gap-1.5 md:gap-3">
+              {/* Desktop & Mobile Buttons */}
+              <div className="flex items-center gap-1.5">
+                <HashLink 
+                  smooth
+                  to="/#roi"
+                  className={cn(
+                    "px-2 py-1 md:px-4 md:py-2 text-[9px] md:text-xs border rounded-full transition-colors duration-200 cursor-pointer whitespace-nowrap",
+                    isScrolled 
+                      ? "border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 text-black/60 dark:text-white/60 hover:border-black/30 dark:hover:border-white/30 hover:text-black dark:hover:text-white"
+                      : "border-white/30 bg-white/10 text-white hover:bg-white/20"
+                  )}
+                >
+                  {t.nav.contact}
+                </HashLink>
+                <div className="relative group shrink-0">
+                  <div className="absolute inset-0 -m-1 rounded-full bg-black dark:bg-gray-100 opacity-10 dark:opacity-40 filter blur-lg pointer-events-none transition-all duration-300 ease-out group-hover:opacity-20 dark:group-hover:opacity-60 group-hover:blur-xl"></div>
+                  <button 
+                    onClick={() => setIsDemoOpen(true)}
                     className={cn(
-                      "px-4 py-2 text-xs border rounded-full transition-colors duration-200 cursor-pointer whitespace-nowrap",
-                      isScrolled 
-                        ? "border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 text-black/60 dark:text-white/60 hover:border-black/30 dark:hover:border-white/30 hover:text-black dark:hover:text-white"
-                        : "border-white/30 bg-white/10 text-white hover:bg-white/20"
-                    )}
-                  >
-                    Contáctanos
-                  </a>
-                  <div className="relative group shrink-0">
-                    <div className="absolute inset-0 -m-1 rounded-full bg-black dark:bg-gray-100 opacity-10 dark:opacity-40 filter blur-lg pointer-events-none transition-all duration-300 ease-out group-hover:opacity-20 dark:group-hover:opacity-60 group-hover:blur-xl"></div>
-                  <a 
-                    href="#roi"
-                    className={cn(
-                      "relative z-10 px-4 py-2 text-xs font-semibold rounded-full transition-all duration-200 cursor-pointer block whitespace-nowrap",
+                      "relative z-10 px-2 py-1 md:px-4 md:py-2 text-[9px] md:text-xs font-semibold rounded-full transition-all duration-200 cursor-pointer block whitespace-nowrap",
                       isScrolled
                         ? "text-white dark:text-black bg-black dark:bg-gradient-to-br dark:from-gray-100 dark:to-gray-300 hover:bg-black/90 dark:hover:from-gray-200 dark:hover:to-gray-400"
                         : "text-black bg-white hover:bg-white/90"
                     )}
                   >
-                    Prueba nuestra demo
-                  </a>
-                  </div>
+                    {t.nav.demo}
+                  </button>
                 </div>
               </div>
-              
-              <button
-                onClick={() => setMenuState(!menuState)}
-                aria-label={menuState ? "Close Menu" : "Open Menu"}
-                className={cn(
-                  "relative z-20 block cursor-pointer p-2 lg:hidden transition-colors",
-                  isScrolled || menuState ? "text-black dark:text-white" : "text-white"
-                )}
-              >
-                {menuState ? <X size={20} /> : <Menu size={20} />}
-              </button>
+
+              <Dialog isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)}>
+                <VoiceDemo />
+              </Dialog>
+
+              <div className={cn(
+                "flex items-center gap-3",
+                menuState ? "absolute top-full left-0 w-full bg-white dark:bg-neutral-900 p-4 border-b border-black/10 dark:border-white/10 lg:static lg:w-auto lg:bg-transparent lg:border-none lg:p-0" : "static"
+              )}>
+                <div className={cn(
+                  "lg:flex items-center gap-3",
+                  menuState ? "flex flex-col w-full" : "hidden"
+                )}>
+                  <div className="lg:hidden w-full">
+                    <ul className="space-y-4 text-base py-4 border-t border-black/5 dark:border-white/5">
+                      {menuItems.map((item, index) => (
+                        <li key={index}>
+                          <HashLink
+                            smooth
+                            to={item.href}
+                            onClick={() => setMenuState(false)}
+                            className="text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white text-sm block duration-150"
+                          >
+                            <span>{item.name}</span>
+                          </HashLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-2 sm:space-y-0 items-center">
+                    <LanguageSwitcher currentLanguage={language} setLanguage={setLanguage} isScrolled={isScrolled} />
+                    <ModeToggle />
+                  </div>
+                </div>
+                
+                <button
+                  onClick={() => setMenuState(!menuState)}
+                  aria-label={menuState ? "Close Menu" : "Open Menu"}
+                  className={cn(
+                    "relative z-20 block cursor-pointer p-1 md:p-2 lg:hidden transition-colors",
+                    isScrolled || menuState ? "text-black dark:text-white" : "text-white"
+                  )}
+                >
+                  {menuState ? <X size={18} /> : <Menu size={18} />}
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -222,6 +250,7 @@ const components: { title: string; href: string; description: string }[] = [
 ];
 
 export function Menus({ isScrolled }: { isScrolled?: boolean }) {
+  const { t } = useLanguage();
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -236,7 +265,7 @@ export function Menus({ isScrolled }: { isScrolled?: boolean }) {
                 : "text-white/70 hover:text-white"
             )}
           >
-            <a href="#dashboard">Nuestros Servicios</a>
+            <HashLink smooth to="/#dashboard">{t.nav.services}</HashLink>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
@@ -250,7 +279,7 @@ export function Menus({ isScrolled }: { isScrolled?: boolean }) {
                 : "text-white/70 hover:text-white"
             )}
           >
-            <a href="#about">Quienes Somos</a>
+            <HashLink smooth to="/#about">{t.nav.about}</HashLink>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
@@ -264,7 +293,7 @@ export function Menus({ isScrolled }: { isScrolled?: boolean }) {
                 : "text-white/70 hover:text-white"
             )}
           >
-            <a href="#faqs">FAQs</a>
+            <HashLink smooth to="/#faqs">{t.nav.faqs}</HashLink>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
@@ -278,7 +307,7 @@ export function Menus({ isScrolled }: { isScrolled?: boolean }) {
                 : "text-white/70 hover:text-white"
             )}
           >
-            <a href="#recursos">Recursos</a>
+            <HashLink smooth to="/#recursos">{t.nav.resources}</HashLink>
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
@@ -334,6 +363,33 @@ export function ModeToggle() {
           />
         </Toggle>
       </div>
+    </div>
+  );
+}
+
+function LanguageSwitcher({ currentLanguage, setLanguage, isScrolled }: { currentLanguage: Language; setLanguage: (lang: Language) => void; isScrolled: boolean }) {
+  const languages: { code: Language; label: string }[] = [
+    { code: 'es', label: 'ES' },
+    { code: 'en', label: 'EN' },
+    { code: 'pt', label: 'PT' },
+  ];
+
+  return (
+    <div className="flex items-center gap-1 bg-neutral-100 dark:bg-neutral-900 p-1 rounded-full border border-black/5 dark:border-white/5">
+      {languages.map((lang) => (
+        <button
+          key={lang.code}
+          onClick={() => setLanguage(lang.code)}
+          className={cn(
+            "px-2 py-1 text-[10px] font-bold rounded-full transition-all duration-200",
+            currentLanguage === lang.code
+              ? "bg-black dark:bg-white text-white dark:text-black shadow-sm"
+              : "text-neutral-500 hover:text-black dark:hover:text-white"
+          )}
+        >
+          {lang.label}
+        </button>
+      ))}
     </div>
   );
 }
