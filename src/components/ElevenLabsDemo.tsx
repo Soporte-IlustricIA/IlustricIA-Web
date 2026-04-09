@@ -27,11 +27,12 @@ export default function ElevenLabsDemo() {
     try {
       setErrorMessage(null)
       await navigator.mediaDevices.getUserMedia({ audio: true })
-      await conversation.startSession({
-        agentId: AGENT_ID,
-        connectionType: "webrtc",
-        onStatusChange: (status) => setAgentState(status.status as AgentState),
-      })
+   await conversation.startSession({
+  agentId: AGENT_ID,
+  connectionType: "webrtc",
+  authorization: import.meta.env.VITE_ELEVENLABS_API_KEY,
+  onStatusChange: (status) => setAgentState(status.status as AgentState),
+})
     } catch (error) {
       console.error("Error starting conversation:", error)
       setAgentState("disconnected")
