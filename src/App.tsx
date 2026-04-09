@@ -16,6 +16,7 @@ import { TechBackground } from './components/ui/TechBackground';
 
 import { useTheme } from './components/ThemeProvider';
 import { LanguageProvider, useLanguage } from './components/LanguageContext';
+import { ConversationProvider } from '@elevenlabs/react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LegalPage } from './pages/LegalPage';
 
@@ -186,7 +187,9 @@ function AppContent() {
 export default function App() {
   return (
     <LanguageProvider>
-      <AppContent />
+      <ConversationProvider>
+        <AppContent />
+      </ConversationProvider>
     </LanguageProvider>
   );
 }

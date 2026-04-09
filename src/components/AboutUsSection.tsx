@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
 import { Users, Target, Zap, ShieldCheck, Cpu, Rocket, Globe } from 'lucide-react';
-import { NeonRGBTextEffect } from './ui/neon-rgbtext-effect';
 import { InteractiveFrostedGlassCard } from './ui/interactive-frosted-glass-card';
 
 import { useLanguage } from './LanguageContext';
@@ -65,11 +64,8 @@ export function AboutUsSection() {
             
             <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-8 leading-[1.1] text-black dark:text-white flex flex-wrap items-center gap-x-2">
               <span>{t.about.title}</span>
-              <NeonRGBTextEffect 
-                text="ADN Digital" 
-                className="w-[240px] md:w-[400px] h-[45px] md:h-[75px] -ml-2 md:-ml-4 blur-[0.8px]" 
-              />
-              <span className="-ml-1 md:-ml-2">{t.about.titleSuffix}</span>
+              <span className="text-[#29ABE2]">ADN Digital</span>
+              <span>{t.about.titleSuffix}</span>
             </h2>
             
             <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-10 max-w-xl leading-relaxed">

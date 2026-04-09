@@ -101,16 +101,16 @@ export const translations = {
     testimonials: {
       items: [
         {
-          quote: "IlustricIA nos permitió acceder a insights de todas nuestras operaciones globales en un solo lugar. Esto es increíblemente valioso y nos ahorra perder o repetir información invaluable sobre nuestros clientes.",
-          author: "Constance Docos",
-          role: "Director de Innovación",
-          company: "Empresa Líder"
+          quote: "Desde que implementamos el asistente de teléfono ya no nos tenemos que preocupar de estar siempre pendientes del teléfono. Además, antes perdíamos muchísimos pacientes en nuestra clínica porque llamaban fuera de horario, pero ahora todas las llamadas son atendidas y nuestros pacientes pueden agendar citas a cualquier hora en cualquier momento.",
+          author: "Dr Vicente",
+          role: "Propietario",
+          company: "Clínica Javaloyes"
         },
         {
-          quote: "La automatización de procesos con IlustricIA ha reducido nuestros tiempos de respuesta en un 40%. La integración fue fluida y el soporte excepcional durante todo el proceso.",
-          author: "Carlos Méndez",
-          role: "CTO",
-          company: "TechSolutions"
+          quote: "Antes me pasaba el día pendiente del teléfono y de los mensajes de WhatsApp para anotar reservas, y aun así a veces se me escapaba alguna. Desde que implementamos el asistente con esta agencia todo eso cambió: ahora los clientes reservan por WhatsApp o llamada y el sistema lo gestiona solo. Yo me olvido de ese estrés y me concentro en el restaurante.",
+          author: "Ismael",
+          role: "Propietario",
+          company: "Restaurante Zagálico"
         },
         {
           quote: "Gracias a la inteligencia artificial de IlustricIA, hemos podido personalizar la experiencia de nuestros usuarios a un nivel que antes era imposible. Los resultados hablan por sí solos.",
@@ -325,16 +325,16 @@ export const translations = {
     testimonials: {
       items: [
         {
-          quote: "IlustricIA allowed us to access insights from all our global operations in one place. This is incredibly valuable and saves us from losing or repeating invaluable information about our customers.",
-          author: "Constance Docos",
-          role: "Innovation Director",
-          company: "Leading Company"
+          quote: "Since we implemented the phone assistant, we no longer have to worry about always being on the phone. Also, we used to lose many patients in our clinic because they called after hours, but now all calls are answered and our patients can schedule appointments at any time.",
+          author: "Dr Vicente",
+          role: "Owner",
+          company: "Javaloyes Clinic"
         },
         {
-          quote: "Process automation with IlustricIA has reduced our response times by 40%. The integration was smooth and the support exceptional throughout the process.",
-          author: "Carlos Méndez",
-          role: "CTO",
-          company: "TechSolutions"
+          quote: "I used to spend all day checking the phone and WhatsApp messages to take reservations, and even then, I sometimes missed some. Since we implemented the assistant with this agency, all that changed: now customers book via WhatsApp or call and the system manages it by itself. I forget about that stress and focus on the restaurant.",
+          author: "Ismael",
+          role: "Owner",
+          company: "Zagálico Restaurant"
         },
         {
           quote: "Thanks to IlustricIA's artificial intelligence, we have been able to personalize our users' experience to a level that was previously impossible. The results speak for themselves.",
@@ -549,16 +549,16 @@ export const translations = {
     testimonials: {
       items: [
         {
-          quote: "A IlustricIA nos permitiu acessar insights de todas as nossas operações globais em um só lugar. Isso é incrivelmente valioso e nos poupa de perder ou repetir informações inestimáveis sobre nossos clientes.",
-          author: "Constance Docos",
-          role: "Diretor de Inovação",
-          company: "Empresa Líder"
+          quote: "Desde que implementamos o assistente de telefone, não precisamos mais nos preocupar em estar sempre pendentes do telefone. Além disso, antes perdíamos muitos pacientes em nossa clínica porque ligavam fora do horário, mas agora todas as chamadas são atendidas e nossos pacientes podem agendar consultas a qualquer hora.",
+          author: "Dr Vicente",
+          role: "Proprietário",
+          company: "Clínica Javaloyes"
         },
         {
-          quote: "A automação de processos com a IlustricIA reduziu nossos tempos de resposta em 40%. A integração foi fluida e o suporte excepcional durante todo o processo.",
-          author: "Carlos Méndez",
-          role: "CTO",
-          company: "TechSolutions"
+          quote: "Antes eu passava o dia pendente do telefone e das mensagens de WhatsApp para anotar reservas, e mesmo assim às vezes escapava alguma. Desde que implementamos o assistente com esta agência tudo isso mudou: agora os clientes reservam por WhatsApp ou chamada e o sistema gere tudo sozinho. Eu esqueço esse stress e concentro-me no restaurante.",
+          author: "Ismael",
+          role: "Proprietário",
+          company: "Restaurante Zagálico"
         },
         {
           quote: "Graças à inteligência artificial da IlustricIA, pudemos personalizar a experiência dos nossos usuários a um nível que antes era impossível. Os resultados falam por si mesmos.",
