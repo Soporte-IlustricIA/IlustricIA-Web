@@ -66,7 +66,7 @@ export function FooterCtaSection() {
   }, []);
 
   return (
-    <section id="roi" className="w-full bg-transparent py-20 px-4 md:px-8 relative overflow-hidden">
+    <section id="agendar" className="w-full bg-transparent py-20 px-4 md:px-8 relative overflow-hidden">
       {/* Orbital Light Threads Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <svg className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] opacity-20" viewBox="0 0 1000 1000">

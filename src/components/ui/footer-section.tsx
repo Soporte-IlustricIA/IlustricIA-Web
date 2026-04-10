@@ -2,7 +2,7 @@
 import React from 'react';
 import type { ComponentProps, ReactNode } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon } from 'lucide-react';
+import { FacebookIcon, InstagramIcon, LinkedinIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 
@@ -35,10 +35,9 @@ export function Footer() {
 		{
 			label: t.footer.social,
 			links: [
-				{ title: 'Facebook', href: '#', icon: FacebookIcon },
-				{ title: 'Instagram', href: '#', icon: InstagramIcon },
-				{ title: 'Youtube', href: '#', icon: YoutubeIcon },
-				{ title: 'LinkedIn', href: '#', icon: LinkedinIcon },
+				{ title: 'Facebook', href: 'https://www.facebook.com/ilustricia', icon: FacebookIcon },
+				{ title: 'Instagram', href: 'https://www.instagram.com/ilustric_ia', icon: InstagramIcon },
+				{ title: 'LinkedIn', href: 'https://www.linkedin.com/company/ilustricia', icon: LinkedinIcon },
 			],
 		},
 		{
@@ -87,6 +86,16 @@ export function Footer() {
 													{link.icon && <link.icon className="me-1 size-4" />}
 													{link.title}
 												</HashLink>
+											) : link.href.startsWith('http') ? (
+												<a
+													href={link.href}
+													target="_blank"
+													rel="noopener noreferrer"
+													className="hover:text-black dark:hover:text-white inline-flex items-center transition-all duration-300"
+												>
+													{link.icon && <link.icon className="me-1 size-4" />}
+													{link.title}
+												</a>
 											) : (
 												<Link
 													to={link.href}

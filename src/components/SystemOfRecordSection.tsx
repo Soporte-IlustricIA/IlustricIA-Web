@@ -27,7 +27,7 @@ export function SystemOfRecordSection() {
             </p>
             <div className="flex flex-wrap items-center gap-6">
               <motion.a 
-                href="#roi"
+                href="#agendar"
                 whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0,0,0,0.1)" }}
                 whileTap={{ scale: 0.95 }}
                 className="px-10 py-5 bg-black dark:bg-white text-white dark:text-black rounded-xl text-base font-bold hover:bg-neutral-900 dark:hover:bg-neutral-100 transition-colors flex items-center gap-3 shadow-2xl"
@@ -36,7 +36,7 @@ export function SystemOfRecordSection() {
                 {t.systemOfRecord.schedule}
               </motion.a>
               <motion.a 
-                href="#roi"
+                href="#agendar"
                 whileHover={{ scale: 1.05, borderColor: "rgba(0,0,0,0.2)" }}
                 whileTap={{ scale: 0.95 }}
                 className="px-10 py-5 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm text-black dark:text-white border border-neutral-200 dark:border-neutral-700 rounded-xl text-base font-bold hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all flex items-center gap-3"

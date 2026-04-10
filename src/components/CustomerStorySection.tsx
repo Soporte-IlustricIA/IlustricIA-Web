@@ -8,8 +8,8 @@ import { useLanguage } from './LanguageContext';
 export function CustomerStorySection() {
   const { t } = useLanguage();
   const images = [
-    "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2000",
-    "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=2000",
+    "/images/noticia1.webp",
+    "/images/noticia2.webp",
     "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=2000"
   ];
   const innovationContent = t.innovation.items.map((item: any, index: number) => ({
@@ -21,7 +21,7 @@ export function CustomerStorySection() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % innovationContent.length);
-    }, 6000);
+    }, 10000);
 
     return () => clearInterval(timer);
   }, []);

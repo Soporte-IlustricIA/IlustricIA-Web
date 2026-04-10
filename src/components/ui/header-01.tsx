@@ -138,7 +138,7 @@ const Header = () => {
               <div className="flex items-center gap-1.5">
                 <HashLink 
                   smooth
-                  to="/#roi"
+                  to="/#agendar"
                   className={cn(
                     "px-2 py-1 md:px-4 md:py-2 text-[9px] md:text-xs border rounded-full transition-colors duration-200 cursor-pointer whitespace-nowrap",
                     isScrolled 

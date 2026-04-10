@@ -1,7 +1,7 @@
 import { Marquee } from "./marquee"
 
 const LogoItem = ({ src, name }: { src: string; name: string }) => {
-  const isLarge = name === "Python" || name === "n8n" || name === "OpenAI";
+  const isLarge = name === "Python" || name === "n8n" || name === "OpenAI" || name === "AWS" || name === "OpenClaw";
   const isOpenAI = name === "OpenAI";
   
   return (
@@ -31,7 +31,7 @@ export function MarqueeDemo() {
     { name: "n8n", src: "/images/n8n.webp" },
     { name: "Python", src: "/images/python.webp" },
     { name: "Github", src: "https://cdn.simpleicons.org/github" },
-    { name: "AWS", src: "https://cdn.simpleicons.org/amazonaws" },
+    { name: "AWS", src: "/images/aws.webp" },
     { name: "Docker", src: "https://cdn.simpleicons.org/docker" },
     { name: "Cursor", src: "https://cdn.simpleicons.org/cursor" },
     { name: "Google Cloud", src: "https://cdn.simpleicons.org/googlecloud" },
@@ -39,7 +39,7 @@ export function MarqueeDemo() {
     { name: "LangGraph", src: "https://cdn.simpleicons.org/langchain" }, // Using LangChain as placeholder for LangGraph
     { name: "React", src: "https://cdn.simpleicons.org/react" },
     { name: "JavaScript", src: "https://cdn.simpleicons.org/javascript" },
-    { name: "OpenClaw", src: "https://cdn.simpleicons.org/openai" }, // Using OpenAI as placeholder for OpenClaw if not found
+    { name: "OpenClaw", src: "/images/openclaw.webp" },
   ];
 
   return (

@@ -7,9 +7,8 @@ import { useLanguage } from './LanguageContext';
 export function TestimonialSection() {
   const { t } = useLanguage();
   const avatars = [
-    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200",
-    "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200"
+    "/images/testimonio1.webp",
+    "/images/testimonio2.webp"
   ];
   const testimonials = t.testimonials.items.map((item: any, index: number) => ({
     ...item,
@@ -61,11 +60,14 @@ export function TestimonialSection() {
           >
             {/* Avatar */}
             <div className="relative flex-shrink-0 mt-2">
-               <div className="w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden bg-neutral-100 dark:bg-neutral-800 shadow-lg border border-neutral-200 dark:border-neutral-800">
+               <div className="w-32 h-32 md:w-44 md:h-44 rounded-lg overflow-hidden bg-neutral-100 dark:bg-neutral-800 shadow-lg border border-neutral-200 dark:border-neutral-800">
                   <img 
                     src={testimonials[currentIndex].avatar} 
                     alt={testimonials[currentIndex].author}
-                    className="w-full h-full object-cover opacity-90"
+                    className={cn(
+                      "w-full h-full object-cover opacity-90 transition-transform duration-500",
+                      testimonials[currentIndex].avatar.includes('testimonio1.webp') ? "scale-125" : "scale-100"
+                    )}
                   />
                </div>
             </div>

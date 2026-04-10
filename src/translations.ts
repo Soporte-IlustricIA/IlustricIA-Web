@@ -111,12 +111,6 @@ export const translations = {
           author: "Ismael",
           role: "Propietario",
           company: "Restaurante Zagálico"
-        },
-        {
-          quote: "Gracias a la inteligencia artificial de IlustricIA, hemos podido personalizar la experiencia de nuestros usuarios a un nivel que antes era imposible. Los resultados hablan por sí solos.",
-          author: "Ana García",
-          role: "Head of Marketing",
-          company: "GlobalRetail"
         }
       ],
       client: "Cliente"
@@ -173,9 +167,9 @@ export const translations = {
       contactUs: "Contáctanos ahora"
     },
     systemOfRecord: {
-      badge: "SISTEMA DE REGISTRO",
-      title: "La fuente única de verdad para tu empresa.",
-      description: "Centraliza toda la información de tu negocio en un solo lugar. Accede a datos en tiempo real, automatiza reportes y toma decisiones basadas en evidencia, no en suposiciones.",
+      badge: "NÚCLEO INTELIGENTE",
+      title: "El cerebro operativo que tu empresa necesita.",
+      description: "No es solo software, es el centro neurálgico de tu negocio. IlustricIA integra cada proceso, dato y decisión en un ecosistema fluido que aprende y evoluciona contigo.",
       schedule: "Agendar cita",
       demo: "Prueba nuestra demo"
     },
@@ -212,17 +206,253 @@ export const translations = {
     privacyPage: {
       title: "Política de Privacidad",
       lastUpdated: "01/2026",
-      content: "En IlustricIA nos tomamos muy en serio la privacidad y la protección de tus datos personales. Esta Política de Privacidad explica qué datos recogemos, para qué los usamos, con qué base legal, durante cuánto tiempo, con quién los compartimos y qué derechos tienes como usuario. BOE+1\n\n1. Responsable del tratamiento\nResponsable: IlustricIA Soluciones Digitales (nombre comercial)\nRazón social: ILUSTRICIA SL\nNIF/CIF: B24927881\nEmail de contacto: info@ilustricia.com\nTeléfono: +34 636 251 256\nWeb: www.ilustricia.com\nDelegado de Protección de Datos (DPD/DPO): info@ilustricia.com\n\n2. Qué datos tratamos\nSegún cómo interactúes con la web, podemos tratar:\nDatos identificativos y de contacto: nombre, apellidos, email, teléfono.\nDatos profesionales: empresa, cargo, sector, necesidades del proyecto.\nDatos del mensaje: información que nos envías al solicitar una cita, presupuesto o consulta.\nDatos de navegación: dirección IP, identificadores del dispositivo/navegador, y eventos de uso (por ejemplo, páginas visitadas), especialmente si usas cookies/analítica.\nRedes sociales: si contactas con nosotros por perfiles sociales, trataremos los datos disponibles según tu configuración y la propia red social.\nNo solicitamos categorías especiales de datos (p. ej., salud, ideología) y te pedimos que no las incluyas en los formularios.\n\n3. Finalidades del tratamiento\nTratamos tus datos para las siguientes finalidades:\nAtender consultas y solicitudes (contacto, información, presupuesto).\nGestionar la reserva de cita / reunión inicial y la comunicación previa y posterior.\nPrestar y administrar nuestros servicios (consultoría e implementación de soluciones de IA, automatización, desarrollo web/marketplaces, etc.), incluyendo la gestión contractual si procede.\nEnviar comunicaciones comerciales (newsletter, novedades, casos de éxito) cuando lo autorices o cuando exista una base legítima aplicable.\nMejorar la web y la seguridad, prevenir fraude y uso indebido, y mantener la integridad técnica del sitio.\n\n4. Base jurídica (legitimación)\nDependiendo del caso, la base legal será:\nEjecución de un contrato o medidas precontractuales (p. ej., solicitud de propuesta o reunión para iniciar un proyecto). BOE\nConsentimiento (p. ej., envío de comunicaciones comerciales o cookies no necesarias). BOE\nCumplimiento de obligaciones legales (p. ej., obligaciones fiscales/contables cuando exista contratación). BOE+1\nInterés legítimo (p. ej., seguridad del sitio, prevención de abuso, y mejoras básicas del servicio, equilibrado con tus derechos). BOE\nCuando el tratamiento se base en el consentimiento, podrás retirarlo en cualquier momento sin que ello afecte a la licitud del tratamiento previo.\n\n5. Destinatarios y encargados del tratamiento\nNo vendemos tus datos. Podremos comunicar o permitir el acceso a tus datos a:\nProveedores que nos prestan servicios (por ejemplo: hosting, correo, herramientas de analítica, CRM, automatización, videollamadas, calendarios, soporte técnico), actuando como encargados del tratamiento bajo contrato. BOE\nAdministraciones públicas y autoridades competentes cuando exista una obligación legal. BOE+1\n\n6. Transferencias internacionales\nEn caso de utilizar proveedores ubicados fuera del Espacio Económico Europeo, Ilustricia aplicará las garantías exigidas por la normativa (por ejemplo, Cláusulas Contractuales Tipo u otros mecanismos válidos). Indica aquí, si aplica.\n\n7. Plazos de conservación\nConservaremos los datos:\nConsultas y solicitudes: durante el tiempo necesario para atenderlas y, después, por [X meses/años] para seguimiento y trazabilidad.\nClientes y proyectos: durante la relación contractual y, posteriormente, durante los plazos legales aplicables (fiscales/contables).\nMarketing: hasta que retires tu consentimiento o solicites la baja.\nSeguridad y logs técnicos: durante el tiempo estrictamente necesario para la seguridad y la resolución de incidencias.\n\n8. Derechos de las personas usuarias\nPuedes ejercer los derechos de:\nAcceso, rectificación, supresión,\noposición, limitación del tratamiento,\nportabilidad (cuando proceda),\ny retirar el consentimiento en cualquier momento. BOE+1\nPara ejercerlos, envíanos un email a soporte@ilustricia.com con el asunto “Protección de datos” e indicando tu solicitud. Podremos pedirte información adicional para verificar tu identidad.\nSi consideras que tus derechos no han sido atendidos correctamente, puedes presentar una reclamación ante la Agencia Española de Protección de Datos (AEPD). sedeaepd.gob.es+1\n\n9. Medidas de seguridad\nIlustricia aplica medidas técnicas y organizativas razonables para proteger los datos personales frente a accesos no autorizados, pérdida, alteración o divulgación. BOE\n\n10. Menores de edad\nNuestros servicios no están dirigidos a menores de 14 años. Si detectamos que hemos tratado datos de un menor sin autorización válida, procederemos a su eliminación.\n\n11. Cookies y tecnologías similares\nUtilizamos cookies y tecnologías similares. Para más información, consulta la Política de Cookies y el apartado Configurar Cookies (preferencias). (Añade el enlace interno cuando lo tengas en el footer.)\n\n12. Cambios en esta política\nPodremos actualizar esta Política de Privacidad para reflejar cambios legales o técnicos. La fecha de “Última actualización” indicará cuándo se revisó por última vez.\n\nElche, 01/2026\nhttps://www.ilustricia.com\nIlustricIA soluciones digitales"
+      sections: [
+        {
+          content: "En IlustricIA nos tomamos muy en serio la privacidad y la protección de tus datos personales. Esta Política de Privacidad explica qué datos recogemos, para qué los usamos, con qué base legal, durante cuánto tiempo, con quién los compartimos y qué derechos tienes como usuario."
+        },
+        {
+          title: "1. Responsable del tratamiento",
+          content: [
+            "Responsable: IlustricIA Soluciones Digitales (nombre comercial)",
+            "Razón social: ILUSTRICIA SL",
+            "NIF/CIF: B24927881",
+            "Email de contacto: info@ilustricia.com",
+            "Teléfono: +34 636 251 256",
+            "Web: www.ilustricia.com",
+            "Delegado de Protección de Datos (DPD/DPO): info@ilustricia.com"
+          ]
+        },
+        {
+          title: "2. Qué datos tratamos",
+          content: [
+            "Según cómo interactúes con la web, podemos tratar:",
+            "Datos identificativos y de contacto: nombre, apellidos, email, teléfono.",
+            "Datos profesionales: empresa, cargo, sector, necesidades del proyecto.",
+            "Datos del mensaje: información que nos envías al solicitar una cita, presupuesto o consulta.",
+            "Datos de navegación: dirección IP, identificadores del dispositivo/navegador, y eventos de uso (por ejemplo, páginas visitadas), especialmente si usas cookies/analítica.",
+            "Redes sociales: si contactas con nosotros por perfiles sociales, trataremos los datos disponibles según tu configuración y la propia red social.",
+            "No solicitamos categorías especiales de datos (p. ej., salud, ideología) y te pedimos que no las incluyas en los formularios."
+          ]
+        },
+        {
+          title: "3. Finalidades del tratamiento",
+          content: [
+            "Tratamos tus datos para las siguientes finalidades:",
+            "Atender consultas y solicitudes (contacto, información, presupuesto).",
+            "Gestionar la reserva de cita / reunión inicial y la comunicación previa y posterior.",
+            "Prestar y administrar nuestros servicios (consultoría e implementación de soluciones de IA, automatización, desarrollo web/marketplaces, etc.), incluyendo la gestión contractual si procede.",
+            "Enviar comunicaciones comerciales (newsletter, novedades, casos de éxito) cuando lo autorices o cuando exista una base legítima aplicable.",
+            "Mejorar la web y la seguridad, prevenir fraude y uso indebido, y mantener la integridad técnica del sitio."
+          ]
+        },
+        {
+          title: "4. Base jurídica (legitimación)",
+          content: [
+            "Dependiendo del caso, la base legal será:",
+            "Ejecución de un contrato o medidas precontractuales (p. ej., solicitud de propuesta o reunión para iniciar un proyecto).",
+            "Consentimiento (p. ej., envío de comunicaciones comerciales o cookies no necesarias).",
+            "Cumplimiento de obligaciones legales (p. ej., obligaciones fiscales/contables cuando exista contratación).",
+            "Interés legítimo (p. ej., seguridad del sitio, prevención de abuso, y mejoras básicas del servicio, equilibrado con tus derechos).",
+            "Cuando el tratamiento se base en el consentimiento, podrás retirarlo en cualquier momento sin que ello afecte a la licitud del tratamiento previo."
+          ]
+        },
+        {
+          title: "5. Destinatarios y encargados del tratamiento",
+          content: [
+            "No vendemos tus datos. Podremos comunicar o permitir el acceso a tus datos a:",
+            "Proveedores que nos prestan servicios (por ejemplo: hosting, correo, herramientas de analítica, CRM, automatización, videollamadas, calendarios, soporte técnico), actuando como encargados del tratamiento bajo contrato.",
+            "Administraciones públicas y autoridades competentes cuando exista una obligación legal."
+          ]
+        },
+        {
+          title: "6. Transferencias internacionales",
+          content: [
+            "En caso de utilizar proveedores ubicados fuera del Espacio Económico Europeo, Ilustricia aplicará las garantías exigidas por la normativa (por ejemplo, Cláusulas Contractuales Tipo u otros mecanismos válidos)."
+          ]
+        },
+        {
+          title: "7. Plazos de conservación",
+          content: [
+            "Conservaremos los datos:",
+            "Consultas y solicitudes: durante el tiempo necesario para atenderlas y, después, por el tiempo necesario para seguimiento y trazabilidad.",
+            "Clientes y proyectos: durante la relación contractual y, posteriormente, durante los plazos legales aplicables (fiscales/contables).",
+            "Marketing: hasta que retires tu consentimiento o solicites la baja.",
+            "Seguridad y logs técnicos: durante el tiempo estrictamente necesario para la seguridad y la resolución de incidencias."
+          ]
+        },
+        {
+          title: "8. Derechos de las personas usuarias",
+          content: [
+            "Puedes ejercer los derechos de:",
+            "Acceso, rectificación, supresión, oposición, limitación del tratamiento, portabilidad (cuando proceda), y retirar el consentimiento en cualquier momento.",
+            "Para ejercerlos, envíanos un email a soporte@ilustricia.com con el asunto “Protección de datos” e indicando tu solicitud. Podremos pedirte información adicional para verificar tu identidad.",
+            "Si consideras que tus derechos no han sido atendidos correctamente, puedes presentar una reclamación ante la Agencia Española de Protección de Datos (AEPD). sedeaepd.gob.es"
+          ]
+        },
+        {
+          title: "9. Medidas de seguridad",
+          content: [
+            "Ilustricia aplica medidas técnicas y organizativas razonables para proteger los datos personales frente a accesos no autorizados, pérdida, alteración o divulgación."
+          ]
+        },
+        {
+          title: "10. Menores de edad",
+          content: [
+            "Nuestros servicios no están dirigidos a menores de 14 años. Si detectamos que hemos tratado datos de un menor sin autorización válida, procederemos a su eliminación."
+          ]
+        },
+        {
+          title: "11. Cookies y tecnologías similares",
+          content: [
+            "Utilizamos cookies y tecnologías similares. Para más información, consulta la Política de Cookies y el apartado Configurar Cookies (preferencias)."
+          ]
+        },
+        {
+          title: "12. Cambios en esta política",
+          content: [
+            "Podremos actualizar esta Política de Privacidad para reflejar cambios legales o técnicos. La fecha de “Última actualización” indicará cuándo se revisó por última vez."
+          ]
+        },
+        {
+          content: [
+            "Elche, 01/2026",
+            "https://www.ilustricia.com",
+            "IlustricIA soluciones digitales"
+          ]
+        }
+      ]
     },
     legalPage: {
       title: "Aviso Legal",
       lastUpdated: "01/2026",
-      content: "En cumplimiento de lo dispuesto en la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se facilita la siguiente información general del sitio web https://www.ilustricia.com\n\n1. Datos identificativos\nTitular: ILUSTRICIA SL\nNombre comercial: IlustricIA Soluciones Digitales\nNIF/CIF: B24927881\nCorreo electrónico de contacto: info@ilustricia.com\nTeléfono de contacto: +34 636 251 256\n\nEl presente sitio web tiene por objeto dar a conocer la actividad, servicios y proyectos de IlustricIA, empresa dedicada a la consultoría y desarrollo de soluciones tecnológicas e Inteligencia Artificial.\n\n2. Condiciones de uso\nEl acceso y uso del sitio web atribuye la condición de usuario y supone la aceptación plena y sin reservas de todas las cláusulas del presente Aviso Legal. Si no estás de acuerdo con cualquiera de las condiciones, deberás abstenerte de usar este sitio web.\n\nEl usuario se compromete a hacer un uso adecuado del contenido y de los servicios que IlustricIA ofrece, y a no emplearlos para actividades ilícitas o contrarias a la buena fe, al orden público o a los derechos de terceros.\n\n3. Propiedad intelectual e industrial\nTodos los contenidos del sitio web (textos, imágenes, logotipos, marcas, estructura, diseño, código fuente, etc.) son titularidad de IlustricIA o de terceros que han autorizado su uso.\nQueda prohibida la reproducción, distribución o transformación de dichos contenidos sin autorización expresa y por escrito del titular.\n\n4. Enlaces externos\nEl sitio web puede incluir enlaces a páginas de terceros. IlustricIA no se hace responsable de los contenidos, políticas de privacidad ni de las prácticas de dichos sitios externos. La inclusión de enlaces no implica relación, aprobación o respaldo por parte de IlustricIA.\n\n5. Limitación de responsabilidad\nIlustricIA no garantiza la disponibilidad permanente del sitio web ni la ausencia de errores técnicos. No se responsabiliza de daños o perjuicios derivados del uso indebido o de la falta de disponibilidad del sitio.\n\n6. Política de privacidad y cookies\nEl tratamiento de los datos personales recabados a través del sitio web se regirá por lo dispuesto en la Política de Privacidad, y el uso de cookies por la Política de Cookies, ambas disponibles en este mismo sitio.\n\n7. Legislación aplicable y jurisdicción\nEl presente Aviso Legal se rige por la legislación española. Para la resolución de cualquier controversia que pudiera derivarse del acceso o uso del sitio web, el usuario se somete a la jurisdicción de los Juzgados y Tribunales de Elche, salvo que la ley disponga otra cosa.\n\nElche, 01/2026\n\nhttps://www.ilustricia.com\nIlustricIA soluciones digitales"
+      sections: [
+        {
+          content: "En cumplimiento de lo dispuesto en la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se facilita la siguiente información general del sitio web https://www.ilustricia.com"
+        },
+        {
+          title: "1. Datos identificativos",
+          content: [
+            "Titular: ILUSTRICIA SL",
+            "Nombre comercial: IlustricIA Soluciones Digitales",
+            "NIF/CIF: B24927881",
+            "Correo electrónico de contacto: info@ilustricia.com",
+            "Teléfono de contacto: +34 636 251 256",
+            "El presente sitio web tiene por objeto dar a conocer la actividad, servicios y proyectos de IlustricIA, empresa dedicada a la consultoría y desarrollo de soluciones tecnológicas e Inteligencia Artificial."
+          ]
+        },
+        {
+          title: "2. Condiciones de uso",
+          content: [
+            "El acceso y uso del sitio web atribuye la condición de usuario y supone la aceptación plena y sin reservas de todas las cláusulas del presente Aviso Legal. Si no estás de acuerdo con cualquiera de las condiciones, deberás abstenerte de usar este sitio web.",
+            "El usuario se compromete a hacer un uso adecuado del contenido y de los servicios que IlustricIA ofrece, y a no emplearlos para actividades ilícitas o contrarias a la buena fe, al orden público o a los derechos de terceros."
+          ]
+        },
+        {
+          title: "3. Propiedad intelectual e industrial",
+          content: [
+            "Todos los contenidos del sitio web (textos, imágenes, logotipos, marcas, estructura, diseño, código fuente, etc.) son titularidad de IlustricIA o de terceros que han autorizado su uso.",
+            "Queda prohibida la reproducción, distribución o transformación de dichos contenidos sin autorización expresa y por escrito del titular."
+          ]
+        },
+        {
+          title: "4. Enlaces externos",
+          content: [
+            "El sitio web puede incluir enlaces a páginas de terceros. IlustricIA no se hace responsable de los contenidos, políticas de privacidad ni de las prácticas de dichos sitios externos. La inclusión de enlaces no implica relación, aprobación o respaldo por parte de IlustricIA."
+          ]
+        },
+        {
+          title: "5. Limitación de responsabilidad",
+          content: [
+            "IlustricIA no garantiza la disponibilidad permanente del sitio web ni la ausencia de errores técnicos. No se responsabiliza de daños o perjuicios derivados del uso indebido o de la falta de disponibilidad del sitio."
+          ]
+        },
+        {
+          title: "6. Política de privacidad y cookies",
+          content: [
+            "El tratamiento de los datos personales recabados a través del sitio web se regirá por lo dispuesto en la Política de Privacidad, y el uso de cookies por la Política de Cookies, ambas disponibles en este mismo sitio."
+          ]
+        },
+        {
+          title: "7. Legislación aplicable y jurisdicción",
+          content: [
+            "El presente Aviso Legal se rige por la legislación española. Para la resolución de cualquier controversia que pudiera derivarse del acceso o uso del sitio web, el usuario se somete a la jurisdicción de los Juzgados y Tribunales de Elche, salvo que la ley disponga otra cosa."
+          ]
+        },
+        {
+          content: [
+            "Elche, 01/2026",
+            "https://www.ilustricia.com",
+            "IlustricIA soluciones digitales"
+          ]
+        }
+      ]
     },
     cookiesPage: {
       title: "Política de Cookies",
       lastUpdated: "01/2026",
-      content: "1. ¿Qué son las cookies?\nLas cookies y tecnologías similares (por ejemplo, píxeles, etiquetas o identificadores) son archivos o dispositivos que se almacenan en tu navegador o en tu dispositivo cuando navegas. Sirven, entre otras finalidades, para recordar tus preferencias, analizar el uso del sitio o personalizar contenidos. AEPD\n\n2. ¿Qué tipos de cookies existen?\nSegún quién las gestione:\nCookies propias: enviadas y gestionadas por este sitio web.\nCookies de terceros: enviadas y gestionadas por otras entidades (proveedores de analítica, publicidad, redes sociales, etc.). AEPD\n\nSegún su finalidad (clasificación habitual):\nTécnicas o necesarias: permiten la navegación y el uso de funciones básicas.\nDe preferencias o personalización: recuerdan ajustes (idioma, región, etc.).\nDe análisis o medición: ayudan a entender cómo se usa la web para mejorarla.\nDe publicidad / marketing: miden campañas y pueden mostrar anuncios personalizados. AEPD\n\n3. Base jurídica\nDe acuerdo con la normativa aplicable, solo instalamos cookies no necesarias si el usuario presta su consentimiento, tras recibir información clara y completa.\n\n4. Cookies que utiliza este sitio web\nA continuación se indican las cookies (o tecnologías equivalentes) que pueden utilizarse en este sitio web. Completa y ajusta esta tabla con tus cookies reales.\nSi utilizas cookies de terceros, debes identificar a esos terceros y facilitar acceso a su información (políticas del proveedor), además de explicar cómo gestionar o eliminarlas si el usuario las aceptó y después quiere retirarlas. AEPD\n\n5. ¿Cómo puedes aceptar, rechazar o configurar cookies?\nCuando accedes a la web, se muestra un aviso (banner) que te permite:\nAceptar cookies,\nRechazar cookies no necesarias, y/o\nConfigurar tus preferencias por categorías.\nDebes poder denegar o revocar el consentimiento de forma tan sencilla como otorgarlo, y el acceso al panel de configuración debe estar disponible de forma accesible y permanente (por ejemplo, mediante el enlace “Configurar cookies” en el pie de página). AEPD+1\n\n6. Cómo desactivar o eliminar cookies desde el navegador\nAdemás del panel de configuración, puedes eliminar las cookies desde las opciones de tu navegador. Ten en cuenta que, si aceptas cookies de terceros y posteriormente deseas eliminarlas, puede ser necesario hacerlo desde tu navegador o desde los mecanismos que ofrezca el propio tercero. AEPD\n\n7. Transferencias internacionales (si aplica)\nAlgunos proveedores (p. ej., analítica o marketing) pueden tratar datos fuera del Espacio Económico Europeo. En esos casos, se aplicarán las garantías previstas por la normativa (por ejemplo, cláusulas contractuales tipo u otros mecanismos válidos).\n\n8. Actualización del consentimiento y cambios en las cookies\nSi cambian las finalidades, las cookies o los terceros, actualizaremos esta Política de Cookies y, cuando proceda, te permitiremos tomar una nueva decisión. Como buena práctica, la AEPD considera razonable renovar el consentimiento periódicamente (por ejemplo, no más de 24 meses). AEPD\n\n9. Contacto\nPara dudas sobre esta Política de Cookies, puedes escribirnos a: info@ilustricia.com.\n\nElche, 01/2026\nhttps://www.ilustricia.com\nIlustricIA soluciones digitales"
+      sections: [
+        {
+          title: "1. ¿Qué son las cookies?",
+          content: "Las cookies y tecnologías similares (por ejemplo, píxeles, etiquetas o identificadores) son archivos o dispositivos que se almacenan en tu navegador o en tu dispositivo cuando navegas. Sirven, entre otras finalidades, para recordar tus preferencias, analizar el uso del sitio o personalizar contenidos."
+        },
+        {
+          title: "2. ¿Qué tipos de cookies existen?",
+          content: [
+            "Según quién las gestione:",
+            "Cookies propias: enviadas y gestionadas por este sitio web.",
+            "Cookies de terceros: enviadas y gestionadas por otras entidades (proveedores de analítica, publicidad, redes sociales, etc.).",
+            "Según su finalidad (clasificación habitual):",
+            "Técnicas o necesarias: permiten la navegación y el uso de funciones básicas.",
+            "De preferencias o personalización: recuerdan ajustes (idioma, región, etc.).",
+            "De análisis o medición: ayudan a entender cómo se usa la web para mejorarla.",
+            "De publicidad / marketing: miden campañas y pueden mostrar anuncios personalizados."
+          ]
+        },
+        {
+          title: "3. Base jurídica",
+          content: "De acuerdo con la normativa aplicable, solo instalamos cookies no necesarias si el usuario presta su consentimiento, tras recibir información clara y completa."
+        },
+        {
+          title: "4. Cookies que utiliza este sitio web",
+          content: [
+            "A continuación se indican las cookies (o tecnologías equivalentes) que pueden utilizarse en este sitio web. Completa y ajusta esta tabla con tus cookies reales.",
+            "Si utilizas cookies de terceros, debes identificar a esos terceros y facilitar acceso a su información (políticas del proveedor), además de explicar cómo gestionar o eliminarlas si el usuario las aceptó y después quiere retirarlas."
+          ]
+        },
+        {
+          title: "5. ¿Cómo puedes aceptar, rechazar o configurar cookies?",
+          content: [
+            "Cuando accedes a la web, se muestra un aviso (banner) que te permite:",
+            "Aceptar cookies,",
+            "Rechazar cookies no necesarias, y/o",
+            "Configurar tus preferencias por categorías.",
+            "Debes poder denegar o revocar el consentimiento de forma tan sencilla como otorgarlo, y el acceso al panel de configuración debe estar disponible de forma accesible y permanente (por ejemplo, mediante el enlace “Configurar cookies” en el pie de página)."
+          ]
+        },
+        {
+          title: "6. Cómo desactivar o eliminar cookies desde el navegador",
+          content: "Además del panel de configuración, puedes eliminar las cookies desde las opciones de tu navegador. Ten en cuenta que, si aceptas cookies de terceros y posteriormente deseas eliminarlas, puede ser necesario hacerlo desde tu navegador o desde los mecanismos que ofrezca el propio tercero."
+        },
+        {
+          title: "7. Transferencias internacionales (si aplica)",
+          content: "Algunos proveedores (p. ej., analítica o marketing) pueden tratar datos fuera del Espacio Económico Europeo. En esos casos, se aplicarán las garantías previstas por la normativa (por ejemplo, cláusulas contractuales tipo u otros mecanismos válidos)."
+        },
+        {
+          title: "8. Actualización del consentimiento y cambios en las cookies",
+          content: "Si cambian las finalidades, las cookies o los terceros, actualizaremos esta Política de Cookies y, cuando proceda, te permitiremos tomar una nueva decisión. Como buena práctica, la AEPD considera razonable renovar el consentimiento periódicamente (por ejemplo, no más de 24 meses)."
+        },
+        {
+          title: "9. Contacto",
+          content: "Para dudas sobre esta Política de Cookies, puedes escribirnos a: info@ilustricia.com."
+        },
+        {
+          content: [
+            "Elche, 01/2026",
+            "https://www.ilustricia.com",
+            "IlustricIA soluciones digitales"
+          ]
+        }
+      ]
     }
   },
   en: {
@@ -335,12 +565,6 @@ export const translations = {
           author: "Ismael",
           role: "Owner",
           company: "Zagálico Restaurant"
-        },
-        {
-          quote: "Thanks to IlustricIA's artificial intelligence, we have been able to personalize our users' experience to a level that was previously impossible. The results speak for themselves.",
-          author: "Ana García",
-          role: "Head of Marketing",
-          company: "GlobalRetail"
         }
       ],
       client: "Client"
@@ -397,9 +621,9 @@ export const translations = {
       contactUs: "Contact us now"
     },
     systemOfRecord: {
-      badge: "SYSTEM OF RECORD",
-      title: "The single source of truth for your company.",
-      description: "Centralize all your business information in one place. Access real-time data, automate reports, and make decisions based on evidence, not assumptions.",
+      badge: "INTELLIGENT CORE",
+      title: "The operational brain your company needs.",
+      description: "It's not just software; it's the nerve center of your business. IlustricIA integrates every process, data point, and decision into a fluid ecosystem that learns and evolves with you.",
       schedule: "Schedule appointment",
       demo: "Try our demo"
     },
@@ -436,17 +660,253 @@ export const translations = {
     privacyPage: {
       title: "Privacy Policy",
       lastUpdated: "01/2026",
-      content: "At IlustricIA, we take your privacy and the protection of your personal data very seriously. This Privacy Policy explains what data we collect, what we use it for, on what legal basis, for how long, with whom we share it, and what rights you have as a user. BOE+1\n\n1. Data Controller\nResponsible: IlustricIA Digital Solutions (trade name)\nCompany name: ILUSTRICIA SL\nNIF/CIF: B24927881\nContact email: info@ilustricia.com\nTelephone: +34 636 251 256\nWeb: www.ilustricia.com\nData Protection Officer (DPO): info@ilustricia.com\n\n2. What data we process\nDepending on how you interact with the website, we may process:\nIdentification and contact data: name, surname, email, telephone.\nProfessional data: company, position, sector, project needs.\nMessage data: information you send us when requesting an appointment, quote, or consultation.\nBrowsing data: IP address, device/browser identifiers, and usage events (e.g., pages visited), especially if you use cookies/analytics.\nSocial networks: if you contact us through social profiles, we will process the data available according to your configuration and the social network itself.\nWe do not request special categories of data (e.g., health, ideology) and we ask you not to include them in the forms.\n\n3. Purposes of processing\nWe process your data for the following purposes:\nAddress inquiries and requests (contact, information, quote).\nManage appointment booking / initial meeting and prior and subsequent communication.\nProvide and manage our services (consultancy and implementation of AI solutions, automation, web/marketplace development, etc.), including contractual management if applicable.\nSend commercial communications (newsletter, news, success stories) when you authorize it or when there is an applicable legitimate basis.\nImprove the website and security, prevent fraud and misuse, and maintain the technical integrity of the site.\n\n4. Legal basis (legitimation)\nDepending on the case, the legal basis will be:\nExecution of a contract or pre-contractual measures (e.g., request for a proposal or meeting to start a project). BOE\nConsent (e.g., sending commercial communications or non-necessary cookies). BOE\nCompliance with legal obligations (e.g., tax/accounting obligations when there is a contract). BOE+1\nLegitimate interest (e.g., site security, prevention of abuse, and basic service improvements, balanced with your rights). BOE\nWhen the processing is based on consent, you may withdraw it at any time without affecting the lawfulness of the prior processing.\n\n5. Recipients and processors\nWe do not sell your data. We may communicate or allow access to your data to:\nProviders that provide us with services (e.g., hosting, email, analytics tools, CRM, automation, video calls, calendars, technical support), acting as data processors under contract. BOE\nPublic administrations and competent authorities when there is a legal obligation. BOE+1\n\n6. International transfers\nIn case of using providers located outside the European Economic Area, Ilustricia will apply the guarantees required by the regulations (e.g., Standard Contractual Clauses or other valid mechanisms). Indicate here, if applicable.\n\n7. Conservation periods\nWe will keep the data:\nInquiries and requests: for the time necessary to address them and, afterwards, for [X months/years] for monitoring and traceability.\nClients and projects: during the contractual relationship and, subsequently, during the applicable legal periods (tax/accounting).\nMarketing: until you withdraw your consent or request cancellation.\nSecurity and technical logs: for the time strictly necessary for security and resolution of incidents.\n\n8. Rights of users\nYou can exercise the rights of:\nAccess, rectification, deletion,\nopposition, limitation of processing,\nportability (when applicable),\nand withdraw consent at any time. BOE+1\nTo exercise them, send us an email to soporte@ilustricia.com with the subject “Data Protection” and indicating your request. We may ask you for additional information to verify your identity.\nIf you consider that your rights have not been properly addressed, you can file a claim with the Spanish Data Protection Agency (AEPD). sedeaepd.gob.es+1\n\n9. Security measures\nIlustricia applies reasonable technical and organizational measures to protect personal data against unauthorized access, loss, alteration, or disclosure. BOE\n\n10. Minors\nOur services are not directed to children under 14 years of age. If we detect that we have processed data of a minor without valid authorization, we will proceed to its deletion.\n\n11. Cookies and similar technologies\nWe use cookies and similar technologies. For more information, consult the Cookie Policy and the Configure Cookies (preferences) section. (Add the internal link when you have it in the footer.)\n\n12. Changes to this policy\nWe may update this Privacy Policy to reflect legal or technical changes. The “Last updated” date will indicate when it was last revised.\n\nElche, 01/2026\nhttps://www.ilustricia.com\nIlustricIA digital solutions"
+      sections: [
+        {
+          content: "At IlustricIA we take privacy and the protection of your personal data very seriously. This Privacy Policy explains what data we collect, what we use it for, on what legal basis, for how long, with whom we share it, and what rights you have as a user."
+        },
+        {
+          title: "1. Data Controller",
+          content: [
+            "Controller: IlustricIA Digital Solutions (trade name)",
+            "Company Name: ILUSTRICIA SL",
+            "NIF/CIF: B24927881",
+            "Contact email: info@ilustricia.com",
+            "Phone: +34 636 251 256",
+            "Web: www.ilustricia.com",
+            "Data Protection Officer (DPO): info@ilustricia.com"
+          ]
+        },
+        {
+          title: "2. What data we process",
+          content: [
+            "Depending on how you interact with the web, we may process:",
+            "Identification and contact data: name, surname, email, telephone.",
+            "Professional data: company, position, sector, project needs.",
+            "Message data: information you send us when requesting an appointment, quote, or consultation.",
+            "Browsing data: IP address, device/browser identifiers, and usage events (e.g., pages visited), especially if you use cookies/analytics.",
+            "Social networks: if you contact us through social profiles, we will process the data available according to your settings and the social network itself.",
+            "We do not request special categories of data (e.g., health, ideology) and we ask you not to include them in the forms."
+          ]
+        },
+        {
+          title: "3. Purposes of processing",
+          content: [
+            "We process your data for the following purposes:",
+            "Attend to inquiries and requests (contact, information, quote).",
+            "Manage the appointment / initial meeting reservation and prior and subsequent communication.",
+            "Provide and manage our services (consulting and implementation of AI solutions, automation, web/marketplace development, etc.), including contractual management if applicable.",
+            "Send commercial communications (newsletter, news, success stories) when you authorize it or when there is an applicable legitimate basis.",
+            "Improve the web and security, prevent fraud and misuse, and maintain the technical integrity of the site."
+          ]
+        },
+        {
+          title: "4. Legal basis (legitimation)",
+          content: [
+            "Depending on the case, the legal basis will be:",
+            "Execution of a contract or pre-contractual measures (e.g., request for proposal or meeting to start a project).",
+            "Consent (e.g., sending commercial communications or non-necessary cookies).",
+            "Compliance with legal obligations (e.g., tax/accounting obligations when there is a contract).",
+            "Legitimate interest (e.g., site security, prevention of abuse, and basic service improvements, balanced with your rights).",
+            "When the processing is based on consent, you may withdraw it at any time without affecting the lawfulness of the previous processing."
+          ]
+        },
+        {
+          title: "5. Recipients and data processors",
+          content: [
+            "We do not sell your data. We may communicate or allow access to your data to:",
+            "Providers that provide us with services (for example: hosting, email, analytics tools, CRM, automation, video calls, calendars, technical support), acting as data processors under contract.",
+            "Public administrations and competent authorities when there is a legal obligation."
+          ]
+        },
+        {
+          title: "6. International transfers",
+          content: [
+            "In case of using providers located outside the European Economic Area, Ilustricia will apply the guarantees required by the regulations (for example, Standard Contractual Clauses or other valid mechanisms)."
+          ]
+        },
+        {
+          title: "7. Retention periods",
+          content: [
+            "We will keep the data:",
+            "Inquiries and requests: for the time necessary to attend to them and, afterwards, for the time necessary for monitoring and traceability.",
+            "Clients and projects: during the contractual relationship and, subsequently, during the applicable legal periods (tax/accounting).",
+            "Marketing: until you withdraw your consent or request cancellation.",
+            "Security and technical logs: for the time strictly necessary for security and resolution of incidents."
+          ]
+        },
+        {
+          title: "8. Rights of users",
+          content: [
+            "You can exercise the rights of:",
+            "Access, rectification, deletion, opposition, limitation of processing, portability (when applicable), and withdraw consent at any time.",
+            "To exercise them, send us an email to soporte@ilustricia.com with the subject “Data protection” and indicating your request. We may ask you for additional information to verify your identity.",
+            "If you consider that your rights have not been properly addressed, you can file a complaint with the Spanish Data Protection Agency (AEPD). sedeaepd.gob.es"
+          ]
+        },
+        {
+          title: "9. Security measures",
+          content: [
+            "Ilustricia applies reasonable technical and organizational measures to protect personal data against unauthorized access, loss, alteration, or disclosure."
+          ]
+        },
+        {
+          title: "10. Minors",
+          content: [
+            "Our services are not directed to children under 14 years of age. If we detect that we have processed data of a minor without valid authorization, we will proceed to its deletion."
+          ]
+        },
+        {
+          title: "11. Cookies and similar technologies",
+          content: [
+            "We use cookies and similar technologies. For more information, consult the Cookie Policy and the Configure Cookies (preferences) section."
+          ]
+        },
+        {
+          title: "12. Changes to this policy",
+          content: [
+            "We may update this Privacy Policy to reflect legal or technical changes. The “Last updated” date will indicate when it was last revised."
+          ]
+        },
+        {
+          content: [
+            "Elche, 01/2026",
+            "https://www.ilustricia.com",
+            "IlustricIA digital solutions"
+          ]
+        }
+      ]
     },
     legalPage: {
       title: "Legal Notice",
       lastUpdated: "01/2026",
-      content: "In compliance with the provisions of Law 34/2002, of July 11, on Information Society Services and Electronic Commerce (LSSI-CE), the following general information of the website https://www.ilustricia.com is provided.\n\n1. Identifying data\nOwner: ILUSTRICIA SL\nTrade name: IlustricIA Digital Solutions\nNIF/CIF: B24927881\nContact email: info@ilustricia.com\nContact telephone: +34 636 251 256\n\nThe purpose of this website is to publicize the activity, services and projects of IlustricIA, a company dedicated to consulting and developing technological solutions and Artificial Intelligence.\n\n2. Conditions of use\nAccess and use of the website attributes the condition of user and implies full and unreserved acceptance of all the clauses of this Legal Notice. If you do not agree with any of the conditions, you must refrain from using this website.\n\nThe user undertakes to make appropriate use of the content and services that IlustricIA offers, and not to use them for activities that are illegal or contrary to good faith, public order or the rights of third parties.\n\n3. Intellectual and industrial property\nAll contents of the website (texts, images, logos, brands, structure, design, source code, etc.) are owned by IlustricIA or third parties who have authorized their use.\nThe reproduction, distribution or transformation of said content without the express written authorization of the owner is prohibited.\n\n4. External links\nThe website may include links to third-party pages. IlustricIA is not responsible for the content, privacy policies or practices of such external sites. The inclusion of links does not imply relationship, approval or endorsement by IlustricIA.\n\n5. Limitation of liability\nIlustricIA does not guarantee the permanent availability of the website or the absence of technical errors. It is not responsible for damages or losses derived from improper use or lack of availability of the site.\n\n6. Privacy and cookies policy\nThe processing of personal data collected through the website will be governed by the provisions of the Privacy Policy, and the use of cookies by the Cookie Policy, both available on this same site.\n\n7. Applicable law and jurisdiction\nThis Legal Notice is governed by Spanish law. For the resolution of any controversy that may derive from access or use of the website, the user submits to the jurisdiction of the Courts and Tribunals of Elche, unless the law provides otherwise.\n\nElche, 01/2026\n\nhttps://www.ilustricia.com\nIlustricIA digital solutions"
+      sections: [
+        {
+          content: "In compliance with the provisions of Law 34/2002, of July 11, on Information Society Services and Electronic Commerce (LSSI-CE), the following general information of the website https://www.ilustricia.com is provided."
+        },
+        {
+          title: "1. Identifying data",
+          content: [
+            "Owner: ILUSTRICIA SL",
+            "Trade name: IlustricIA Digital Solutions",
+            "NIF/CIF: B24927881",
+            "Contact email: info@ilustricia.com",
+            "Contact telephone: +34 636 251 256",
+            "The purpose of this website is to publicize the activity, services and projects of IlustricIA, a company dedicated to consulting and developing technological solutions and Artificial Intelligence."
+          ]
+        },
+        {
+          title: "2. Conditions of use",
+          content: [
+            "Access and use of the website attributes the condition of user and implies full and unreserved acceptance of all the clauses of this Legal Notice. If you do not agree with any of the conditions, you must refrain from using this website.",
+            "The user undertakes to make appropriate use of the content and services that IlustricIA offers, and not to use them for activities that are illegal or contrary to good faith, public order or the rights of third parties."
+          ]
+        },
+        {
+          title: "3. Intellectual and industrial property",
+          content: [
+            "All contents of the website (texts, images, logos, brands, structure, design, source code, etc.) are owned by IlustricIA or third parties who have authorized their use.",
+            "The reproduction, distribution or transformation of said content without the express written authorization of the owner is prohibited."
+          ]
+        },
+        {
+          title: "4. External links",
+          content: [
+            "The website may include links to third-party pages. IlustricIA is not responsible for the content, privacy policies or practices of such external sites. The inclusion of links does not imply relationship, approval or endorsement by IlustricIA."
+          ]
+        },
+        {
+          title: "5. Limitation of liability",
+          content: [
+            "IlustricIA does not guarantee the permanent availability of the website or the absence of technical errors. It is not responsible for damages or losses derived from improper use or lack of availability of the site."
+          ]
+        },
+        {
+          title: "6. Privacy and cookies policy",
+          content: [
+            "The processing of personal data collected through the website will be governed by the provisions of the Privacy Policy, and the use of cookies by the Cookie Policy, both available on this same site."
+          ]
+        },
+        {
+          title: "7. Applicable law and jurisdiction",
+          content: [
+            "This Legal Notice is governed by Spanish law. For the resolution of any controversy that may derive from access or use of the website, the user submits to the jurisdiction of the Courts and Tribunals of Elche, unless the law provides otherwise."
+          ]
+        },
+        {
+          content: [
+            "Elche, 01/2026",
+            "https://www.ilustricia.com",
+            "IlustricIA digital solutions"
+          ]
+        }
+      ]
     },
     cookiesPage: {
       title: "Cookie Policy",
       lastUpdated: "01/2026",
-      content: "1. What are cookies?\nCookies and similar technologies (e.g., pixels, tags, or identifiers) are files or devices that are stored in your browser or on your device when you browse. They serve, among other purposes, to remember your preferences, analyze site usage, or personalize content. AEPD\n\n2. What types of cookies exist?\nAccording to who manages them:\nFirst-party cookies: sent and managed by this website.\nThird-party cookies: sent and managed by other entities (analytics providers, advertising, social networks, etc.). AEPD\n\nAccording to their purpose (usual classification):\nTechnical or necessary: allow navigation and the use of basic functions.\nPreference or personalization: remember settings (language, region, etc.).\nAnalysis or measurement: help understand how the website is used to improve it.\nAdvertising / marketing: measure campaigns and can show personalized ads. AEPD\n\n3. Legal basis\nIn accordance with applicable regulations, we only install non-necessary cookies if the user provides their consent, after receiving clear and complete information.\n\n4. Cookies used by this website\nBelow are the cookies (or equivalent technologies) that may be used on this website. Complete and adjust this table with your real cookies.\nIf you use third-party cookies, you must identify those third parties and provide access to their information (provider policies), as well as explain how to manage or delete them if the user accepted them and then wants to withdraw them. AEPD\n\n5. How can you accept, reject, or configure cookies?\nWhen you access the website, a notice (banner) is shown that allows you to:\nAccept cookies,\nReject non-necessary cookies, and/or\nConfigure your preferences by category.\nYou must be able to deny or revoke consent as easily as granting it, and access to the configuration panel must be available in an accessible and permanent way (for example, through the “Configure cookies” link in the footer). AEPD+1\n\n6. How to deactivate or delete cookies from the browser\nIn addition to the configuration panel, you can delete cookies from your browser options. Please note that if you accept third-party cookies and later wish to delete them, it may be necessary to do so from your browser or from the mechanisms offered by the third party itself. AEPD\n\n7. International transfers (if applicable)\nSome providers (e.g., analytics or marketing) may process data outside the European Economic Area. In those cases, the guarantees provided by the regulations will apply (for example, standard contractual clauses or other valid mechanisms).\n\n8. Consent update and changes in cookies\nIf the purposes, cookies, or third parties change, we will update this Cookie Policy and, when appropriate, allow you to make a new decision. As a good practice, the AEPD considers it reasonable to renew consent periodically (for example, no more than 24 months). AEPD\n\n9. Contact\nFor questions about this Cookie Policy, you can write to us at: info@ilustricia.com.\n\nElche, 01/2026\nhttps://www.ilustricia.com\nIlustricIA digital solutions"
+      sections: [
+        {
+          title: "1. What are cookies?",
+          content: "Cookies and similar technologies (e.g., pixels, tags, or identifiers) are files or devices that are stored in your browser or on your device when you browse. They serve, among other purposes, to remember your preferences, analyze site usage, or personalize content."
+        },
+        {
+          title: "2. What types of cookies exist?",
+          content: [
+            "Depending on who manages them:",
+            "Own cookies: sent and managed by this website.",
+            "Third-party cookies: sent and managed by other entities (analytics providers, advertising, social networks, etc.).",
+            "Depending on their purpose (usual classification):",
+            "Technical or necessary: allow navigation and the use of basic functions.",
+            "Preference or personalization: remember settings (language, region, etc.).",
+            "Analysis or measurement: help understand how the web is used to improve it.",
+            "Advertising / marketing: measure campaigns and can show personalized ads."
+          ]
+        },
+        {
+          title: "3. Legal basis",
+          content: "In accordance with applicable regulations, we only install non-necessary cookies if the user provides their consent, after receiving clear and complete information."
+        },
+        {
+          title: "4. Cookies used by this website",
+          content: [
+            "Below are the cookies (or equivalent technologies) that may be used on this website. Complete and adjust this table with your actual cookies.",
+            "If you use third-party cookies, you must identify those third parties and provide access to their information (provider policies), as well as explain how to manage or delete them if the user accepted them and later wants to withdraw them."
+          ]
+        },
+        {
+          title: "5. How can you accept, reject or configure cookies?",
+          content: [
+            "When you access the web, a notice (banner) is shown that allows you to:",
+            "Accept cookies,",
+            "Reject non-necessary cookies, and/or",
+            "Configure your preferences by categories.",
+            "You must be able to deny or revoke consent as easily as granting it, and access to the configuration panel must be available in an accessible and permanent way (for example, through the “Configure cookies” link in the footer)."
+          ]
+        },
+        {
+          title: "6. How to disable or delete cookies from the browser",
+          content: "In addition to the configuration panel, you can delete cookies from your browser options. Keep in mind that if you accept third-party cookies and later wish to delete them, it may be necessary to do so from your browser or from the mechanisms offered by the third party itself."
+        },
+        {
+          title: "7. International transfers (if applicable)",
+          content: "Some providers (e.g., analytics or marketing) may process data outside the European Economic Area. In those cases, the guarantees provided by the regulations will apply (for example, standard contractual clauses or other valid mechanisms)."
+        },
+        {
+          title: "8. Consent update and changes in cookies",
+          content: "If the purposes, cookies, or third parties change, we will update this Cookie Policy and, when appropriate, allow you to make a new decision. As a good practice, the AEPD considers it reasonable to renew consent periodically (for example, no more than 24 months)."
+        },
+        {
+          title: "9. Contact",
+          content: "For questions about this Cookie Policy, you can write to us at: info@ilustricia.com."
+        },
+        {
+          content: [
+            "Elche, 01/2026",
+            "https://www.ilustricia.com",
+            "IlustricIA digital solutions"
+          ]
+        }
+      ]
     }
   },
   pt: {
@@ -549,7 +1009,7 @@ export const translations = {
     testimonials: {
       items: [
         {
-          quote: "Desde que implementamos o assistente de telefone, não precisamos mais nos preocupar em estar sempre pendentes do telefone. Além disso, antes perdíamos muitos pacientes em nossa clínica porque ligavam fora do horário, mas agora todas as chamadas são atendidas e nossos pacientes podem agendar consultas a qualquer hora.",
+          quote: "Desde que implementamos o assistente de voz, não precisamos mais nos preocupar em estar sempre pendentes do telefone. Além disso, antes perdíamos muitos pacientes em nossa clínica porque ligavam fora do horário, mas agora todas as chamadas são atendidas e nossos pacientes podem agendar consultas a qualquer hora.",
           author: "Dr Vicente",
           role: "Proprietário",
           company: "Clínica Javaloyes"
@@ -559,12 +1019,6 @@ export const translations = {
           author: "Ismael",
           role: "Proprietário",
           company: "Restaurante Zagálico"
-        },
-        {
-          quote: "Graças à inteligência artificial da IlustricIA, pudemos personalizar a experiência dos nossos usuários a um nível que antes era impossível. Os resultados falam por si mesmos.",
-          author: "Ana García",
-          role: "Head of Marketing",
-          company: "GlobalRetail"
         }
       ],
       client: "Cliente"
@@ -621,9 +1075,9 @@ export const translations = {
       contactUs: "Contate-nos agora"
     },
     systemOfRecord: {
-      badge: "SISTEMA DE REGISTRO",
-      title: "A fonte única de verdade para sua empresa.",
-      description: "Centralize todas as informações do seu negócio em um só lugar. Acesse dados em tempo real, automatize relatórios e tome decisões baseadas em evidências, não em suposições.",
+      badge: "NÚCLEO INTELIGENTE",
+      title: "O cérebro operacional que sua empresa precisa.",
+      description: "Centralize e impulsione seu negócio com nossas soluções de IA. Automatize processos, analise dados em tempo real e dimensione sua operação com a tecnologia mais avançada do mercado.",
       schedule: "Agendar consulta",
       demo: "Teste nossa demo"
     },
@@ -660,17 +1114,253 @@ export const translations = {
     privacyPage: {
       title: "Política de Privacidade",
       lastUpdated: "01/2026",
-      content: "Na IlustricIA, levamos muito a sério a sua privacidade e a proteção dos seus dados pessoais. Esta Política de Privacidade explica quais dados coletamos, para que os usamos, com qual base legal, por quanto tempo, com quem os compartilhamos e quais direitos você tem como usuário. BOE+1\n\n1. Responsável pelo tratamento\nResponsável: IlustricIA Soluciones Digitales (nome comercial)\nRazão social: ILUSTRICIA SL\nNIF/CIF: B24927881\nE-mail de contato: info@ilustricia.com\nTelefone: +34 636 251 256\nWeb: www.ilustricia.com\nEncarregado de Proteção de Dados (DPO): info@ilustricia.com\n\n2. Quais dados tratamos\nDependendo de como você interage com o site, podemos tratar:\nDados identificativos e de contato: nome, sobrenome, e-mail, telefone.\nDados profissionais: empresa, cargo, setor, necessidades do projeto.\nDados da mensagem: informações que você nos envia ao solicitar um agendamento, orçamento ou consulta.\nDados de navegação: endereço IP, identificadores do dispositivo/navegador e eventos de uso (por exemplo, páginas visitadas), especialmente se você usar cookies/análise.\nRedes sociais: se você entrar em contato conosco por perfis sociais, trataremos os dados disponíveis de acordo com sua configuração e a própria rede social.\nNão solicitamos categorias especiais de dados (ex: saúde, ideologia) e pedimos que não as inclua nos formulários.\n\n3. Finalidades do tratamento\nTratamos seus dados para as seguintes finalidades:\nAtender consultas e solicitações (contato, informação, orçamento).\nGerenciar a reserva de agendamento / reunião inicial e a comunicação prévia e posterior.\nPrestar e administrar nossos serviços (consultoria e implementação de soluções de IA, automação, desenvolvimento web/marketplaces, etc.), incluindo a gestão contratual, se aplicável.\nEnviar comunicações comerciais (newsletter, novidades, casos de sucesso) quando você autorizar ou quando houver uma base legítima aplicável.\nMelhorar o site e a segurança, prevenir fraudes e uso indevido e manter a integridade técnica do site.\n\n4. Base jurídica (legitimação)\nDependiendo do caso, a base legal será:\nExecução de um contrato ou medidas pré-contratuais (ex: solicitação de proposta ou reunião para iniciar um projeto). BOE\nConsentimento (ex: envio de comunicações comerciais ou cookies não necessários). BOE\nCumprimento de obrigações legais (ex: obrigações fiscais/contábeis quando houver contratação). BOE+1\nInteresse legítimo (ex: segurança do site, prevenção de abuso e melhorias básicas do serviço, equilibrado com seus direitos). BOE\nQuando o tratamento for baseado no consentimento, você poderá retirá-lo a qualquer momento sem que isso afete a licitude do tratamento anterior.\n\n5. Destinatários e operadores do tratamento\nNão vendemos seus dados. Poderemos comunicar o permitir o acesso aos seus dados a:\nFornecedores que nos prestam serviços (por exemplo: hospedagem, e-mail, ferramentas de análise, CRM, automação, videochamadas, calendários, suporte técnico), atuando como operadores do tratamento sob contrato. BOE\nAdministrações públicas e autoridades competentes quando houver uma obrigação legal. BOE+1\n\n6. Transferências internacionais\nCaso utilizemos fornecedores localizados fora do Espaço Econômico Europeu, a Ilustricia aplicará as garantias exigidas pela normativa (por exemplo, Cláusulas Contratuais Padrão ou outros mecanismos válidos). Indique aqui, se aplicável.\n\n7. Prazos de conservação\nConservaremos os dados:\nConsultas e solicitações: durante o tempo necessário para atendê-las e, posteriormente, por [X meses/anos] para acompanhamento e rastreabilidade.\nClientes e projetos: durante a relação contratual e, posteriormente, durante os prazos legais aplicáveis (fiscais/contábeis).\nMarketing: até que você retire seu consentimento ou solicite o cancelamento.\nSegurança e logs técnicos: durante o tempo estritamente necessário para a segurança e a resolução de incidentes.\n\n8. Direitos dos usuários\nVocê pode exercer os direitos de:\nAcesso, retificação, exclusão,\noposição, limitação do tratamento,\nportabilidade (quando aplicável),\ne retirar o consentimento a qualquer momento. BOE+1\nPara exercê-los, envie-nos um e-mail para suporte@ilustricia.com com o assunto “Protección de dados” e indicando sua solicitação. Poderemos solicitar informações adicionais para verificar sua identidade.\nSe você considerar que seus direitos não foram atendidos corretamente, poderá apresentar uma reclamação perante a Agência Espanhola de Proteção de Dados (AEPD). sedeaepd.gob.es+1\n\n9. Medidas de segurança\nA Ilustricia aplica medidas técnicas e organizativas razoáveis para proteger os dados pessoais contra acesso não autorizado, perda, alteração ou divulgação. BOE\n\n10. Menores de idade\nNossos serviços não são direcionados a menores de 14 anos. Se detectarmos que tratamos dados de um menor sem autorização válida, procederemos à sua eliminação.\n\n11. Cookies e tecnologias semelhantes\nUtilizamos cookies e tecnologias semelhantes. Para mais informações, consulte a Política de Cookies e a seção Configurar Cookies (preferências). (Adicione o link interno quando o tiver no rodapé.)\n\n12. Alterações nesta política\nPoderemos atualizar esta Política de Privacidade para refletir alterações legais ou técnicas. A data de “Última atualização” indicará quando foi revisada pela última vez.\n\nElche, 01/2026\nhttps://www.ilustricia.com\nIlustricIA soluções digitais"
+      sections: [
+        {
+          content: "Na IlustricIA levamos muito a sério a privacidade e a proteção dos seus dados pessoais. Esta Política de Privacidade explica quais dados recolhemos, para que os usamos, com que base legal, por quanto tempo, com quem os partilhamos e quais direitos você tem como utilizador."
+        },
+        {
+          title: "1. Responsável pelo tratamento",
+          content: [
+            "Responsável: IlustricIA Soluções Digitais (nome comercial)",
+            "Razão social: ILUSTRICIA SL",
+            "NIF/CIF: B24927881",
+            "E-mail de contacto: info@ilustricia.com",
+            "Telefone: +34 636 251 256",
+            "Web: www.ilustricia.com",
+            "Encarregado de Proteção de Dados (DPO): info@ilustricia.com"
+          ]
+        },
+        {
+          title: "2. Quais dados tratamos",
+          content: [
+            "Dependendo de como você interage com a web, podemos tratar:",
+            "Dados identificativos e de contacto: nome, apelidos, e-mail, telefone.",
+            "Dados profissionais: empresa, cargo, setor, necessidades do projeto.",
+            "Dados da mensaje: informações que nos envia ao solicitar uma reunião, orçamento ou consulta.",
+            "Dados de navegação: endereço IP, identificadores do dispositivo/navegador, e eventos de uso (por exemplo, páginas visitadas), especialmente se utilizar cookies/analítica.",
+            "Redes sociais: se contactar connosco através de perfis sociais, trataremos os dados disponíveis de acordo com a sua configuração e a própria rede social.",
+            "Não solicitamos categorias especiais de dados (ex: saúde, ideologia) e pedimos que não as inclua nos formulários."
+          ]
+        },
+        {
+          title: "3. Finalidades do tratamento",
+          content: [
+            "Tratamos os seus dados para as seguintes finalidades:",
+            "Atender consultas e solicitações (contacto, informação, orçamento).",
+            "Gerir a reserva de reunião inicial e a comunicação prévia e posterior.",
+            "Prestar e administrar os nossos serviços (consultoria e implementação de soluções de IA, automação, desenvolvimento web/marketplaces, etc.), incluindo a gestão contratual, se aplicável.",
+            "Enviar comunicações comerciais (newsletter, novidades, casos de sucesso) quando o autorizar ou quando existir uma base legítima aplicável.",
+            "Melhorar a web e a segurança, prevenir fraude e uso indevido, e manter a integridade técnica do site."
+          ]
+        },
+        {
+          title: "4. Base jurídica (legitimação)",
+          content: [
+            "Dependendo do caso, a base legal será:",
+            "Execução de um contrato o medidas pré-contratuais (ex: solicitação de proposta ou reunião para iniciar um projeto).",
+            "Consentimento (ex: envio de comunicações comerciais ou cookies não necessários).",
+            "Cumprimento de obrigações legais (ex: obrigações fiscais/contabilísticas quando existir contratação).",
+            "Interesse legítimo (ex: segurança do site, prevenção de abuso, e melhorias básicas do serviço, equilibrado com os seus direitos).",
+            "Quando o tratamento se basear no consentimento, poderá retirá-lo a qualquer momento sem que isso afete a licitude do tratamento anterior."
+          ]
+        },
+        {
+          title: "5. Destinatários e encarregados do tratamento",
+          content: [
+            "Não vendemos os seus dados. Poderemos comunicar ou permitir o acesso aos seus dados a:",
+            "Fornecedores que nos prestam serviços (por exemplo: hosting, e-mail, ferramentas de analítica, CRM, automação, videochamadas, calendários, suporte técnico), atuando como encarregados do tratamento sob contrato.",
+            "Administrações públicas e autoridades competentes quando existir uma obrigação legal."
+          ]
+        },
+        {
+          title: "6. Transferências internacionais",
+          content: [
+            "Em caso de utilização de fornecedores localizados fora do Espaço Económico Europeu, a Ilustricia aplicará as garantias exigidas pela normativa (por exemplo, Cláusulas Contratuais Padrão ou outros mecanismos válidos)."
+          ]
+        },
+        {
+          title: "7. Prazos de conservação",
+          content: [
+            "Conservaremos os dados:",
+            "Consultas e solicitações: durante o tempo necessário para atendê-las e, posteriormente, pelo tempo necessário para acompanhamento e rastreabilidade.",
+            "Clientes e projetos: durante a relação contratual e, posteriormente, durante os prazos legais aplicáveis (fiscais/contabilísticos).",
+            "Marketing: até que retire o seu consentimento ou solicite a baixa.",
+            "Segurança e logs técnicos: durante o tempo estritamente necessário para a segurança e a resolução de incidentes."
+          ]
+        },
+        {
+          title: "8. Direitos dos utilizadores",
+          content: [
+            "Pode exercer os direitos de:",
+            "Acesso, retificação, eliminação, oposição, limitação do tratamento, portabilidade (quando aplicável), e retirar o consentimento a qualquer momento.",
+            "Para exercê-los, envie-nos um e-mail para soporte@ilustricia.com com o assunto “Proteção de dados” e indicando a sua solicitação. Poderemos pedir-lhe informações adicionais para verificar a sua identidade.",
+            "Se considerar que os seus derechos não foram atendidos corretamente, pode apresentar uma reclamação perante a Agência Espanhola de Proteção de Dados (AEPD). sedeaepd.gob.es"
+          ]
+        },
+        {
+          title: "9. Medidas de segurança",
+          content: [
+            "A Ilustricia aplica medidas técnicas e organizativas razoáveis para proteger os dados pessoais contra acessos não autorizados, perda, alteração ou divulgação."
+          ]
+        },
+        {
+          title: "10. Menores de idade",
+          content: [
+            "Os nossos serviços não são dirigidos a menores de 14 anos. Se detetarmos que tratamos dados de um menor sem autorização válida, procederemos à sua eliminação."
+          ]
+        },
+        {
+          title: "11. Cookies e tecnologias semelhantes",
+          content: [
+            "Utilizamos cookies e tecnologias semelhantes. Para mais informações, consulte a Política de Cookies e a secção Configurar Cookies (preferências)."
+          ]
+        },
+        {
+          title: "12. Alterações nesta política",
+          content: [
+            "Poderemos atualizar esta Política de Privacidade para refletir alterações legais ou técnicas. A data de “Última atualização” indicará quando foi revista pela última vez."
+          ]
+        },
+        {
+          content: [
+            "Elche, 01/2026",
+            "https://www.ilustricia.com",
+            "IlustricIA soluções digitais"
+          ]
+        }
+      ]
     },
     legalPage: {
       title: "Aviso Legal",
       lastUpdated: "01/2026",
-      content: "Em cumplimiento do disposto na Lei 34/2002, de 11 de julho, de Serviços da Sociedade da Informação e de Comércio Eletrónico (LSSI-CE), é facultada a seguinte informação geral do sítio web https://www.ilustricia.com\n\n1. Dados identificativos\nTitular: ILUSTRICIA SL\nNome comercial: IlustricIA Soluciones Digitales\nNIF/CIF: B24927881\nE-mail de contacto: info@ilustricia.com\nTelefone de contacto: +34 636 251 256\n\nO presente sítio web tem por objeto dar a conhecer a atividade, serviços e projetos da IlustricIA, empresa dedicada à consultoria e desenvolvimento de soluções tecnológicas e Inteligencia Artificial.\n\n2. Condições de uso\nO acesso e uso do sítio web atribui a condição de utilizador e supõe a aceitação plena e sem reservas de todas as cláusulas do presente Aviso Legal. Se não estiver de acordo com qualquer uma das condições, deverá abster-se de utilizar este sítio web.\n\nO utilizador compromete-se a fazer um uso adequado do conteúdo e dos serviços que a IlustricIA oferece, e a não os utilizar para atividades ilícitas ou contrárias à boa fé, à ordem pública ou aos direitos de terceiros.\n\n3. Propriedade intelectual e industrial\nTodos os conteúdos do sítio web (textos, imagens, logótipos, marcas, estrutura, design, código fonte, etc.) são titularidade da IlustricIA ou de terceiros que autorizaram o seu uso.\nFica proibida a reprodução, distribuição ou transformação de tais conteúdos sem autorização expressa e por escrito do titular.\n\n4. Links externos\nO sítio web pode incluir links para páginas de terceiros. A IlustricIA não se responsabiliza pelos conteúdos, políticas de privacidade nem pelas práticas de tais sítios externos. A inclusão de links não implica relação, aprovação ou apoio por parte da IlustricIA.\n\n5. Limitação de responsabilidade\nA IlustricIA não garante a disponibilidade permanente do sítio web nem a ausência de erros técnicos. Não se responsabiliza por danos ou prejuízos derivados do uso indevido ou da falta de disponibilidade do sítio.\n\n6. Política de privacidade e cookies\nO tratamento dos dados pessoais recolhidos através do sítio web reger-se-á pelo disposto na Política de Privacidade, e o uso de cookies pela Política de Cookies, ambas disponíveis neste mesmo sítio.\n\n7. Legislação aplicável e jurisdição\nO presente Aviso Legal rege-se pela legislación espanhola. Para a resolução de qualquer controvérsia que possa derivar do acesso ou uso do sítio web, el utilizador submete-se à jurisdição dos Juízos e Tribunais de Elche, salvo se a lei dispuser o contrário.\n\nElche, 01/2026\n\nhttps://www.ilustricia.com\nIlustricIA soluciones digitales"
+      sections: [
+        {
+          content: "Em cumprimento do disposto na Lei 34/2002, de 11 de julho, de Serviços da Sociedade da Informação e de Comércio Eletrónico (LSSI-CE), é facultada a seguinte informação geral do sítio web https://www.ilustricia.com"
+        },
+        {
+          title: "1. Dados identificativos",
+          content: [
+            "Titular: ILUSTRICIA SL",
+            "Nome comercial: IlustricIA Soluciones Digitales",
+            "NIF/CIF: B24927881",
+            "E-mail de contacto: info@ilustricia.com",
+            "Telefone de contacto: +34 636 251 256",
+            "O presente sítio web tem por objeto dar a conhecer a atividade, serviços e projetos da IlustricIA, empresa dedicada à consultoria e desenvolvimento de soluções tecnológicas e Inteligência Artificial."
+          ]
+        },
+        {
+          title: "2. Condições de uso",
+          content: [
+            "O acesso e uso do sítio web atribui a condição de utilizador e supõe a aceitação plena e sem reservas de todas as cláusulas do presente Aviso Legal. Se não estiver de acordo com qualquer uma das condições, deverá abster-se de utilizar este sítio web.",
+            "O utilizador compromete-se a fazer um uso adequado do conteúdo e dos serviços que a IlustricIA oferece, e a não os utilizar para atividades ilícitas ou contrárias à boa fé, à ordem pública ou aos direitos de terceiros."
+          ]
+        },
+        {
+          title: "3. Propriedade intelectual e industrial",
+          content: [
+            "Todos os conteúdos do sítio web (textos, imagens, logótipos, marcas, estrutura, design, código fonte, etc.) são titularidade da IlustricIA ou de terceiros que autorizaram o seu uso.",
+            "Fica proibida a reprodução, distribuição ou transformação de tais conteúdos sem autorização expressa e por escrito do titular."
+          ]
+        },
+        {
+          title: "4. Links externos",
+          content: [
+            "O sítio web pode incluir links para páginas de terceiros. A IlustricIA não se responsabiliza pelos conteúdos, políticas de privacidade nem pelas práticas de tais sítios externos. A inclusão de links não implica relação, aprovação ou apoio por parte da IlustricIA."
+          ]
+        },
+        {
+          title: "5. Limitação de responsabilidade",
+          content: [
+            "A IlustricIA não garante a disponibilidade permanente do sítio web nem a ausência de erros técnicos. Não se responsabiliza por danos ou prejuízos derivados do uso indevido ou da falta de disponibilidade do sítio."
+          ]
+        },
+        {
+          title: "6. Política de privacidade e cookies",
+          content: [
+            "O tratamento dos dados pessoais recolhidos através do sítio web reger-se-á pelo disposto na Política de Privacidade, e o uso de cookies pela Política de Cookies, ambas disponíveis neste mesmo sítio."
+          ]
+        },
+        {
+          title: "7. Legislação aplicável e jurisdição",
+          content: [
+            "O presente Aviso Legal rege-se pela legislação espanhola. Para a resolução de qualquer controvérsia que possa derivar do acesso ou uso do sítio web, o utilizador submete-se à jurisdição dos Juízos e Tribunais de Elche, salvo se a lei dispuser o contrário."
+          ]
+        },
+        {
+          content: [
+            "Elche, 01/2026",
+            "https://www.ilustricia.com",
+            "IlustricIA soluções digitais"
+          ]
+        }
+      ]
     },
     cookiesPage: {
       title: "Política de Cookies",
       lastUpdated: "01/2026",
-      content: "1. O que são cookies?\nCookies e tecnologias semelhantes (por exemplo, pixels, tags ou identificadores) são arquivos ou dispositivos que são armazenados no seu navegador ou no seu dispositivo quando você navega. Eles servem, entre outras finalidades, para lembrar suas preferências, analisar o uso do site ou personalizar conteúdos. AEPD\n\n2. Que tipos de cookies existem?\nSegundo quem os gerencia:\nCookies próprios: enviados e gerenciados por este site.\nCookies de terceiros: enviados e gerenciados por outras entidades (provedores de análise, publicidade, redes sociais, etc.). AEPD\n\nSegundo sua finalidade (classificação habitual):\nTécnicos ou necessários: permitem a navegação e o uso de funções básicas.\nDe preferências ou personalização: lembram configurações (idioma, região, etc.).\nDe análise ou medição: ajudam a entender como o site é usado para melhorá-lo.\nDe publicidade / marketing: medem campanhas e podem mostrar anúncios personalizados. AEPD\n\n3. Base jurídica\nDe acordo com a normativa aplicável, apenas instalamos cookies não necessários se o usuário prestar seu consentimento, após receber informações claras e completas.\n\n4. Cookies que este site utiliza\nAbaixo estão indicados os cookies (ou tecnologias equivalentes) que podem ser utilizados neste site. Complete e ajuste esta tabela com seus cookies reais.\nSe você utiliza cookies de terceiros, deve identificar esses terceiros e facilitar o acesso às suas informações (políticas do provedor), além de explicar como gerenciá-los ou eliminá-los se o usuário os aceitou e depois quiser retirá-los. AEPD\n\n5. Como você pode aceitar, rejeitar ou configurar cookies?\nQuando você acessa o site, é exibido um aviso (banner) que permite:\nAceitar cookies,\nRejeitar cookies não necessários, e/ou\nConfigurar suas preferências por categorias.\nVocê deve poder negar ou revogar o consentimento de forma tão simples quanto concedê-lo, e o acesso ao painel de configuração deve estar disponível de forma acessível e permanente (por exemplo, através do link “Configurar cookies” no rodapé). AEPD+1\n\n6. Como desativar ou excluir cookies do navegador\nAlém do painel de configuração, você pode excluir os cookies das opções do seu navegador. Tenha em conta que, se aceitar cookies de terceiros e posteriormente desejar eliminá-los, pode ser necessário fazê-lo a partir do seu navegador ou dos mecanismos oferecidos pelo próprio terceiro. AEPD\n\n7. Transferências internacionais (se aplicável)\nAlguns provedores (ex: análise ou marketing) podem tratar dados fora do Espaço Econômico Europeu. Nesses casos, serão aplicadas as garantias previstas pela normativa (por exemplo, cláusulas contratuais padrão ou outros mecanismos válidos).\n\n8. Atualização do consentimento e mudanças nos cookies\nSe as finalidades, os cookies ou os terceiros mudarem, atualizaremos esta Política de Cookies e, quando apropriado, permitiremos que você tome uma nova decisão. Como boa prática, a AEPD considera razoável renovar o consentimento periodicamente (por exemplo, não mais de 24 meses). AEPD\n\n9. Contato\nPara dúvidas sobre esta Política de Cookies, você pode nos escrever em: info@ilustricia.com.\n\nElche, 01/2026\nhttps://www.ilustricia.com\nIlustricIA soluções digitais"
+      sections: [
+        {
+          title: "1. O que são cookies?",
+          content: "Cookies e tecnologias semelhantes (por exemplo, pixels, tags ou identificadores) são arquivos ou dispositivos que são armazenados no seu navegador ou no seu dispositivo quando você navega. Eles servem, entre outras finalidades, para lembrar suas preferências, analisar o uso do site ou personalizar conteúdos."
+        },
+        {
+          title: "2. Que tipos de cookies existem?",
+          content: [
+            "Segundo quem os gerencia:",
+            "Cookies próprios: enviados e gerenciados por este site.",
+            "Cookies de terceiros: enviados e gerenciados por outras entidades (provedores de análise, publicidade, redes sociais, etc.).",
+            "Segundo sua finalidade (classificação habitual):",
+            "Técnicos ou necessários: permitem a navegação e o uso de funções básicas.",
+            "De preferências ou personalização: lembram configurações (idioma, região, etc.).",
+            "De análise ou medição: ajudam a entender como o site é usado para melhorá-lo.",
+            "De publicidade / marketing: medem campanhas e podem mostrar anúncios personalizados."
+          ]
+        },
+        {
+          title: "3. Base jurídica",
+          content: "De acordo com a normativa aplicável, apenas instalamos cookies não necessários se o usuário prestar seu consentimento, após receber informações claras e completas."
+        },
+        {
+          title: "4. Cookies que este site utiliza",
+          content: [
+            "Abaixo estão indicados os cookies (ou tecnologias equivalentes) que podem ser utilizados neste site. Complete e ajuste esta tabela com seus cookies reais.",
+            "Se você utiliza cookies de terceiros, deve identificar esses terceiros e facilitar o acesso às suas informações (políticas do provedor), além de explicar como gerenciá-los ou eliminá-los se o usuário os aceitou e depois quiser retirá-los."
+          ]
+        },
+        {
+          title: "5. Como você pode aceitar, rejeitar ou configurar cookies?",
+          content: [
+            "Quando você acessa o site, é exibido um aviso (banner) que permite:",
+            "Aceitar cookies,",
+            "Rejeitar cookies não necessários, e/ou",
+            "Configurar suas preferências por categorias.",
+            "Você deve poder negar ou revogar o consentimento de forma tão simples quanto concedê-lo, e o acesso ao painel de configuração deve estar disponível de forma acessível e permanente (por exemplo, através do link “Configurar cookies” no rodapé)."
+          ]
+        },
+        {
+          title: "6. Como desativar ou excluir cookies do navegador",
+          content: "Além do painel de configuração, você pode excluir os cookies das opções do seu navegador. Tenha em conta que, se aceitar cookies de terceiros e posteriormente desejar eliminá-los, pode ser necessário fazê-lo a partir do seu navegador ou dos mecanismos oferecidos pelo próprio terceiro."
+        },
+        {
+          title: "7. Transferências internacionais (se aplicável)",
+          content: "Alguns provedores (ex: análise ou marketing) podem tratar dados fora do Espaço Econômico Europeu. Nesses casos, serão aplicadas as garantias previstas pela normativa (por exemplo, cláusulas contratuais padrão ou outros mecanismos válidos)."
+        },
+        {
+          title: "8. Atualização do consentimento e mudanças nos cookies",
+          content: "Se as finalidades, os cookies ou os terceiros mudarem, atualizaremos esta Política de Cookies e, quando apropriado, permitiremos que você tome uma nova decisão. Como boa prática, a AEPD considera razoável renovar o consentimento periodicamente (por exemplo, não mais de 24 meses)."
+        },
+        {
+          title: "9. Contato",
+          content: "Para dúvidas sobre esta Política de Cookies, você pode nos escrever em: info@ilustricia.com."
+        },
+        {
+          content: [
+            "Elche, 01/2026",
+            "https://www.ilustricia.com",
+            "IlustricIA soluções digitais"
+          ]
+        }
+      ]
     }
   }
 };
