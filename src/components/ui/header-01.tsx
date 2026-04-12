@@ -115,8 +115,9 @@ const Header = () => {
         >
           <div className="relative flex items-center justify-between gap-1.5 py-0">
             <div className="flex items-center gap-2 md:gap-8">
-              <Link
-                to="/"
+              <HashLink
+                smooth
+                to="/#"
                 aria-label="home"
                 className="flex gap-2 items-center shrink-0 leading-none"
               >
@@ -126,7 +127,7 @@ const Header = () => {
                   className="w-20 md:w-32 h-auto object-contain block transition-all duration-300"
                   referrerPolicy="no-referrer"
                 />
-              </Link>
+              </HashLink>
             </div>
 
             <div className="hidden lg:flex flex-1 justify-center">
@@ -138,7 +139,7 @@ const Header = () => {
               <div className="flex items-center gap-1.5">
                 <HashLink 
                   smooth
-                  to="/#agendar"
+                  to="/#calendario"
                   className={cn(
                     "px-2 py-1 md:px-4 md:py-2 text-[9px] md:text-xs border rounded-full transition-colors duration-200 cursor-pointer whitespace-nowrap",
                     isScrolled 

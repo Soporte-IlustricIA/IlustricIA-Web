@@ -185,6 +185,7 @@ export function FooterCtaSection() {
 
         {/* Cal.com Inline Embed */}
         <motion.div
+          id="calendario"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
