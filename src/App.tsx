@@ -19,6 +19,7 @@ import { LanguageProvider, useLanguage } from './components/LanguageContext';
 import { ConversationProvider } from '@elevenlabs/react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LegalPage } from './pages/LegalPage';
+import { DemoPage } from './pages/DemoPage';
 
 function HomePage() {
   const { theme } = useTheme();
@@ -149,6 +150,7 @@ function AppContent() {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/demo" element={<DemoPage />} />
         <Route 
           path="/privacy" 
           element={
