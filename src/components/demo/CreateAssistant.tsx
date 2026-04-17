@@ -104,7 +104,7 @@ export function CreateAssistant() {
       <div className="max-w-7xl mx-auto px-8">
         <div className="max-w-3xl mb-10">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary block mb-4">Demo en vivo</span>
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4 text-on-surface dark:text-white">Crea un asistente con OpenClaw y obtén su widget</h2>
+          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4 text-on-surface dark:text-white">Crea un asistente e interactúa con él</h2>
           <p className="text-on-surface-variant dark:text-neutral-400">Completa el formulario para generar tu asistente. Mientras se crea verás un estado de espera y, al finalizar, se cargará automáticamente la demo.</p>
         </div>
 
