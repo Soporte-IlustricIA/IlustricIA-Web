@@ -82,10 +82,10 @@ export function DemoCatalog() {
           <p className="text-xs uppercase tracking-widest text-outline mb-4">
             Demo interactiva {activeDemo && `· ${activeDemo.category}`}
           </p>
-          <div className="rounded-xl border border-outline-variant/20 dark:border-white/10 bg-surface-container-lowest dark:bg-neutral-900/50 backdrop-blur-sm p-5 md:p-6">
+          <div className="relative rounded-xl border border-outline-variant/20 dark:border-white/10 bg-surface-container-lowest dark:bg-neutral-900/50 backdrop-blur-sm p-5 md:p-6">
             {activeAgentId ? (
-              <>
-                <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="min-h-[220px] flex flex-col">
+                <div className="flex items-start gap-4 max-w-xl">
                   <div className="w-10 h-10 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center">
                     <Phone size={18} />
                   </div>
@@ -94,17 +94,17 @@ export function DemoCatalog() {
                       Widget activo{activeDemo && ` · ${activeDemo.category}`}
                     </p>
                     <p className="text-xs text-on-surface-variant dark:text-neutral-400 mt-1">
-                      Pulsa <span className="font-semibold">«Pruébame»</span> en la esquina inferior derecha de la pantalla para iniciar la conversación.
+                      Pulsa <span className="font-semibold">«Pruébame»</span> en la esquina inferior derecha para iniciar la conversación.
                     </p>
-                  </div>
-                  <div className="hidden sm:flex items-center gap-1 text-xs text-outline dark:text-neutral-500">
-                    <span>Abajo a la derecha</span>
-                    <ArrowDownRight size={14} />
+                    <div className="hidden md:flex items-center gap-1 text-[11px] text-outline dark:text-neutral-500 mt-3">
+                      <ArrowDownRight size={12} />
+                      <span>Abajo a la derecha de este panel</span>
+                    </div>
                   </div>
                 </div>
                 {/* @ts-ignore */}
                 <elevenlabs-convai agent-id={activeAgentId} />
-              </>
+              </div>
             ) : (
               <p className="text-sm text-on-surface-variant dark:text-neutral-400">
                 Pulsa «Abrir demo» en una tarjeta para cargar el widget de ElevenLabs.
