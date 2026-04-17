@@ -1,16 +1,25 @@
 import React from 'react';
 import { Rocket } from 'lucide-react';
-import { TubesBackground } from '../ui/neon-flow';
-import { useTheme } from '../ThemeProvider';
 
 export function DemoHero() {
-  const { theme } = useTheme();
+
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      <TubesBackground key={theme} className="absolute inset-0 z-0">
+      {/* Background Layer con vídeo loop */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/hero/poster.png"
+          className="w-full h-full object-cover grayscale-[0.2]"
+        >
+          <source src="/hero/loop.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-transparent backdrop-blur-[1px]"></div>
-      </TubesBackground>
+      </div>
 
       {/* Particle/Light Effects */}
       <div className="absolute right-0 bottom-0 w-1/2 h-2/3 z-10 hidden md:block pointer-events-none">
@@ -34,7 +43,7 @@ export function DemoHero() {
             </div>
             <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[85%]">
               <a 
-                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 text-center text-xs font-bold text-on-primary shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all" 
+                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 text-center text-xs font-bold text-on-primary shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all focus:outline-none focus:ring-2 focus:ring-primary-container" 
                 href="#crea-tu-asistente"
               >
                 <Rocket size={14} />

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Utensils, Stethoscope, Scissors, ArrowRight } from 'lucide-react';
+import { Utensils, Stethoscope, Scissors, ArrowRight, Phone, ArrowDownRight } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 const DEMOS = [
@@ -82,14 +82,33 @@ export function DemoCatalog() {
           <p className="text-xs uppercase tracking-widest text-outline mb-4">
             Demo interactiva {activeDemo && `· ${activeDemo.category}`}
           </p>
-          <div className="min-h-[400px] rounded-xl border border-outline-variant/20 dark:border-white/10 bg-surface-container-lowest dark:bg-neutral-900/50 backdrop-blur-sm p-6 md:p-8 flex items-center justify-center">
+          <div className="rounded-xl border border-outline-variant/20 dark:border-white/10 bg-surface-container-lowest dark:bg-neutral-900/50 backdrop-blur-sm p-5 md:p-6">
             {activeAgentId ? (
-              <div className="w-full flex justify-center">
+              <>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                  <div className="w-10 h-10 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                    <Phone size={18} />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-on-surface dark:text-white">
+                      Widget activo{activeDemo && ` · ${activeDemo.category}`}
+                    </p>
+                    <p className="text-xs text-on-surface-variant dark:text-neutral-400 mt-1">
+                      Pulsa <span className="font-semibold">«Pruébame»</span> en la esquina inferior derecha de la pantalla para iniciar la conversación.
+                    </p>
+                  </div>
+                  <div className="hidden sm:flex items-center gap-1 text-xs text-outline dark:text-neutral-500">
+                    <span>Abajo a la derecha</span>
+                    <ArrowDownRight size={14} />
+                  </div>
+                </div>
                 {/* @ts-ignore */}
                 <elevenlabs-convai agent-id={activeAgentId} />
-              </div>
+              </>
             ) : (
-              <p className="text-sm text-on-surface-variant dark:text-neutral-400">Pulsa «Abrir demo» en una tarjeta para cargar el widget de ElevenLabs aquí.</p>
+              <p className="text-sm text-on-surface-variant dark:text-neutral-400">
+                Pulsa «Abrir demo» en una tarjeta para cargar el widget de ElevenLabs.
+              </p>
             )}
           </div>
         </div>
