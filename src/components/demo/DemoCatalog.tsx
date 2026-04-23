@@ -4,7 +4,7 @@ import { cn } from '../../lib/utils';
 
 const DEMOS = [
     {
-    id: 'agent_3801kn4qtcm1e6wb3gh9kwzwagzd',
+    id: 'agent_3701kpxfmaecerna4xxhy0bs074s',
     title: 'Asistente para Clínicas',
     description: 'Citas, recordatorios y primeras consultas orientadas sin sustituir el criterio médico.',
     category: 'Clínicas',
