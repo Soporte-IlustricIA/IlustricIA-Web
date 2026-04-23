@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Utensils, Stethoscope, Scissors, ArrowRight, Phone, ArrowDownRight } from 'lucide-react';
+import { Scale, Stethoscope, Scissors, ArrowRight, Phone, ArrowDownRight } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 const DEMOS = [
