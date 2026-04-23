@@ -3,19 +3,19 @@ import { Utensils, Stethoscope, Scissors, ArrowRight, Phone, ArrowDownRight } fr
 import { cn } from '../../lib/utils';
 
 const DEMOS = [
-  {
-    id: 'agent_7401knfk53nwf6q89cpbtrgxt859',
-    title: 'Asistente para Restaurantes',
-    description: 'Reservas, carta, alérgenos y consultas de horario con respuesta inmediata para comensales.',
-    category: 'Restaurantes',
-    icon: Utensils
-  },
-  {
+    {
     id: 'agent_3801kn4qtcm1e6wb3gh9kwzwagzd',
     title: 'Asistente para Clínicas',
     description: 'Citas, recordatorios y primeras consultas orientadas sin sustituir el criterio médico.',
     category: 'Clínicas',
     icon: Stethoscope
+  },
+  {
+    id: 'agent_4101kevghc95evg9e975pzgqg89f',
+    title: 'Asistente para Abogacía',
+    description: 'Asistencia legal, gestiones administrativas y consultas jurídicas con respuesta inmediata para clientes.',
+    category: 'Abogacía',
+    icon: Scale
   },
   {
     id: 'agent_1901km5ad4pffrpv6dqaxefrrkmr',
