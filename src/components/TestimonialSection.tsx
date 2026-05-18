@@ -61,11 +61,9 @@ export function TestimonialSection() {
             {/* Avatar */}
             <div className="relative flex-shrink-0 mt-2">
                <div className="w-32 h-32 md:w-44 md:h-44 rounded-lg overflow-hidden bg-neutral-100 dark:bg-neutral-800 shadow-lg border border-neutral-200 dark:border-neutral-800">
-                  <img
-                    src={testimonials[currentIndex].avatar}
+                  <img 
+                    src={testimonials[currentIndex].avatar} 
                     alt={testimonials[currentIndex].author}
-                    loading="lazy"
-                    decoding="async"
                     className={cn(
                       "w-full h-full object-cover opacity-90 transition-transform duration-500",
                       testimonials[currentIndex].avatar.includes('testimonio1.webp') ? "scale-125" : "scale-100"
