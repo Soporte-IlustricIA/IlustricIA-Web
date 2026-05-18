@@ -31,9 +31,18 @@ export const TechBackground: React.FC = () => {
     window.addEventListener('resize', resize);
     resize();
 
+    let viewportObserver: IntersectionObserver | undefined;
+    if (isMobile) {
+      viewportObserver = new IntersectionObserver(([entry]) => {
+        isInViewport = entry.isIntersecting;
+      });
+      viewportObserver.observe(canvas);
+    }
+
     // Particles/Nodes
     const particles: { x: number; y: number; vx: number; vy: number; size: number; color: string }[] = [];
     const isMobile = window.innerWidth < 768;
+    let isInViewport = true;
     const particleCount = isMobile ? 10 : 20;
     let mouseX = -1000;
     let mouseY = -1000;
@@ -176,6 +185,10 @@ export const TechBackground: React.FC = () => {
     let targetScrollY = window.scrollY;
 
     const draw = () => {
+      if (isMobile && !isInViewport) {
+        animationFrameId = requestAnimationFrame(draw);
+        return;
+      }
       ctx.clearRect(0, 0, width, height);
       
       targetScrollY = scrollY.get();
@@ -448,6 +461,7 @@ export const TechBackground: React.FC = () => {
       window.removeEventListener('mouseleave', handleMouseLeave);
       window.removeEventListener('click', handleClick);
       cancelAnimationFrame(animationFrameId);
+      viewportObserver?.disconnect();
     };
   }, []);
 
