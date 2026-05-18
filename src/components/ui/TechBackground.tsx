@@ -17,23 +17,41 @@ export const TechBackground: React.FC = () => {
     const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true }); // Optimized context
     if (!ctx) return;
 
+    const isMobile = window.innerWidth < 768;
+
     let animationFrameId: number;
     let width = window.innerWidth;
     let height = window.innerHeight;
+    let isInViewport = true;
 
+    // Pause canvas rendering when scrolled out of view
+    const viewportObserver = new IntersectionObserver(([entry]) => {
+      isInViewport = entry.isIntersecting;
+    });
+    viewportObserver.observe(canvas);
+
+    let resizeTimer: ReturnType<typeof setTimeout>;
     const resize = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+      }, 150);
     };
 
+    // Initial size set immediately, debounce subsequent resizes
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+
     window.addEventListener('resize', resize);
-    resize();
 
     // Particles/Nodes
     const particles: { x: number; y: number; vx: number; vy: number; size: number; color: string }[] = [];
-    const particleCount = 20; 
+    const particleCount = isMobile ? 8 : 20;
     let mouseX = -1000;
     let mouseY = -1000;
 
@@ -65,7 +83,7 @@ export const TechBackground: React.FC = () => {
       orbitSpeed?: number;
       orbitAngle?: number;
     }[] = [];
-    const shapeCount = 12; 
+    const shapeCount = isMobile ? 5 : 12;
 
     for (let i = 0; i < shapeCount; i++) {
       const depth = Math.random() * 0.5 + 0.5;
@@ -93,7 +111,7 @@ export const TechBackground: React.FC = () => {
 
     // Falling Data Streams
     const streams: { x: number; y: number; speed: number; length: number; opacity: number }[] = [];
-    const streamCount = 4; 
+    const streamCount = isMobile ? 2 : 4;
     for (let i = 0; i < streamCount; i++) {
       streams.push({
         x: Math.random() * width,
@@ -175,6 +193,10 @@ export const TechBackground: React.FC = () => {
     let targetScrollY = window.scrollY;
 
     const draw = () => {
+      if (!isInViewport) {
+        animationFrameId = requestAnimationFrame(draw);
+        return;
+      }
       ctx.clearRect(0, 0, width, height);
       
       targetScrollY = scrollY.get();
@@ -447,6 +469,8 @@ export const TechBackground: React.FC = () => {
       window.removeEventListener('mouseleave', handleMouseLeave);
       window.removeEventListener('click', handleClick);
       cancelAnimationFrame(animationFrameId);
+      clearTimeout(resizeTimer);
+      viewportObserver.disconnect();
     };
   }, []);
 

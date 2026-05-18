@@ -126,9 +126,11 @@ export function BlogSection() {
             <BlogCard 
               image={
                 <div className="w-full aspect-[4/3] bg-neutral-900 relative overflow-hidden group-hover:opacity-90 transition-opacity">
-                  <img 
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=500" 
-                    alt="Dashboard" 
+                  <img
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=500"
+                    alt="Dashboard"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
