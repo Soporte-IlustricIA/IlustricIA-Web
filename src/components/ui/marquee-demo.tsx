@@ -7,9 +7,11 @@ const LogoItem = ({ src, name }: { src: string; name: string }) => {
   return (
     <div className="group flex items-center gap-4 cursor-default transition-all duration-500">
       <div className={`relative flex items-center justify-center ${isLarge ? 'h-12 w-12' : 'h-8 w-8'}`}>
-        <img 
-          src={src} 
+        <img
+          src={src}
           alt={name}
+          loading="lazy"
+          decoding="async"
           referrerPolicy="no-referrer"
           className={`h-full w-full object-contain filter grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 ${
             isOpenAI 
