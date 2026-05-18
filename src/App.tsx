@@ -10,9 +10,9 @@ import { CustomerStorySection } from './components/CustomerStorySection';
 import { FooterCtaSection } from './components/FooterCtaSection';
 import { AboutUsSection } from './components/AboutUsSection';
 import { Footer } from './components/ui/footer-section';
-import { motion } from 'framer-motion';
 import { MarqueeDemo } from './components/ui/marquee-demo';
 import { TechBackground } from './components/ui/TechBackground';
+import { useIntersectionAnimation } from './hooks/useIntersectionAnimation';
 
 import { useTheme } from './components/ThemeProvider';
 import { LanguageProvider, useLanguage } from './components/LanguageContext';
@@ -24,24 +24,29 @@ import { DemoPage } from './pages/DemoPage';
 function HomePage() {
   const { theme } = useTheme();
   const { t } = useLanguage();
-  
+
+  const hero = useIntersectionAnimation();
+  const dashboard = useIntersectionAnimation();
+  const system = useIntersectionAnimation();
+  const testimonials = useIntersectionAnimation();
+  const customerStory = useIntersectionAnimation();
+  const faq = useIntersectionAnimation();
+  const footerCta = useIntersectionAnimation();
+
   return (
     <div className="w-full min-h-screen font-sans text-black dark:text-white transition-colors duration-300 relative">
       <TechBackground />
       <Header />
-      
+
       {/* Hero Section */}
-      <motion.div 
-        className="h-screen w-full relative overflow-hidden bg-transparent transition-colors duration-500"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+      <div
+        ref={hero.ref}
+        className={`animate-on-scroll h-screen w-full relative overflow-hidden bg-transparent transition-colors duration-500${hero.isVisible ? ' visible' : ''}`}
       >
         {/* Subtle Grid Background */}
-        <div className="absolute inset-0 z-10 opacity-[0.1] dark:opacity-[0.05] pointer-events-none" 
+        <div className="absolute inset-0 z-10 opacity-[0.1] dark:opacity-[0.05] pointer-events-none"
              style={{ backgroundImage: 'radial-gradient(#94A3B8 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-        
+
         <TubesBackground key={theme}>
           <div className="flex flex-col items-center justify-center w-full h-full gap-6 text-center px-4 relative z-20">
             <div className="space-y-2 pointer-events-auto cursor-default">
@@ -54,35 +59,31 @@ function HomePage() {
             </div>
           </div>
         </TubesBackground>
-        
+
         {/* Gradient Fade to next section - Very subtle in white version */}
         <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white dark:from-[#030712] via-white/20 dark:via-[#030712]/80 to-transparent z-20 pointer-events-none backdrop-blur-[1px] dark:backdrop-blur-[2px]" />
 
         <div className="absolute bottom-16 w-full z-30">
           <MarqueeDemo />
         </div>
-      </motion.div>
+      </div>
 
       {/* Dashboard Section (Nuestros Servicios) */}
-      <motion.div 
+      <div
         id="dashboard"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        ref={dashboard.ref}
+        className={`animate-on-scroll${dashboard.isVisible ? ' visible' : ''}`}
       >
         <DashboardSection />
-      </motion.div>
+      </div>
 
       {/* System of Record Section (Sistema central) */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+      <div
+        ref={system.ref}
+        className={`animate-on-scroll${system.isVisible ? ' visible' : ''}`}
       >
         <SystemOfRecordSection />
-      </motion.div>
+      </div>
 
       {/* Feature Section (De la promesa a la practica) */}
       <div id="recursos">
@@ -90,14 +91,12 @@ function HomePage() {
       </div>
 
       {/* Testimonial Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+      <div
+        ref={testimonials.ref}
+        className={`animate-on-scroll${testimonials.isVisible ? ' visible' : ''}`}
       >
         <TestimonialSection />
-      </motion.div>
+      </div>
 
       {/* About Us Section (Quienes Somos) */}
       <div id="about">
@@ -105,37 +104,29 @@ function HomePage() {
       </div>
 
       {/* Customer Story Section (Innovacion) */}
-      <motion.div
-        className="py-24 md:py-32"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+      <div
+        ref={customerStory.ref}
+        className={`animate-on-scroll py-24 md:py-32${customerStory.isVisible ? ' visible' : ''}`}
       >
         <CustomerStorySection />
-      </motion.div>
+      </div>
 
       {/* FAQ Section */}
-      <motion.div
+      <div
         id="faqs"
-        className="py-24 md:py-32"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        ref={faq.ref}
+        className={`animate-on-scroll py-24 md:py-32${faq.isVisible ? ' visible' : ''}`}
       >
         <FaqSection />
-      </motion.div>
+      </div>
 
       {/* Footer CTA Section ("¿Iniciamos la transformación de tu operativa?") */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+      <div
+        ref={footerCta.ref}
+        className={`animate-on-scroll${footerCta.isVisible ? ' visible' : ''}`}
       >
         <FooterCtaSection />
-      </motion.div>
+      </div>
 
       {/* Main Footer */}
       <Footer />
@@ -145,41 +136,41 @@ function HomePage() {
 
 function AppContent() {
   const { t } = useLanguage();
-  
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/demo" element={<DemoPage />} />
-        <Route 
-          path="/privacy" 
+        <Route
+          path="/privacy"
           element={
-            <LegalPage 
-              title={t.privacyPage.title} 
-              lastUpdated={t.privacyPage.lastUpdated} 
-              sections={t.privacyPage.sections} 
+            <LegalPage
+              title={t.privacyPage.title}
+              lastUpdated={t.privacyPage.lastUpdated}
+              sections={t.privacyPage.sections}
             />
-          } 
+          }
         />
-        <Route 
-          path="/legal" 
+        <Route
+          path="/legal"
           element={
-            <LegalPage 
-              title={t.legalPage.title} 
-              lastUpdated={t.legalPage.lastUpdated} 
-              sections={t.legalPage.sections} 
+            <LegalPage
+              title={t.legalPage.title}
+              lastUpdated={t.legalPage.lastUpdated}
+              sections={t.legalPage.sections}
             />
-          } 
+          }
         />
-        <Route 
-          path="/cookies" 
+        <Route
+          path="/cookies"
           element={
-            <LegalPage 
-              title={t.cookiesPage.title} 
-              lastUpdated={t.cookiesPage.lastUpdated} 
-              sections={t.cookiesPage.sections} 
+            <LegalPage
+              title={t.cookiesPage.title}
+              lastUpdated={t.cookiesPage.lastUpdated}
+              sections={t.cookiesPage.sections}
             />
-          } 
+          }
         />
       </Routes>
     </Router>

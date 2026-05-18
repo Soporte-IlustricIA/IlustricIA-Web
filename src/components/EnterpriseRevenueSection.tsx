@@ -167,9 +167,11 @@ export function EnterpriseRevenueSection() {
 
             {/* Video Area */}
             <div className="relative aspect-video overflow-hidden group cursor-pointer bg-neutral-200 dark:bg-neutral-900">
-              <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop" 
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop"
                 alt="Video Thumbnail"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover opacity-80 dark:opacity-50 group-hover:scale-105 transition-transform duration-1000 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />

@@ -11,7 +11,7 @@ import { Language } from "../../translations";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { Dialog } from "./dialog";
-import VoiceDemo from "../VoiceDemo";
+import { VoiceDemoLazy } from "./VoiceDemoLazy";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -166,7 +166,7 @@ const Header = () => {
               </div>
 
               <Dialog isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)}>
-                <VoiceDemo />
+                <VoiceDemoLazy />
               </Dialog>
 
               <div className={cn(
