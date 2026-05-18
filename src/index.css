@@ -407,3 +407,16 @@
     --hue: 360;
   }
 }
+
+@media (max-width: 768px) {
+  .glow-container {
+    --animation-speed: 0s;
+  }
+  .glow-content:before {
+    animation: none !important;
+    background: hsl(0deg 0% 16%);
+  }
+  .glow:after {
+    animation: none !important;
+  }
+}

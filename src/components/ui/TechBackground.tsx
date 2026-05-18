@@ -33,7 +33,8 @@ export const TechBackground: React.FC = () => {
 
     // Particles/Nodes
     const particles: { x: number; y: number; vx: number; vy: number; size: number; color: string }[] = [];
-    const particleCount = 20; 
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 10 : 20;
     let mouseX = -1000;
     let mouseY = -1000;
 
@@ -65,7 +66,7 @@ export const TechBackground: React.FC = () => {
       orbitSpeed?: number;
       orbitAngle?: number;
     }[] = [];
-    const shapeCount = 12; 
+    const shapeCount = isMobile ? 5 : 12;
 
     for (let i = 0; i < shapeCount; i++) {
       const depth = Math.random() * 0.5 + 0.5;
@@ -93,7 +94,7 @@ export const TechBackground: React.FC = () => {
 
     // Falling Data Streams
     const streams: { x: number; y: number; speed: number; length: number; opacity: number }[] = [];
-    const streamCount = 4; 
+    const streamCount = isMobile ? 2 : 4;
     for (let i = 0; i < streamCount; i++) {
       streams.push({
         x: Math.random() * width,
