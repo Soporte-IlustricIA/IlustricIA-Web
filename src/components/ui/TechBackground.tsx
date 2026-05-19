@@ -42,7 +42,7 @@ export const TechBackground: React.FC = () => {
       });
       if (canvas) canvasObserver.observe(canvas);
     }
-    const particleCount = isMobile ? 10 : 20;
+    const particleCount = isMobile ? 5 : 20;
     let mouseX = -1000;
     let mouseY = -1000;
 
@@ -74,7 +74,7 @@ export const TechBackground: React.FC = () => {
       orbitSpeed?: number;
       orbitAngle?: number;
     }[] = [];
-    const shapeCount = isMobile ? 5 : 12;
+    const shapeCount = isMobile ? 2 : 12;
 
     for (let i = 0; i < shapeCount; i++) {
       const depth = Math.random() * 0.5 + 0.5;
@@ -102,7 +102,7 @@ export const TechBackground: React.FC = () => {
 
     // Falling Data Streams
     const streams: { x: number; y: number; speed: number; length: number; opacity: number }[] = [];
-    const streamCount = isMobile ? 2 : 4;
+    const streamCount = isMobile ? 1 : 4;
     for (let i = 0; i < streamCount; i++) {
       streams.push({
         x: Math.random() * width,
