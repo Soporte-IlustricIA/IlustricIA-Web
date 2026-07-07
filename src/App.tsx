@@ -24,7 +24,9 @@ import { DemoPage } from './pages/DemoPage';
 function HomePage() {
   const { theme } = useTheme();
   const { t } = useLanguage();
-  
+  const isMobile = window.innerWidth < 768;
+  const sectionInitial = isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 };
+
   return (
     <div className="w-full min-h-screen font-sans text-black dark:text-white transition-colors duration-300 relative">
       <TechBackground />
@@ -33,7 +35,7 @@ function HomePage() {
       {/* Hero Section */}
       <motion.div 
         className="h-screen w-full relative overflow-hidden bg-transparent transition-colors duration-500"
-        initial={{ opacity: 0, y: 20 }}
+        initial={sectionInitial}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -66,7 +68,7 @@ function HomePage() {
       {/* Dashboard Section (Nuestros Servicios) */}
       <motion.div 
         id="dashboard"
-        initial={{ opacity: 0, y: 20 }}
+        initial={sectionInitial}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -76,7 +78,7 @@ function HomePage() {
 
       {/* System of Record Section (Sistema central) */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={sectionInitial}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -91,7 +93,7 @@ function HomePage() {
 
       {/* Testimonial Section */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={sectionInitial}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -107,7 +109,7 @@ function HomePage() {
       {/* Customer Story Section (Innovacion) */}
       <motion.div
         className="py-24 md:py-32"
-        initial={{ opacity: 0, y: 20 }}
+        initial={sectionInitial}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -119,7 +121,7 @@ function HomePage() {
       <motion.div
         id="faqs"
         className="py-24 md:py-32"
-        initial={{ opacity: 0, y: 20 }}
+        initial={sectionInitial}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -129,7 +131,7 @@ function HomePage() {
 
       {/* Footer CTA Section ("¿Iniciamos la transformación de tu operativa?") */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={sectionInitial}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: "easeOut" }}

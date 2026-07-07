@@ -42,7 +42,20 @@ export const TechBackground: React.FC = () => {
 
     // Particles/Nodes
     const particles: { x: number; y: number; vx: number; vy: number; size: number; color: string }[] = [];
+<<<<<<< HEAD
     const particleCount = isMobile ? 12 : 20;
+=======
+    const isMobile = window.innerWidth < 768;
+    const isVisible = { value: true };
+    let canvasObserver: IntersectionObserver | undefined;
+    if (isMobile) {
+      canvasObserver = new IntersectionObserver(([entry]) => {
+        isVisible.value = entry.isIntersecting;
+      });
+      if (canvas) canvasObserver.observe(canvas);
+    }
+    const particleCount = isMobile ? 5 : 20;
+>>>>>>> 00f0280c19d53133b80d78dc1ec002c323365764
     let mouseX = -1000;
     let mouseY = -1000;
 
@@ -74,7 +87,11 @@ export const TechBackground: React.FC = () => {
       orbitSpeed?: number;
       orbitAngle?: number;
     }[] = [];
+<<<<<<< HEAD
     const shapeCount = isMobile ? 7 : 12;
+=======
+    const shapeCount = isMobile ? 2 : 12;
+>>>>>>> 00f0280c19d53133b80d78dc1ec002c323365764
 
     for (let i = 0; i < shapeCount; i++) {
       const depth = Math.random() * 0.5 + 0.5;
@@ -102,7 +119,11 @@ export const TechBackground: React.FC = () => {
 
     // Falling Data Streams
     const streams: { x: number; y: number; speed: number; length: number; opacity: number }[] = [];
+<<<<<<< HEAD
     const streamCount = isMobile ? 2 : 4;
+=======
+    const streamCount = isMobile ? 1 : 4;
+>>>>>>> 00f0280c19d53133b80d78dc1ec002c323365764
     for (let i = 0; i < streamCount; i++) {
       streams.push({
         x: Math.random() * width,
@@ -183,6 +204,7 @@ export const TechBackground: React.FC = () => {
     let currentScrollY = window.scrollY;
     let targetScrollY = window.scrollY;
 
+<<<<<<< HEAD
     const draw = (now: number = 0) => {
       if (minFrameMs && now - lastFrameTime < minFrameMs) {
         animationFrameId = requestAnimationFrame(draw);
@@ -190,6 +212,13 @@ export const TechBackground: React.FC = () => {
       }
       lastFrameTime = now;
 
+=======
+    const draw = () => {
+      if (isMobile && !isVisible.value) {
+        animationFrameId = requestAnimationFrame(draw);
+        return;
+      }
+>>>>>>> 00f0280c19d53133b80d78dc1ec002c323365764
       ctx.clearRect(0, 0, width, height);
       
       targetScrollY = scrollY.get();
@@ -465,6 +494,7 @@ export const TechBackground: React.FC = () => {
       window.removeEventListener('mouseleave', handleMouseLeave);
       window.removeEventListener('click', handleClick);
       cancelAnimationFrame(animationFrameId);
+      canvasObserver?.disconnect();
     };
   }, []);
 

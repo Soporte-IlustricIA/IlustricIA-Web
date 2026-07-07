@@ -32,10 +32,12 @@ export function CustomerStorySection() {
       {/* Background Image Carousel */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
-          <motion.img 
+          <motion.img
             key={currentIndex}
-            src={innovationContent[currentIndex].image} 
-            alt="Background" 
+            src={innovationContent[currentIndex].image}
+            alt="Background"
+            loading="lazy"
+            decoding="async"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.25 }}
             exit={{ opacity: 0 }}

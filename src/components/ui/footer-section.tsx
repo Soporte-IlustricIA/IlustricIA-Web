@@ -57,9 +57,11 @@ export function Footer() {
 			<div className="grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
 				<AnimatedContainer className="space-y-4 md:pl-32 flex flex-col items-center md:items-start">
 					<div className="flex items-center justify-center md:justify-start gap-2">
-						<img 
-							src="/images/logo.png" 
-							alt="IlustricIA Logo" 
+						<img
+							src="/images/logo.png"
+							alt="IlustricIA Logo"
+							loading="lazy"
+							decoding="async"
 							className="size-40 object-contain transition-all duration-300"
 							referrerPolicy="no-referrer"
 						/>
