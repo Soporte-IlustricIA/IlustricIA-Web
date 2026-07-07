@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { Loader2 } from 'lucide-react';
+import { useLanguage } from '../LanguageContext';
 
 const N8N_WEBHOOK_URL = "https://n8n.srv1023108.hstgr.cloud/webhook/create-eleven-agent";
 
 export function CreateAssistant() {
+  const { t, language } = useLanguage();
   const [formData, setFormData] = useState({
     businessName: '',
     sector: '',
     businessUrl: '',
-    language: 'es',
-    instructions: 'Eres un asistente claro y profesional. Responde de forma breve, amable y orientada a resolver reservas y preguntas frecuentes.'
+    language: language as string,
+    instructions: t.demo.create.defaultInstructions
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -48,7 +50,7 @@ export function CreateAssistant() {
     const payload = {
       agent_name: formData.businessName,
       system_prompt: systemPromptParts.join(" "),
-      first_message: `Hola, soy el asistente de ${formData.businessName}. ¿En qué puedo ayudarte hoy?`,
+      first_message: t.demo.create.firstMessage.replace('{name}', formData.businessName),
       language: formData.language || "es",
       tags: ["landing-form", sectorTag || "general", languageTag || "es"].filter(Boolean),
       metadata: {
@@ -75,7 +77,7 @@ export function CreateAssistant() {
       const result = await response.json();
 
       if (result.ok === false) {
-        throw new Error(result.error || "Error al crear el asistente.");
+        throw new Error(result.error || t.demo.create.errorCreate);
       }
 
       // Extract agent_id from response or snippet
@@ -87,13 +89,13 @@ export function CreateAssistant() {
 
       if (agentId) {
         setGeneratedAgentId(agentId);
-        setSuccessMsg("Asistente generado correctamente.");
+        setSuccessMsg(t.demo.create.success);
       } else {
-        throw new Error("No se recibió un agent_id válido.");
+        throw new Error(t.demo.create.errorNoAgent);
       }
     } catch (error: any) {
       console.error("Error creating assistant:", error);
-      setErrorMsg(error.message || "No se pudo crear el asistente. Revisa la conexión y el servidor.");
+      setErrorMsg(error.message || t.demo.create.errorGeneric);
     } finally {
       setIsLoading(false);
     }
@@ -103,9 +105,9 @@ export function CreateAssistant() {
     <section className="py-24 bg-transparent scroll-mt-24" id="crea-tu-asistente">
       <div className="max-w-7xl mx-auto px-8">
         <div className="max-w-3xl mb-10">
-          <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary block mb-4">Demo en vivo</span>
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4 text-on-surface dark:text-white">Crea un asistente e interactúa con él</h2>
-          <p className="text-on-surface-variant dark:text-neutral-400">Completa el formulario para generar tu asistente. Mientras se crea verás un estado de espera y, al finalizar, se cargará automáticamente la demo.</p>
+          <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary block mb-4">{t.demo.create.badge}</span>
+          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4 text-on-surface dark:text-white">{t.demo.create.title}</h2>
+          <p className="text-on-surface-variant dark:text-neutral-400">{t.demo.create.subtitle}</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -115,42 +117,42 @@ export function CreateAssistant() {
             aria-live="polite"
           >
             <div>
-              <label className="block text-xs uppercase tracking-widest text-outline dark:text-neutral-400 mb-2" htmlFor="businessName">Negocio / marca</label>
+              <label className="block text-xs uppercase tracking-widest text-outline dark:text-neutral-400 mb-2" htmlFor="businessName">{t.demo.create.labels.business}</label>
               <input 
                 className="w-full rounded-lg border-outline-variant/40 dark:border-white/10 bg-surface-container-low dark:bg-neutral-800 px-4 py-3 text-sm focus:border-primary focus:ring-primary text-on-surface dark:text-white" 
                 id="businessName"
                 value={formData.businessName}
                 onChange={(e) => setFormData({...formData, businessName: e.target.value})}
-                placeholder="Nombre del negocio" 
+                placeholder={t.demo.create.placeholders.business}
                 required 
                 type="text"
               />
             </div>
             <div>
-              <label className="block text-xs uppercase tracking-widest text-outline dark:text-neutral-400 mb-2" htmlFor="sector">Sector</label>
+              <label className="block text-xs uppercase tracking-widest text-outline dark:text-neutral-400 mb-2" htmlFor="sector">{t.demo.create.labels.sector}</label>
               <input 
                 className="w-full rounded-lg border-outline-variant/40 dark:border-white/10 bg-surface-container-low dark:bg-neutral-800 px-4 py-3 text-sm focus:border-primary focus:ring-primary text-on-surface dark:text-white" 
                 id="sector"
                 value={formData.sector}
                 onChange={(e) => setFormData({...formData, sector: e.target.value})}
-                placeholder="Ej. Restaurante, clínica dental, peluquería..." 
+                placeholder={t.demo.create.placeholders.sector}
                 required 
                 type="text"
               />
             </div>
             <div>
-              <label className="block text-xs uppercase tracking-widest text-outline dark:text-neutral-400 mb-2" htmlFor="businessUrl">URL del negocio (opcional)</label>
+              <label className="block text-xs uppercase tracking-widest text-outline dark:text-neutral-400 mb-2" htmlFor="businessUrl">{t.demo.create.labels.url}</label>
               <input 
                 className="w-full rounded-lg border-outline-variant/40 dark:border-white/10 bg-surface-container-low dark:bg-neutral-800 px-4 py-3 text-sm focus:border-primary focus:ring-primary text-on-surface dark:text-white" 
                 id="businessUrl"
                 value={formData.businessUrl}
                 onChange={(e) => setFormData({...formData, businessUrl: e.target.value})}
-                placeholder="https://tumarca.com" 
+                placeholder={t.demo.create.placeholders.url}
                 type="url"
               />
             </div>
             <div>
-              <label className="block text-xs uppercase tracking-widest text-outline dark:text-neutral-400 mb-2" htmlFor="language">Idioma</label>
+              <label className="block text-xs uppercase tracking-widest text-outline dark:text-neutral-400 mb-2" htmlFor="language">{t.demo.create.labels.language}</label>
               <input 
                 className="w-full rounded-lg border-outline-variant/40 dark:border-white/10 bg-surface-container-low dark:bg-neutral-800 px-4 py-3 text-sm focus:border-primary focus:ring-primary text-on-surface dark:text-white" 
                 id="language"
@@ -161,13 +163,13 @@ export function CreateAssistant() {
               />
             </div>
             <div>
-              <label className="block text-xs uppercase tracking-widest text-outline dark:text-neutral-400 mb-2" htmlFor="instructions">Información adicional</label>
+              <label className="block text-xs uppercase tracking-widest text-outline dark:text-neutral-400 mb-2" htmlFor="instructions">{t.demo.create.labels.instructions}</label>
               <textarea 
                 className="w-full min-h-[140px] rounded-lg border-outline-variant/40 dark:border-white/10 bg-surface-container-low dark:bg-neutral-800 px-4 py-3 text-sm focus:border-primary focus:ring-primary text-on-surface dark:text-white" 
                 id="instructions"
                 value={formData.instructions}
                 onChange={(e) => setFormData({...formData, instructions: e.target.value})}
-                placeholder="Añade detalles para configurar el asistente..." 
+                placeholder={t.demo.create.placeholders.instructions}
                 required
               />
             </div>
@@ -177,13 +179,13 @@ export function CreateAssistant() {
               className="inline-flex items-center justify-center px-6 py-3 bg-primary text-on-primary font-bold text-sm rounded-lg hover:bg-primary/90 transition-all disabled:opacity-60 disabled:cursor-not-allowed" 
               type="submit"
             >
-              {isLoading ? "Creando asistente..." : "Crear asistente"}
+              {isLoading ? t.demo.create.submitting : t.demo.create.submit}
             </button>
 
             {isLoading && (
               <div className="flex items-center gap-2 text-sm text-on-surface-variant dark:text-neutral-400">
                 <Loader2 className="animate-spin" size={16} />
-                <span>Generando asistente, espera unos segundos...</span>
+                <span>{t.demo.create.generating}</span>
               </div>
             )}
 
@@ -197,7 +199,7 @@ export function CreateAssistant() {
           </form>
 
           <div className="flex flex-col items-center justify-center bg-surface-container-low dark:bg-neutral-900/50 backdrop-blur-sm rounded-xl border border-outline-variant/10 dark:border-white/10 p-8 min-h-[500px]">
-            <p className="text-xs uppercase tracking-widest text-outline dark:text-neutral-400 mb-6">Resultado del asistente</p>
+            <p className="text-xs uppercase tracking-widest text-outline dark:text-neutral-400 mb-6">{t.demo.create.resultLabel}</p>
             {generatedAgentId ? (
               <div className="w-full flex justify-center">
                 {/* @ts-ignore */}
@@ -208,9 +210,9 @@ export function CreateAssistant() {
                 <div className="w-16 h-16 bg-surface-container-high dark:bg-neutral-800 rounded-full flex items-center justify-center mx-auto text-outline dark:text-neutral-400">
                   <Loader2 size={32} className={isLoading ? "animate-spin" : ""} />
                 </div>
-                <h4 className="text-lg font-bold text-on-surface dark:text-white mb-2">Esperando configuración</h4>
+                <h4 className="text-lg font-bold text-on-surface dark:text-white mb-2">{t.demo.create.waitingTitle}</h4>
                 <p className="text-sm text-on-surface-variant dark:text-neutral-400 max-w-xs">
-                  {isLoading ? "Estamos configurando tu asistente personalizado..." : "Completa el formulario para ver tu asistente aquí."}
+                  {isLoading ? t.demo.create.waitingConfiguring : t.demo.create.waitingEmpty}
                 </p>
               </div>
             )}

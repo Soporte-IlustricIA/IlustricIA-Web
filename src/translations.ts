@@ -203,6 +203,62 @@ export const translations = {
       cookies: "Cookies",
       rights: "Todos los derechos reservados."
     },
+    demo: {
+      hero: {
+        badge: "IlustricIA Demos Live",
+        titleLine1: "Prueba nuestros",
+        titleHighlight: "asistentes",
+        subtitle: "Experimenta el futuro de la atención automatizada con nuestras demos interactivas diseñadas para sectores estratégicos.",
+        viewDemos: "Ver demos",
+        createOwn: "Crear mi propio asistente"
+      },
+      how: {
+        badge: "Proceso",
+        title: "Cómo funciona",
+        steps: [
+          { title: "Selecciona una demo", description: "Elige el asistente que mejor se adapte a tu flujo de trabajo actual." },
+          { title: "Interactúa en tiempo real", description: "Pon a prueba las capacidades de respuesta y comprensión de la IA." },
+          { title: "Analiza los resultados", description: "Observa cómo la automatización optimiza la gestión de usuarios." }
+        ]
+      },
+      catalog: {
+        title: "Catálogo de Asistentes Especializados",
+        subtitle: "Selecciona el ecosistema que mejor se adapte a las necesidades de tu arquitectura empresarial.",
+        openDemo: "Abrir demo",
+        interactiveDemo: "Demo interactiva",
+        widgetActive: "Widget activo",
+        pressPrefix: "Pulsa",
+        tryMeLabel: "«Pruébame»",
+        pressSuffix: "en la esquina inferior derecha para iniciar la conversación.",
+        bottomRight: "Abajo a la derecha de este panel",
+        emptyState: "Pulsa «Abrir demo» en una tarjeta para cargar el widget de ElevenLabs.",
+        items: {
+          clinics: { title: "Asistente para Clínicas", category: "Clínicas", description: "Citas, recordatorios y primeras consultas orientadas sin sustituir el criterio médico." },
+          law: { title: "Asistente para Abogacía", category: "Abogacía", description: "Asistencia legal, gestiones administrativas y consultas jurídicas con respuesta inmediata para clientes." },
+          salon: { title: "Asistente para Peluquería", category: "Peluquería", description: "Reservas de sillón, servicios y disponibilidad para salones y barberías." }
+        }
+      },
+      create: {
+        badge: "Demo en vivo",
+        title: "Crea un asistente e interactúa con él",
+        subtitle: "Completa el formulario para generar tu asistente. Mientras se crea verás un estado de espera y, al finalizar, se cargará automáticamente la demo.",
+        labels: { business: "Negocio / marca", sector: "Sector", url: "URL del negocio (opcional)", language: "Idioma", instructions: "Información adicional" },
+        placeholders: { business: "Nombre del negocio", sector: "Ej. Restaurante, clínica dental, peluquería...", url: "https://tumarca.com", instructions: "Añade detalles para configurar el asistente..." },
+        defaultInstructions: "Eres un asistente claro y profesional. Responde de forma breve, amable y orientada a resolver reservas y preguntas frecuentes.",
+        firstMessage: "Hola, soy el asistente de {name}. ¿En qué puedo ayudarte hoy?",
+        submit: "Crear asistente",
+        submitting: "Creando asistente...",
+        generating: "Generando asistente, espera unos segundos...",
+        success: "Asistente generado correctamente.",
+        errorCreate: "Error al crear el asistente.",
+        errorNoAgent: "No se recibió un agent_id válido.",
+        errorGeneric: "No se pudo crear el asistente. Revisa la conexión y el servidor.",
+        resultLabel: "Resultado del asistente",
+        waitingTitle: "Esperando configuración",
+        waitingConfiguring: "Estamos configurando tu asistente personalizado...",
+        waitingEmpty: "Completa el formulario para ver tu asistente aquí."
+      }
+    },
     privacyPage: {
       title: "Política de Privacidad",
       lastUpdated: "01/2026",
@@ -657,6 +713,62 @@ export const translations = {
       cookies: "Cookies",
       rights: "All rights reserved."
     },
+    demo: {
+      hero: {
+        badge: "IlustricIA Demos Live",
+        titleLine1: "Try our",
+        titleHighlight: "assistants",
+        subtitle: "Experience the future of automated customer service with our interactive demos designed for strategic sectors.",
+        viewDemos: "View demos",
+        createOwn: "Create my own assistant"
+      },
+      how: {
+        badge: "Process",
+        title: "How it works",
+        steps: [
+          { title: "Select a demo", description: "Choose the assistant that best fits your current workflow." },
+          { title: "Interact in real time", description: "Put the AI's response and comprehension capabilities to the test." },
+          { title: "Analyze the results", description: "See how automation optimizes user management." }
+        ]
+      },
+      catalog: {
+        title: "Catalog of Specialized Assistants",
+        subtitle: "Select the ecosystem that best fits the needs of your business architecture.",
+        openDemo: "Open demo",
+        interactiveDemo: "Interactive demo",
+        widgetActive: "Widget active",
+        pressPrefix: "Press",
+        tryMeLabel: "\"Try me\"",
+        pressSuffix: "in the bottom right corner to start the conversation.",
+        bottomRight: "At the bottom right of this panel",
+        emptyState: "Press \"Open demo\" on a card to load the ElevenLabs widget.",
+        items: {
+          clinics: { title: "Assistant for Clinics", category: "Clinics", description: "Appointments, reminders and guided first consultations without replacing medical judgment." },
+          law: { title: "Assistant for Law Firms", category: "Law", description: "Legal assistance, administrative tasks and legal inquiries with immediate responses for clients." },
+          salon: { title: "Assistant for Hair Salons", category: "Salons", description: "Chair bookings, services and availability for salons and barbershops." }
+        }
+      },
+      create: {
+        badge: "Live demo",
+        title: "Create an assistant and interact with it",
+        subtitle: "Fill in the form to generate your assistant. While it is being created you will see a waiting state and, once finished, the demo will load automatically.",
+        labels: { business: "Business / brand", sector: "Sector", url: "Business URL (optional)", language: "Language", instructions: "Additional information" },
+        placeholders: { business: "Business name", sector: "E.g. Restaurant, dental clinic, hair salon...", url: "https://yourbrand.com", instructions: "Add details to configure the assistant..." },
+        defaultInstructions: "You are a clear and professional assistant. Reply briefly, kindly and focused on resolving bookings and frequently asked questions.",
+        firstMessage: "Hi, I'm the assistant for {name}. How can I help you today?",
+        submit: "Create assistant",
+        submitting: "Creating assistant...",
+        generating: "Generating assistant, wait a few seconds...",
+        success: "Assistant generated successfully.",
+        errorCreate: "Error creating the assistant.",
+        errorNoAgent: "No valid agent_id was received.",
+        errorGeneric: "The assistant could not be created. Check the connection and the server.",
+        resultLabel: "Assistant result",
+        waitingTitle: "Waiting for configuration",
+        waitingConfiguring: "We are configuring your custom assistant...",
+        waitingEmpty: "Fill in the form to see your assistant here."
+      }
+    },
     privacyPage: {
       title: "Privacy Policy",
       lastUpdated: "01/2026",
@@ -1110,6 +1222,62 @@ export const translations = {
       terms: "Aviso Legal",
       cookies: "Cookies",
       rights: "Todos os direitos reservados."
+    },
+    demo: {
+      hero: {
+        badge: "IlustricIA Demos Live",
+        titleLine1: "Experimente nossos",
+        titleHighlight: "assistentes",
+        subtitle: "Experimente o futuro do atendimento automatizado com nossas demos interativas projetadas para setores estratégicos.",
+        viewDemos: "Ver demos",
+        createOwn: "Criar meu próprio assistente"
+      },
+      how: {
+        badge: "Processo",
+        title: "Como funciona",
+        steps: [
+          { title: "Selecione uma demo", description: "Escolha o assistente que melhor se adapta ao seu fluxo de trabalho atual." },
+          { title: "Interaja em tempo real", description: "Teste as capacidades de resposta e compreensão da IA." },
+          { title: "Analise os resultados", description: "Veja como a automação otimiza a gestão de usuários." }
+        ]
+      },
+      catalog: {
+        title: "Catálogo de Assistentes Especializados",
+        subtitle: "Selecione o ecossistema que melhor se adapta às necessidades da sua arquitetura empresarial.",
+        openDemo: "Abrir demo",
+        interactiveDemo: "Demo interativa",
+        widgetActive: "Widget ativo",
+        pressPrefix: "Toque em",
+        tryMeLabel: "«Experimente-me»",
+        pressSuffix: "no canto inferior direito para iniciar a conversa.",
+        bottomRight: "No canto inferior direito deste painel",
+        emptyState: "Toque em «Abrir demo» em um cartão para carregar o widget da ElevenLabs.",
+        items: {
+          clinics: { title: "Assistente para Clínicas", category: "Clínicas", description: "Consultas, lembretes e primeiros atendimentos orientados sem substituir o critério médico." },
+          law: { title: "Assistente para Advocacia", category: "Advocacia", description: "Assistência jurídica, gestões administrativas e consultas legais com resposta imediata para clientes." },
+          salon: { title: "Assistente para Cabeleireiros", category: "Cabeleireiros", description: "Reservas de cadeira, serviços e disponibilidade para salões e barbearias." }
+        }
+      },
+      create: {
+        badge: "Demo ao vivo",
+        title: "Crie um assistente e interaja com ele",
+        subtitle: "Preencha o formulário para gerar seu assistente. Enquanto ele é criado você verá um estado de espera e, ao finalizar, a demo será carregada automaticamente.",
+        labels: { business: "Negócio / marca", sector: "Setor", url: "URL do negócio (opcional)", language: "Idioma", instructions: "Informações adicionais" },
+        placeholders: { business: "Nome do negócio", sector: "Ex. Restaurante, clínica dentária, cabeleireiro...", url: "https://suamarca.com", instructions: "Adicione detalhes para configurar o assistente..." },
+        defaultInstructions: "Você é um assistente claro e profissional. Responda de forma breve, amável e orientada a resolver reservas e perguntas frequentes.",
+        firstMessage: "Olá, sou o assistente de {name}. Como posso ajudar você hoje?",
+        submit: "Criar assistente",
+        submitting: "Criando assistente...",
+        generating: "Gerando assistente, aguarde alguns segundos...",
+        success: "Assistente gerado com sucesso.",
+        errorCreate: "Erro ao criar o assistente.",
+        errorNoAgent: "Não foi recebido um agent_id válido.",
+        errorGeneric: "Não foi possível criar o assistente. Verifique a conexão e o servidor.",
+        resultLabel: "Resultado do assistente",
+        waitingTitle: "Aguardando configuração",
+        waitingConfiguring: "Estamos configurando seu assistente personalizado...",
+        waitingEmpty: "Preencha o formulário para ver seu assistente aqui."
+      }
     },
     privacyPage: {
       title: "Política de Privacidade",
