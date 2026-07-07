@@ -399,17 +399,12 @@
   }
 }
 
-/* Mobile optimization: Disable glow animations on devices <= 768px */
-@media (max-width: 768px) {
-  .glow-container {
-    --animation-speed: 0s;
+@keyframes hue-animation {
+  0% {
+    --hue: 0;
   }
-  .glow-content:before {
-    animation: none !important;
-    background: hsl(0deg 0% 16%);
-  }
-  .glow:after {
-    animation: none !important;
+  100% {
+    --hue: 360;
   }
 }
 
