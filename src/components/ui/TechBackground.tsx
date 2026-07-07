@@ -6,9 +6,10 @@ export const TechBackground: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress, scrollY } = useScroll();
   
+  // Solo animamos opacity con el scroll: se composita en GPU sin repintar.
+  // (filter/backgroundColor en un elemento full-screen fuerzan repintado de
+  // toda la pantalla en cada frame de scroll — inviable en movil.)
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 0.9]);
-  const hueRotate = useTransform(scrollYProgress, [0, 1], ["hue-rotate(0deg)", "hue-rotate(10deg)"]);
-  const bgColor = useTransform(scrollYProgress, [0, 0.5, 1], ["#f0f9ff", "#fcfdfe", "#f0f9ff"]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -20,6 +21,14 @@ export const TechBackground: React.FC = () => {
     let animationFrameId: number;
     let width = window.innerWidth;
     let height = window.innerHeight;
+
+    // En movil: menos elementos y 30fps. speedScale x2 compensa la mitad de
+    // frames para que la deriva se perciba a la misma velocidad.
+    const isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const minFrameMs = isMobile ? 1000 / 30 : 0;
+    const speedScale = isMobile ? 2 : 1;
+    let lastFrameTime = 0;
 
     const resize = () => {
       width = window.innerWidth;
@@ -33,7 +42,7 @@ export const TechBackground: React.FC = () => {
 
     // Particles/Nodes
     const particles: { x: number; y: number; vx: number; vy: number; size: number; color: string }[] = [];
-    const particleCount = 20; 
+    const particleCount = isMobile ? 12 : 20;
     let mouseX = -1000;
     let mouseY = -1000;
 
@@ -65,7 +74,7 @@ export const TechBackground: React.FC = () => {
       orbitSpeed?: number;
       orbitAngle?: number;
     }[] = [];
-    const shapeCount = 12; 
+    const shapeCount = isMobile ? 7 : 12;
 
     for (let i = 0; i < shapeCount; i++) {
       const depth = Math.random() * 0.5 + 0.5;
@@ -76,29 +85,29 @@ export const TechBackground: React.FC = () => {
       shapes.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.4 * depth,
-        vy: (Math.random() - 0.5) * 0.4 * depth,
+        vx: (Math.random() - 0.5) * 0.4 * depth * speedScale,
+        vy: (Math.random() - 0.5) * 0.4 * depth * speedScale,
         size: (Math.random() * 25 + 8) * depth,
         rotation: Math.random() * Math.PI * 2,
-        vr: (Math.random() - 0.5) * 0.02,
+        vr: (Math.random() - 0.5) * 0.02 * speedScale,
         type,
         opacity: (Math.random() * 0.25 + 0.1) * depth,
         depth,
         text: type === 'binary' ? (Math.random() > 0.5 ? '0' : '1') : undefined,
         orbitRadius: type === 'orbit' ? Math.random() * 50 + 20 : undefined,
-        orbitSpeed: type === 'orbit' ? (Math.random() - 0.5) * 0.05 : undefined,
+        orbitSpeed: type === 'orbit' ? (Math.random() - 0.5) * 0.05 * speedScale : undefined,
         orbitAngle: type === 'orbit' ? Math.random() * Math.PI * 2 : undefined
       });
     }
 
     // Falling Data Streams
     const streams: { x: number; y: number; speed: number; length: number; opacity: number }[] = [];
-    const streamCount = 4; 
+    const streamCount = isMobile ? 2 : 4;
     for (let i = 0; i < streamCount; i++) {
       streams.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        speed: Math.random() * 4 + 2,
+        speed: (Math.random() * 4 + 2) * speedScale,
         length: Math.random() * 150 + 50,
         opacity: Math.random() * 0.15 + 0.05
       });
@@ -108,8 +117,8 @@ export const TechBackground: React.FC = () => {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6,
+        vx: (Math.random() - 0.5) * 0.6 * speedScale,
+        vy: (Math.random() - 0.5) * 0.6 * speedScale,
         size: Math.random() * 2.5 + 1,
         color: colors[Math.floor(Math.random() * colors.length)]
       });
@@ -174,7 +183,13 @@ export const TechBackground: React.FC = () => {
     let currentScrollY = window.scrollY;
     let targetScrollY = window.scrollY;
 
-    const draw = () => {
+    const draw = (now: number = 0) => {
+      if (minFrameMs && now - lastFrameTime < minFrameMs) {
+        animationFrameId = requestAnimationFrame(draw);
+        return;
+      }
+      lastFrameTime = now;
+
       ctx.clearRect(0, 0, width, height);
       
       targetScrollY = scrollY.get();
@@ -436,10 +451,13 @@ export const TechBackground: React.FC = () => {
         ctx.fill();
       }
 
-      animationFrameId = requestAnimationFrame(draw);
+      // Con "reducir movimiento" activo se pinta un unico frame estatico
+      if (!prefersReducedMotion) {
+        animationFrameId = requestAnimationFrame(draw);
+      }
     };
 
-    draw();
+    draw(performance.now());
 
     return () => {
       window.removeEventListener('resize', resize);
@@ -456,14 +474,21 @@ export const TechBackground: React.FC = () => {
       className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none select-none bg-white dark:bg-[#030712] transition-colors duration-500"
     >
       {/* Primary Gradient Background - Light Blue Tech Theme */}
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-br from-[#f0f9ff] via-[#e0f2fe] to-[#bae6fd] dark:from-[#030712] dark:via-[#0c1a33] dark:to-[#030712]" 
-        style={{ opacity, filter: hueRotate, backgroundColor: bgColor }}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-br from-[#f0f9ff] via-[#e0f2fe] to-[#bae6fd] dark:from-[#030712] dark:via-[#0c1a33] dark:to-[#030712]"
+        style={{ opacity }}
       />
       
-      {/* Secondary Glows for depth - Using Primary Blue */}
-      <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-[#29ABE2]/10 dark:bg-[#29ABE2]/20 rounded-full blur-[150px]" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-[#29ABE2]/10 dark:bg-[#29ABE2]/20 rounded-full blur-[150px]" />
+      {/* Glows de profundidad: radial-gradient estatico en vez de filter:blur().
+          Mismo halo visual, sin capas de filtro gigantes que saturan la GPU movil. */}
+      <div
+        className="absolute top-[-25%] left-[-15%] w-[75%] h-[75%] opacity-60 dark:opacity-100"
+        style={{ background: 'radial-gradient(ellipse at center, rgba(41,171,226,0.22) 0%, rgba(41,171,226,0.08) 45%, transparent 70%)' }}
+      />
+      <div
+        className="absolute bottom-[-25%] right-[-15%] w-[75%] h-[75%] opacity-60 dark:opacity-100"
+        style={{ background: 'radial-gradient(ellipse at center, rgba(41,171,226,0.22) 0%, rgba(41,171,226,0.08) 45%, transparent 70%)' }}
+      />
 
       {/* Primary Grid - More visible in dark, subtle in light */}
       <motion.div 
@@ -498,13 +523,6 @@ export const TechBackground: React.FC = () => {
       {/* Radial Vignette for depth */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(255,255,255,0.2)_100%)] dark:bg-[radial-gradient(circle_at_center,transparent_0%,rgba(3,7,18,0.9)_100%)]" />
 
-      {/* Subtle Glows */}
-      <motion.div 
-        className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#29ABE2]/10 dark:bg-[#29ABE2]/15 rounded-full blur-[120px]"
-      />
-      <motion.div 
-        className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#29ABE2]/10 dark:bg-[#29ABE2]/15 rounded-full blur-[120px]"
-      />
     </motion.div>
   );
 };

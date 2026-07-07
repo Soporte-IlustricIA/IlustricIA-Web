@@ -10,7 +10,7 @@ import { CustomerStorySection } from './components/CustomerStorySection';
 import { FooterCtaSection } from './components/FooterCtaSection';
 import { AboutUsSection } from './components/AboutUsSection';
 import { Footer } from './components/ui/footer-section';
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { MarqueeDemo } from './components/ui/marquee-demo';
 import { TechBackground } from './components/ui/TechBackground';
 
@@ -190,7 +190,9 @@ export default function App() {
   return (
     <LanguageProvider>
       <ConversationProvider>
-        <AppContent />
+        <MotionConfig reducedMotion="user">
+          <AppContent />
+        </MotionConfig>
       </ConversationProvider>
     </LanguageProvider>
   );

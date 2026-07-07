@@ -407,3 +407,28 @@
     --hue: 360;
   }
 }
+
+/* --- Rendimiento movil / accesibilidad --- */
+
+/* En pantallas tactiles el ciclo de color de las tarjetas (hue-rotate por
+   filtro CSS repinta cada frame) corre a mitad de velocidad: mismo efecto,
+   la mitad de trabajo de pintura. */
+@media (pointer: coarse) {
+  .glow-container {
+    --animation-speed: 8s;
+  }
+}
+
+/* Usuarios con "reducir movimiento" activado: sin animaciones continuas. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto !important;
+  }
+}

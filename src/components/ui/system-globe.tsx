@@ -212,6 +212,8 @@ function InteractiveGroup({ hovered, mouse, children }: { hovered: boolean; mous
 export default function SystemGlobe() {
   const [hovered, setHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [inView, setInView] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
   const mouse = useRef([0, 0]);
   const { theme } = useTheme();
 
@@ -222,6 +224,17 @@ export default function SystemGlobe() {
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: '100px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
@@ -235,7 +248,8 @@ export default function SystemGlobe() {
   };
 
   return (
-    <div 
+    <div
+      ref={containerRef}
       className="w-full h-full absolute inset-0 z-0 pointer-events-auto cursor-crosshair"
       onPointerEnter={() => setHovered(true)}
       onPointerLeave={() => {
@@ -244,7 +258,12 @@ export default function SystemGlobe() {
       }}
       onMouseMove={onMouseMove}
     >
-      <Canvas camera={{ position: [0, 0, isMobile ? 6 : 5], fov: 45 }} gl={{ antialias: true, alpha: true }}>
+      <Canvas
+        frameloop={inView ? 'always' : 'never'}
+        dpr={isMobile ? [1, 1.5] : undefined}
+        camera={{ position: [0, 0, isMobile ? 6 : 5], fov: 45 }}
+        gl={{ antialias: true, alpha: true }}
+      >
         <fog attach="fog" args={[isDark ? '#000' : '#fff', 5, 18]} />
         <ambientLight intensity={hovered ? 1.2 : 0.5} />
         <pointLight position={[mouse.current[0] * 5, mouse.current[1] * 5, 3]} intensity={hovered ? 15 : 0} color="#29ABE2" />

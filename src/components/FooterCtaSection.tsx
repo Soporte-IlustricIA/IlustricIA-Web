@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { Clock, CheckCircle2, Zap, ArrowRight } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 
@@ -22,6 +22,9 @@ const SmartGlassBadge = ({ icon: Icon, title, subtitle }: { icon: any; title: st
 
 export function FooterCtaSection() {
   const { t } = useLanguage();
+  const sectionRef = useRef<HTMLElement>(null);
+  // Las animaciones infinitas (elipses orbitales, pulso) solo corren con la sección visible
+  const isInView = useInView(sectionRef, { margin: '200px 0px' });
 
   useEffect(() => {
     (function (C: any, A, L) { 
@@ -66,8 +69,9 @@ export function FooterCtaSection() {
   }, []);
 
   return (
-    <section id="agendar" className="w-full bg-transparent py-20 px-4 md:px-8 relative overflow-hidden">
+    <section ref={sectionRef} id="agendar" className="w-full bg-transparent py-20 px-4 md:px-8 relative overflow-hidden">
       {/* Orbital Light Threads Background */}
+      {isInView && (
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <svg className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] opacity-20" viewBox="0 0 1000 1000">
           <defs>
@@ -113,6 +117,7 @@ export function FooterCtaSection() {
           />
         </svg>
       </div>
+      )}
 
       <div className="max-w-5xl mx-auto relative z-10 flex flex-col items-center text-center">
         
@@ -125,10 +130,10 @@ export function FooterCtaSection() {
         >
           <div className="relative flex items-center justify-center">
             <div className="w-2 h-2 rounded-full bg-orange-500" />
-            <motion.div 
+            <motion.div
               className="absolute inset-0 w-2 h-2 rounded-full bg-orange-500"
-              animate={{ scale: [1, 2.5, 1], opacity: [0.8, 0, 0.8] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              animate={isInView ? { scale: [1, 2.5, 1], opacity: [0.8, 0, 0.8] } : { scale: 1, opacity: 0 }}
+              transition={isInView ? { duration: 2, repeat: Infinity, ease: "easeInOut" } : { duration: 0.3 }}
             />
           </div>
           <span className="text-[10px] font-mono text-neutral-600 dark:text-neutral-400 tracking-[0.15em] uppercase">

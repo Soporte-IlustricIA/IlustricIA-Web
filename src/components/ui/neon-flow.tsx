@@ -31,6 +31,8 @@ export function TubesBackground({
 
     const initTubes = async () => {
       if (!canvasRef.current) return;
+      // Sin efecto WebGL para quienes piden reducir movimiento
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
       try {
         // We use the specific build from the CDN as it contains the exact effect requested
@@ -65,19 +67,28 @@ export function TubesBackground({
           canvasRef.current.style.backgroundColor = 'transparent';
         }
 
+        // La libreria fuerza pixelRatio=2 (min=max=2). En pantallas tactiles
+        // lo capamos a 1.5: en un movil DPR3 eso es ~44% menos pixeles que
+        // renderizar, imperceptible en un efecto difuso con bloom.
+        if (window.matchMedia('(pointer: coarse)').matches && app.three) {
+          app.three.minPixelRatio = 1;
+          app.three.maxPixelRatio = 1.5;
+          app.three.resize?.();
+        }
+
         tubesRef.current = app;
         setIsLoaded(true);
 
         cleanup = () => {
-          // Based on typical threejs-components, it might not have an explicit destroy exposed easily
-          // but we should at least nullify the ref
-          // If we re-initialize, we should probably clear the canvas or something
-          if (canvasRef.current) {
-            const gl = canvasRef.current.getContext('webgl2') || canvasRef.current.getContext('webgl');
-            if (gl) {
-              // gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-            }
+          // The library returns { three, tubes, dispose() }: dispose() stops the
+          // render loop and releases the renderer. Without it, every re-init
+          // (theme change) stacks an extra WebGL loop on the same canvas.
+          try {
+            app.dispose?.();
+          } catch (e) {
+            console.error("Error disposing TubesCursor:", e);
           }
+          if (tubesRef.current === app) tubesRef.current = null;
         };
 
       } catch (error) {
